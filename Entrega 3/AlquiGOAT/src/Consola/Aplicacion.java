@@ -12,10 +12,11 @@ public class Aplicacion {
 
     public static void cargarDatos() {
 
-        File todosTrabajadores = new File("./data/trabajadores.csv");
-        File todosClientes = new File("./data/clientes.csv");
-        File todosCarros = new File("./data/carros.csv");
-        File todasSedes = new File("./data/sedes.csv");
+        File todosTrabajadores = new File("./data/todosTrabajadores.csv");
+        File todosClientes = new File("./data/todosClientes.csv");
+        File todosCarros = new File("./data/todosCarros.csv");
+        File todasSedes = new File("./data/todasSedes.csv");
+        File todosCategorias = new File("./data/todosCategorias.csv");
 
     }
 
