@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import modificaciones.Ingrediente;
-
-public class CargarDatos {
+ class CargarDatos {
 	private File todosTrabajadores; 
 	private File todosClientes;
 	private File todosCarros; 
@@ -27,10 +25,10 @@ public class CargarDatos {
 	
 	
 	
-	private HashMap<String, Usuario>  cargarTrabajadores(HashMap<String, Sede> mapaSede) {
-			try (BufferedReader lector = new BufferedReader(new FileReader (todosTrabajadores))) {
+	public HashMap<String, Usuario>  cargarTrabajadores(HashMap<String, Sede> mapaSede) {
+		HashMap<String, Usuario> trabajadores = new HashMap<String, Usuario>();
+		try (BufferedReader lector = new BufferedReader(new FileReader (todosTrabajadores))) {
 				String linea = lector.readLine();
-				HashMap<String, Usuario> trabajadores = new HashMap<String, Usuario>();
 				while (linea != null) {
 					String[] datosTrabajador = linea.split(",");
 					Sede sedeT= mapaSede.get(datosTrabajador[1]);
@@ -46,7 +44,7 @@ public class CargarDatos {
 						sedeT.setAdministradorSede(adminSedeEste);
 						trabajadores.put(datosTrabajador[3], adminSedeEste);
 					}
-					else if (datosTrabajador[0].equals("2")){
+					else if (datosTrabajador[0].equals("3")){
 						Trabajador trabajadorEste = crearNuevoTabajador(sedeT, datosTrabajador[2], datosTrabajador[3], datosTrabajador[4], datosTrabajador[5], datosTrabajador[6], datosTrabajador[7], imagenLicencia);
 						sedeT.agregarTrabajador(trabajadorEste);
 						trabajadores.put(datosTrabajador[3], trabajadorEste);
@@ -57,6 +55,7 @@ public class CargarDatos {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			return trabajadores;
 	
 		
 	}
