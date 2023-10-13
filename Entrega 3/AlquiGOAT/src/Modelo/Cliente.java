@@ -17,6 +17,7 @@ public class Cliente extends Usuario{
 		this.imagenDocumento = imagenDocumento;
 		metodoPago = tarjeta;
 		datos = datosContacto;
+		tipoUsuario = "4";
 	}
 
 	public String getFechaNacimiento() {
