@@ -25,9 +25,9 @@ public class Aplicacion {
 
     public static void mostrarMenu() {
 
-        System.out.println("\n1. Cargar datos restaurante");
-        System.out.println("2. Mostrar menú");
-        System.out.println("3. Iniciar nuevo pedido");
+        System.out.println("\nIniciar Sesión");
+        System.out.println("2. Cliente");
+        System.out.println("3. Empleado");
         System.out.println("4. Agregar elemento a un pedido");
         System.out.println("5. Cerrar pedido y guardar factura");
         System.out.println("6. Consultar la información de un pedido por id");

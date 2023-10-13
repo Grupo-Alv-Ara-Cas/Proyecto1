@@ -2,8 +2,8 @@ package Modelo;
 
 public class Trabajador extends Usuario{
 
-	public Trabajador(Sede sedeT, String nombreUsuario, String login, String password) {
-		super(nombreUsuario, login, password);
+	public Trabajador(Sede sedeT, String nombreUsuario, String login, String password, Licencia datosLicencia) {
+		super(nombreUsuario, login, password, datosLicencia);
 	}
 	
 	public void entregarCarro(Vehiculo carro, Usuario recibe) {

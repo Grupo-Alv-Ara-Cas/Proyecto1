@@ -41,6 +41,6 @@ public class Sede {
 	}
 
 	public void quitarCarros(Vehiculo carro) {
-		carrosSede.remove(carro.getPlaca();
+		carrosSede.remove(carro.getPlaca());
 }
 }

@@ -2,17 +2,21 @@ package Modelo;
 
 import java.io.File;
 
-public class Cliente {
+public class Cliente extends Usuario{
 	
 	private String fechaNacimiento;
 	private String nacionalidad;
-	File imagenDocumento = new File ("./data/imagen.png");
+	private File imagenDocumento;
+	private Tarjeta metodoPago;
+	private DatosContacto datos;
 	
-	public Cliente(String fechaNacimiento, String nacionalidad, File imagenDocumento) {
-		super();
+	public Cliente(String nombreUsuario, String login, String password, String fechaNacimiento, String nacionalidad, File imagenDocumento, DatosContacto datosContacto, Licencia licencia, Tarjeta tarjeta) {
+		super(nombreUsuario, login, password, licencia);
 		this.fechaNacimiento = fechaNacimiento;
 		this.nacionalidad = nacionalidad;
 		this.imagenDocumento = imagenDocumento;
+		metodoPago = tarjeta;
+		datos = datosContacto;
 	}
 
 	public String getFechaNacimiento() {
@@ -25,6 +29,14 @@ public class Cliente {
 
 	public File getImagenDocumento() {
 		return imagenDocumento;
+	}
+	
+	public Tarjeta getMetodoPago() {
+		return metodoPago;
+	}
+	
+	public DatosContacto getDatosContactoo() {
+		return datos;
 	}
 
 }

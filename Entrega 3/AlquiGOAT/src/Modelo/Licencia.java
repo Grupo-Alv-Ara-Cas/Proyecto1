@@ -1,17 +1,19 @@
 package Modelo;
 
+import java.io.File;
+
 public class Licencia {
 	
 	private String numeroID;
-	private String paísExpedición;
-	private String fechaCaducidad;
-	private String imagenLicencia;
+	private String paisExpedicion;
+	private String fechaCaducidadL;
+	private File imagenLicencia;
 	
-	public Licencia(String numeroID, String paísExpedición, String fechaCaducidad, String imagenLicencia) {
+	public Licencia(String numeroID, String paisExpedicion, String fechaCaducidadL, File imagenLicencia) {
 		super();
 		this.numeroID = numeroID;
-		this.paísExpedición = paísExpedición;
-		this.fechaCaducidad = fechaCaducidad;
+		this.paisExpedicion = paisExpedicion;
+		this.fechaCaducidadL = fechaCaducidadL;
 		this.imagenLicencia = imagenLicencia;
 	}
 
@@ -19,15 +21,15 @@ public class Licencia {
 		return numeroID;
 	}
 
-	public String getPaísExpedición() {
-		return paísExpedición;
+	public String getPaisExpedicion() {
+		return paisExpedicion;
 	}
 
-	public String getFechaCaducidad() {
-		return fechaCaducidad;
+	public String getFechaCaducidadL() {
+		return fechaCaducidadL;
 	}
 
-	public String getImagenLicencia() {
+	public File getImagenLicencia() {
 		return imagenLicencia;
 	}
 
