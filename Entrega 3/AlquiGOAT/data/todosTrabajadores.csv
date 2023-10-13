@@ -1,2 +1,6 @@
-nombre_trabajador,ID_trabajador
-Miguel Castillo, 201633992
+cargo,sede,nombre_usuario,login,password,numero_id,pais_expedicion,fecha_caducidad,imagen_licencia
+1,AlquiAutos,Miguel Castillo,ms.castillo,201633992,1021633551,Colombia,13-10-2030,imagen1.png
+2,AlquiAutos,Andres Perez,a.perez,201633993,1021633552,Colombia,13-10-2030,imagen2.png
+3,AlquiAutos,Carlos Ramirez,c.ramirez,201633994,1021633553,Colombia,13-10-2030,imagen3.png
+3,GOATRental,Andres Ramos,a.ramos,201633995,1021633554,Colombia,13-10-2030,imagen4.png
+2,GOATRental,Carlos Hernandez,c.hernandez,201633996,1021633555,Colombia,13-10-2030,imagen5.png

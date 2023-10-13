@@ -1,3 +1,4 @@
-fechaNacimiento,nacionalidad,imagenDocumento,numeroCelular,correo,paisResidencia,ciudadResidencia,direccionResidencia,codigoPostal,numeroID,paisExpedicion,fechaCaducidad,imagenLicencia,numeroTarjeta,codigoTarjeta,fechaCaducidad,tipo
-1980-05-15,Colombiana,url_imagen_documento,+1234567890,correo@example.com,Colombia,Bogota,Calle 123,12345,123456789,Colombia,2025-05-15,url_imagen_licencia,1234567890123456,123,2025-12-31,Visa
-1990-08-20,Mexicana,url_imagen_documento,+9876543210,correo@example.com,Mexico,Ciudad de Mexico,Avenida 456,54321,987654321,MŽxico,2024-08-20,url_imagen_licencia,9876543210987654,321,2024-10-31,Mastercard
+nombreUsuario,tipoUsuario,login,password,fechaNacimiento,nacionalidad,imagenDocumento,numeroCelular,correo,paisResidencia,ciudadResidencia,direccionResidencia,codigoPostal,numeroID,paisExpedicion,fechaCaducidad,imagenLicencia,numeroTarjeta,codigoTarjeta,fechaCaducidad,tipo
+Catalina Alvarez,4,c.alvarez22,202220689,1980-05-15,Colombiana,imagen1.png,+1234567890,c.alvarez22@gmail.com,Colombia,Bogota,Calle 123,12345,123456789,Colombia,2025-05-15,lencense.png,1234567890123456,123,2025-12-31,Visa
+Nicolas Arango,4,n.arangor,202220342,1990-08-20,Mexicana,imagen2.png,+9876543210,nico.arangor@yahoo.com,Mexico,Ciudad de Mexico,Avenida 456,54321,987654321,Mexico,2024-08-20,cara.jpg,9876543210987654,321,2024-10-31,Mastercard
+Juan perez,3,j.perez,202220123,1995-10-10,Colombiana,imagen3.png,+1234567890,ju.per123@hotmail.com,Colombia,Medellin,Carrera 789,67890,123456789,Colombia,2023-10-10,licencia.jpg,1234567890123456,456,2023-11-30,Visa

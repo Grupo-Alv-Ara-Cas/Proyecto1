@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Sede {
-	
+
 	private String nombreSede;
 	private String ubicacionSede;
 	private String horariosSede;
-	private ArrayList <Trabajador> trabajadores;
-	private HashMap <String, Vehiculo> carrosSede;
-	
-	public Sede(String nombreSede, String ubicacionSede, String horariosSede) {
+	private AdministradorSede admin;
+	private ArrayList<Trabajador> trabajadores;
+	private HashMap<String, Vehiculo> carrosSede;
+
+	public Sede(String nombreSede, String ubicacionSede, String horariosSede, AdministradorSede admin) {
 		super();
 		this.nombreSede = nombreSede;
 		this.ubicacionSede = ubicacionSede;
 		this.horariosSede = horariosSede;
 		trabajadores = new ArrayList<Trabajador>();
-		carrosSede = new HashMap <String, Vehiculo>();
+		carrosSede = new HashMap<String, Vehiculo>();
 	}
 
 	public String getNombreSede() {
@@ -31,7 +32,7 @@ public class Sede {
 	public String getHorariosSede() {
 		return horariosSede;
 	}
-	
+
 	public void agregarTrabajador(Trabajador empleado) {
 		trabajadores.add(empleado);
 	}
@@ -42,5 +43,10 @@ public class Sede {
 
 	public void quitarCarros(Vehiculo carro) {
 		carrosSede.remove(carro.getPlaca());
-}
+	}
+
+	public void setAdministradorSede(AdministradorSede admin) {
+		this.admin = admin;
+	}
+
 }
