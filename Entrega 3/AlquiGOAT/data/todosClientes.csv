@@ -1,0 +1,3 @@
+fechaNacimiento,nacionalidad,imagenDocumento,numeroCelular,correo,paisResidencia,ciudadResidencia,direccionResidencia,codigoPostal,numeroID,paisExpedicion,fechaCaducidad,imagenLicencia,numeroTarjeta,codigoTarjeta,fechaCaducidad,tipo
+1980-05-15,Colombiana,url_imagen_documento,+1234567890,correo@example.com,Colombia,Bogota,Calle 123,12345,123456789,Colombia,2025-05-15,url_imagen_licencia,1234567890123456,123,2025-12-31,Visa
+1990-08-20,Mexicana,url_imagen_documento,+9876543210,correo@example.com,Mexico,Ciudad de Mexico,Avenida 456,54321,987654321,MŽxico,2024-08-20,url_imagen_licencia,9876543210987654,321,2024-10-31,Mastercard
