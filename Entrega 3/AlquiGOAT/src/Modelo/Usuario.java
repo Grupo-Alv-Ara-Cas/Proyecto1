@@ -2,14 +2,17 @@ package Modelo;
 
 public class Usuario {
 	
-	private String nombreUsuario;
-	private String login;
-	private String password;
+	protected String nombreUsuario;
+	protected String login;
+	protected String password;
+	protected Licencia licencia;
+
 	
-	public Usuario(String nombreUsuario, String login, String password) {
+	public Usuario(String nombreUsuario, String login, String password, Licencia licencia) {
 		this.nombreUsuario = nombreUsuario;
 		this.login = login;
 		this.password = password;
+		this.licencia = licencia;
 	}
 	public String getNombreUsuario() {
 		return nombreUsuario;
@@ -19,6 +22,9 @@ public class Usuario {
 	}
 	public String getPassword() {
 		return password;
+	}
+	public Licencia getLicencia() {
+		return licencia;
 	}
 
 }

@@ -9,8 +9,7 @@ public class DatosContacto {
     private String direccionResidencia;
     private String codigoPostal;
     
-    public DatosContacto(String numeroCelular, String correo, String paisResidencia, String ciudadResidencia,
-			String direccionResidencia, String codigoPostal) {
+    public DatosContacto(String numeroCelular, String correo, String paisResidencia, String ciudadResidencia, String direccionResidencia, String codigoPostal) {
 		this.numeroCelular = numeroCelular;
 		this.correo = correo;
 		this.paisResidencia = paisResidencia;

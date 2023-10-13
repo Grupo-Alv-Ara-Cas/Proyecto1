@@ -4,14 +4,14 @@ public class Tarjeta {
 	
 	private String numeroTarjeta;
 	private String codigoTarjeta;
-	private String fechaCaducidad;
+	private String fechaCaducidadT;
 	private String tipo;
 	
-	public Tarjeta(String numeroTarjeta, String codigoTarjeta, String fechaCaducidad, String tipo) {
+	public Tarjeta(String numeroTarjeta, String codigoTarjeta, String fechaCaducidadT, String tipo) {
 		super();
 		this.numeroTarjeta = numeroTarjeta;
 		this.codigoTarjeta = codigoTarjeta;
-		this.fechaCaducidad = fechaCaducidad;
+		this.fechaCaducidadT = fechaCaducidadT;
 		this.tipo = tipo;
 	}
 
@@ -23,8 +23,8 @@ public class Tarjeta {
 		return codigoTarjeta;
 	}
 
-	public String getFechaCaducidad() {
-		return fechaCaducidad;
+	public String getFechaCaducidadT() {
+		return fechaCaducidadT;
 	}
 
 	public String getTipo() {
