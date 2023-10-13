@@ -6,6 +6,7 @@ public class Usuario {
 	protected String login;
 	protected String password;
 	protected Licencia licencia;
+	protected String tipoUsuario;
 
 	
 	public Usuario(String nombreUsuario, String login, String password, Licencia licencia) {
