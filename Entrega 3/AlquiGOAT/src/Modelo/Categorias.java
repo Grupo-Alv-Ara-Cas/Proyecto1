@@ -8,11 +8,11 @@ public class Categorias {
 	private int carrosDisponibles;
 	private HashMap<String, Vehiculo>vehiculosCategoria;
 	
-	public Categorias(String nombre, long precioBase, int carrosDisponibles) {
+	public Categorias(String nombre, long precioBase) {
 		this.nombre = nombre;
 		this.precioBase = precioBase;
-		this.carrosDisponibles = carrosDisponibles;
 		vehiculosCategoria = new HashMap<String, Vehiculo>();
+		carrosDisponibles = 0;
 	}
 	public int getCarrosDisponibles() {
 		return carrosDisponibles;
