@@ -11,8 +11,8 @@ public class Vehiculo {
 	private Sede  sedeCarro;
 	private Categorias  categoria;
 	
-	public Vehiculo(String placa, String marca, String modelo, String color, String tipoTransmisión, String ubicacion,
-			Boolean disponible, Sede sedeCarro, Categorias categoria) {
+	public Vehiculo(String placa,Categorias categoria, Sede sedeCarro,String marca, String modelo, String color, String tipoTransmisión, String ubicacion,
+			Boolean disponible ) {
 		this.placa = placa;
 		this.marca = marca;
 		this.modelo = modelo;
@@ -22,6 +22,9 @@ public class Vehiculo {
 		this.disponible = disponible;
 		this.sedeCarro = sedeCarro;
 		this.categoria = categoria;
+		if (disponible) {
+			categoria.masCarrosDisponibles(1);
+		}
 	}
 	public String getUbicacion() {
 		return ubicacion;
@@ -61,7 +64,7 @@ public class Vehiculo {
 			categoria.masCarrosDisponibles(1);
 		}
 		else {
-			categoria.masCarrosDisponibles(0);
+			categoria.masCarrosDisponibles(-1);
 		}	
 		this.disponible = disponible;
 		

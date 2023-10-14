@@ -12,7 +12,7 @@ public class Sede {
 	private ArrayList<Trabajador> trabajadores;
 	private HashMap<String, Vehiculo> carrosSede;
 
-	public Sede(String nombreSede, String ubicacionSede, String horariosSede, AdministradorSede admin) {
+	public Sede(String nombreSede, String ubicacionSede, String horariosSede) {
 		super();
 		this.nombreSede = nombreSede;
 		this.ubicacionSede = ubicacionSede;
@@ -47,6 +47,10 @@ public class Sede {
 
 	public void setAdministradorSede(AdministradorSede admin) {
 		this.admin = admin;
+	}
+
+	public AdministradorSede getAdmin() {
+		return admin;
 	}
 
 }

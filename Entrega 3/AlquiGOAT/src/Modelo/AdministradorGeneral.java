@@ -16,7 +16,7 @@ public class AdministradorGeneral extends AdministradorSede {
     }
 
     public Vehiculo comprarCarro(String placa, String marca, String modelo, String color, String tipoTransmisión, String ubicacion, Boolean disponible, Sede sedeCarro, Categorias categoria) {
-        Vehiculo vehiculo = new Vehiculo(placa, marca, modelo, color, tipoTransmisión, ubicacion, disponible, sedeCarro, categoria);
+        Vehiculo vehiculo = new Vehiculo(placa, categoria, sedeCarro, marca, modelo, color, tipoTransmisión, ubicacion, disponible);
         return vehiculo;
     }
 
