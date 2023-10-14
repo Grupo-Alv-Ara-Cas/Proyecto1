@@ -6,9 +6,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
+import Modelo.AlquilerCarros;
+
 public class Aplicacion {
 
     private int opcionSeleccionada;
+
+    private static AlquilerCarros alquiler;
 
     public static void cargarDatos() {
 
@@ -17,6 +21,8 @@ public class Aplicacion {
         File todosCarros = new File("./data/todosCarros.csv");
         File todasSedes = new File("./data/todasSedes.csv");
         File todosCategorias = new File("./data/todosCategorias.csv");
+
+        alquiler.cargarDatos(todosTrabajadores, todosClientes, todosCarros, todasSedes, todosCategorias);
 
     }
 
@@ -42,6 +48,8 @@ public class Aplicacion {
     public static void main(String[] args) {
 
         Aplicacion consola = new Aplicacion();
+        alquiler = new AlquilerCarros();
+        consola.cargarDatos();
         consola.iniciarSesion();
         consola.ejecutarOpcion();
 

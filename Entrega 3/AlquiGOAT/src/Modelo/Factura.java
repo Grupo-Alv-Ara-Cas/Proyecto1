@@ -43,9 +43,7 @@ public class Factura {
     }
 
     public void setPrecio() {
-        // Lógica para calcular el precio
-        // Aquí deberías implementar la lógica para calcular el precio en base a los
-        // datos de alquiler y seguros
+
     }
 
     public long getPrecio() {
@@ -65,9 +63,7 @@ public class Factura {
     }
 
     public void cambiarDisponibilidad() {
-        // Lógica para cambiar la disponibilidad del vehículo
-        // Aquí deberías implementar la lógica para cambiar la disponibilidad del
-        // vehículo
+
     }
 
     public File imprimirFactura() {
