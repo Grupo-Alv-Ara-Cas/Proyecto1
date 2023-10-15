@@ -19,15 +19,11 @@ public class Factura {
     private Vehiculo carro;
     private String lugarEntrega;
     private long precio;
-    private List<Seguros> tipoSeguro;
-    private List<ConductorAdicional> conductores;
 
     public Factura(Usuario usuario, Sede sede, Trabajador trabajador) {
         this.usuario = usuario;
         this.sede = sede;
         this.trabajador = trabajador;
-        this.tipoSeguro = new ArrayList<>();
-        this.conductores = new ArrayList<>();
     }
 
     public void setAlquiler(String lugarInicio, String fechaInicio, String rangoHoraInicio, String lugarFin,
@@ -50,16 +46,12 @@ public class Factura {
         return precio;
     }
 
-    public void añadirSeguro(Seguros seguroNuevo) {
-        tipoSeguro.add(seguroNuevo);
+    public void opcionSeguro(Seguros seguroNuevo) {
+
     }
 
-    public void añadirConductor(String numeroID, String paisExpedicion, String fechaCaduca, File imagenLicencia) {
-        /*
-         * ConductorAdicional conductor = new ConductorAdicional(numeroID,
-         * paisExpedicion, fechaCaduca, imagenLicencia);
-         * conductores.add(conductor);
-         */
+    public void conductorAdicional(String numeroID, String paisExpedicion, String fechaCaduca, File imagenLicencia) {
+
     }
 
     public void cambiarDisponibilidad() {

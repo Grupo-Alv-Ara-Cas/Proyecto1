@@ -3,12 +3,12 @@ package Modelo;
 import java.io.File;
 
 public class Licencia {
-	
+
 	private String numeroID;
 	private String paisExpedicion;
 	private String fechaCaducidadL;
 	private File imagenLicencia;
-	
+
 	public Licencia(String numeroID, String paisExpedicion, String fechaCaducidadL, File imagenLicencia) {
 		super();
 		this.numeroID = numeroID;

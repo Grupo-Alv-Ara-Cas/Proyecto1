@@ -25,10 +25,11 @@ public class Aplicacion {
         alquiler.cargarDatos(todosTrabajadores, todosClientes, todosCarros, todasSedes, todosCategorias);
 
     }
-    
+
     public static void iniciarSesion() {
 
-	}
+    }
+
     public static void mostrarOpcionesAdminGeneral() {
 
         System.out.println("1. Crear administrador de una sede");
@@ -40,8 +41,8 @@ public class Aplicacion {
         System.out.println("7. Hacer recibimiento de un vehículo");
         System.out.println("8. Registrar un conductor extra para el vehículo");
         System.out.println("9. Actualizar el estado de un vehículo");
-        
-    }	
+
+    }
 
     public static void mostrarOpcionesAdminSede() {
 
@@ -55,9 +56,9 @@ public class Aplicacion {
         System.out.println("8. Hacer recibimiento de un vehículo");
         System.out.println("9. Registrar un conductor extra para el vehículo");
         System.out.println("10. Actualizar el estado de un vehículo");
-        
+
     }
-    		
+
     public static void mostrarOpcionesTrabajador() {
 
         System.out.println("1. Hacer la entrega de un vehículo");
@@ -65,9 +66,9 @@ public class Aplicacion {
         System.out.println("3. Registrar un conductor extra para el vehículo");
         System.out.println("4. Actualizar el estado de un vehículo");
         System.out.println("5. Alquilar un vehículo");
-        
-    }	
-   
+
+    }
+
     public static void mostrarOpcionesCliente() {
 
         System.out.println("1. ");

@@ -1,8 +1,8 @@
 package Modelo;
 
 public class Seguros {
-	
-	private String nombre;
+
+    private String nombre;
     private String descripcion;
     private long precio;
     private int cantidadDias;
