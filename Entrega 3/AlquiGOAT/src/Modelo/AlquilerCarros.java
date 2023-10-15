@@ -7,9 +7,10 @@ public class AlquilerCarros {
 
     // private HashMap<String, String> trabajadores;
     // private HashMap<String, String> clientes;
-    // private HashMap<String, String> carros;
-    // private HashMap<Integer, String> sedes;
-    private HashMap<String, String> usuarios;
+    private HashMap<String, Vehiculo> carros;
+    private HashMap<String, Sede> sedes;
+    private HashMap<String, Usuario> usuarios;
+    private HashMap<String, Categorias> categorias;
     private CargarDatos cargarDatos;
 
     public void AlquilerCarros() {
@@ -20,8 +21,14 @@ public class AlquilerCarros {
             File todasCategorias) {
 
         cargarDatos = new CargarDatos(todosTrabajadores, todosClientes, todosCarros, todasSedes, todasCategorias);
-        // usuarios = cargarDatos.cargarTrabajadores(null);
-
+        categorias = cargarDatos.cargarCategoria(); 
+        sedes = cargarDatos.cargarSedes() ;
+        carros = cargarDatos.cargarVehiculos(sedes, categorias);
+        usuarios = cargarDatos.cargarUsuarios(sedes);
+        
     }
+    
+    
+    
 
 }
