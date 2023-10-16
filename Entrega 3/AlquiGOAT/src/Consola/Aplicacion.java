@@ -48,7 +48,34 @@ public class Aplicacion {
             }
     	}
     	else {
-    		
+    		System.out.println("A continuación podra crear su cuenta de Usuario:");
+    		String nombreUsuario = input("Escriba aca su nombre y apellido:");
+    		String login = input("Cree un nombre de usuario");
+    		String password = input("Cree una contraseña:");
+    		String fechaNacimiento = input("Escriba su fecha de nacimiento en el formato dd-mm-yyyy:");
+    		String nacionalidad = input("Escriba su nacionalidad:");
+    		String documentopng = input("Ingrese acá una imágen de su documento de identidad");
+    		File imagenDocumento = new File(documentopng);
+    		String numeroCelular = input("Escriba su número de celular con la debida extensión, dependiendo de su país:");
+    		String correo = input("Escriba su correo electrónico de contacto:");
+    		String paisResidencia = input("Escriba su país de residencia:");
+    		String ciudadResidencia = input("Escriba su cuidad de residencia:");
+    		String direccionResidencia = input("Escriba su direccion de residencia:");
+    		String codigoPostal = input("Escriba su código postal:");
+    		String numeroID = input("Escriba su número de documento:");
+    		String paisExpedicion = input("Escriba el país de expedición de su documento:");
+    		String fechaCaducidadL = input("Escriba la fecha de caducidad de su doucmento en el formato dd-mm-yyyy:");
+    		String licenciapng = input("Ingrese acá una imágen de su licencia de conducción:");
+    		File imagenLicencia = new File(licenciapng);
+    		String numeroTarjeta = input("Ingrese el número de su targeta con l ue hara el pago:");
+    		String codigoTarjeta = input("Ingrese el código de su targeta:");
+    		String fechaCaducidadT = input("Ingrese la fecha de caducidad de su targeta:");
+    		String tipo = input("Ingrese el tipo de targeta:");
+    		alquiler.crearCliente(nombreUsuario, login, password, fechaNacimiento,
+    				nacionalidad, imagenDocumento, numeroCelular, correo, paisResidencia,
+    				ciudadResidencia, direccionResidencia, codigoPostal, numeroID,
+    				paisExpedicion, fechaCaducidadL, imagenLicencia, numeroTarjeta,
+    				codigoTarjeta, fechaCaducidadT, tipo);
     	}
         
     }
@@ -95,11 +122,11 @@ public class Aplicacion {
     public static void mostrarOpcionesCliente() {
 
         System.out.println("1. Alquilar un vehículo");
-
+        if (alquiler)
     }
 
     public static void crearAlquiler() {
-        System.out.println("A continuación le mostrraremos las sedes disponibles");
+        System.out.println("A continuación le mostraremos las sedes disponibles");
         sedeDisponibles.getSede();
     }
 
