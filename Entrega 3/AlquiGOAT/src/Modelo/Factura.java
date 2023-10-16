@@ -14,13 +14,12 @@ public class Factura {
     private Alquiler alquiler;
     private Categorias tipoDeCarro;
     private Vehiculo carro;
-    private String lugarInicio;
+    private Sede lugarInicio;
     private String fechaInicio;
     private String rangoHoraInicio;
-    private String lugarFin;
     private String fechaFin;
     private String rangoHoraFin;
-    private String lugarEntrega;
+    private Sede lugarEntrega;
     private long precio;
 
     public Factura(Usuario usuario, Trabajador trabajador, Categorias tipoDeCarro) {
@@ -32,7 +31,6 @@ public class Factura {
     	this.lugarInicio = alquiler.getLugarInicio();
         this.fechaInicio = alquiler.getFechaInicio();
         this.rangoHoraInicio = alquiler.getRangoHoraInicio();
-        this.lugarFin = alquiler.getLugarEntrega();
         this.fechaFin = alquiler.getFechaFin();
         this.rangoHoraFin = alquiler.getRangoHoraFin();
         this.tipoDeCarro = alquiler.getTipoDeCarro();
@@ -89,7 +87,7 @@ public class Factura {
                 SUBTOTAL: %s
                 TOTAL: %s
                 """.formatted(trabajadorSede, sedeNombre, usuario, modelo, tipoDeCarro, placa, color, tipoTransmision, fechaInicio,
-                		lugarInicio, fechaFin, lugarFin, segurito, conducs, subtotalStr, totalStr);
+                		lugarInicio.getNombreSede(), fechaFin, lugarEntrega.getNombreSede(), segurito, conducs, subtotalStr, totalStr);
     }
 
     public boolean imprimirFactura() {
@@ -114,7 +112,7 @@ public class Factura {
                 Seguro Seleccionado: %s
                 Conductores Asociados: %s
                 """.formatted(usuario, modelo, tipoDeCarro, fechaInicio,
-                		lugarInicio, fechaFin, lugarFin, segurito, conducs, subtotalStr, totalStr);
+                		lugarInicio, fechaFin, lugarEntrega, segurito, conducs, subtotalStr, totalStr);
     }
 
     public boolean imprimirIndicaciones() {
