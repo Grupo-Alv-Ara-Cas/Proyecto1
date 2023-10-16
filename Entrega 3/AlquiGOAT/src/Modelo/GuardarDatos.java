@@ -1,7 +1,10 @@
 package Modelo;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintStream;
 
 public class GuardarDatos {
@@ -21,51 +24,50 @@ public class GuardarDatos {
 			String nacionalidad, File imagenDocumento, String numeroCelular, String correo, String paisResidencia,
 			String ciudadResidencia, String direccionResidencia, String codigoPostal, String numeroID,
 			String paisExpedicion, String fechaCaducidadL, File imagenLicencia, String numeroTarjeta,
-			String codigoTarjeta, String fechaCaducidadT, String tipo) {
+			String codigoTarjeta, String fechaCaducidadT, String tipo)  {
 		
-		try {
-			PrintStream consola = System.out;
-			
-			System.setOut(new PrintStream((todosClientes)));
-			
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(todosClientes, true))) {
 			String imagenDocumentos = imagenDocumento.getPath(); 
 			
 			String imagenLicencial= imagenLicencia.getPath(); 
 			
-			String datos =  "1"+","+ nombreUsuario+","+  login  +","+ password +","+ fechaNacimiento+","+
+			String datos =  "4"+","+ nombreUsuario+","+  login  +","+ password +","+ fechaNacimiento+","+
 					nacionalidad+","+  imagenDocumentos +","+ numeroCelular+","+  correo +","+ paisResidencia+","+
 					 ciudadResidencia+","+  direccionResidencia +","+ codigoPostal +","+ numeroID+","+
 					 paisExpedicion +","+fechaCaducidadL +","+imagenLicencial+","+  numeroTarjeta+","+
 					 codigoTarjeta +","+ fechaCaducidadT +","+tipo;
+			writer.newLine();
+			writer.write(datos);
 			
-			System.out.println(datos);
-			System.setOut(consola);
 		}
 		catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	}	
 	public void addTrabajador(String sedeT, String nombreUsuario, String login, String password,
 			String numeroID, String paisExpedicion, String fechaCaducidadL, File imagenLicencia , String cargo) {
 		
-		try {
-			PrintStream consola = System.out;
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(todosTrabajadores, true))){
 			
-			System.setOut(new PrintStream((todosTrabajadores)));
 			
 			
 			String imagenLicencial= imagenLicencia.getPath();
 			
 			String datos =  cargo+ ","+ sedeT +","+ nombreUsuario+","+  login  +","+ password +","+ ","+ numeroID+","
 			+paisExpedicion +","+fechaCaducidadL +","+imagenLicencial;
-			
-			System.out.println(datos);
-			System.setOut(consola);
+			writer.newLine();
+			writer.write(datos);
 		}
 		catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	}
 	
@@ -73,39 +75,44 @@ public class GuardarDatos {
 			String tipoTransmisión, String ubicacion,
 			String disponible) {
 		
-		try {
-			PrintStream consola = System.out;
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(todosCarros, true))){
+		
 			
-			System.setOut(new PrintStream((todosCarros)));
 			
 			String datos =  placa+ ","+ categoria +","+ sedeCarro+","+  sedeCarro  +","+ marca +","+ ","+ modelo+","
 			+color +","+tipoTransmisión +","+ubicacion+","+disponible;
 			
-			System.out.println(datos);
-			System.setOut(consola);
+			writer.newLine();
+			writer.write(datos);
 		}
 		catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	}
 	
 	
 	public void addSede(String nombreSede, String ubicacionSede, String horariosSede) {
 		
-		try {
-			PrintStream consola = System.out;
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(todasSedes, true))){
 			
-			System.setOut(new PrintStream((todasSedes)));
+	
 			
 			String datos =  nombreSede+ ","+ ubicacionSede +","+ horariosSede;
 			
-			System.out.println(datos);
-			System.setOut(consola);
+			writer.newLine();
+			writer.write(datos);
+
 		}
 		catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	}
 	}

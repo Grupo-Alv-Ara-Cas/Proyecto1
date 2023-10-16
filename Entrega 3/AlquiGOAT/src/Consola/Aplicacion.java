@@ -122,7 +122,7 @@ public class Aplicacion {
     public static void mostrarOpcionesCliente() {
 
         System.out.println("1. Alquilar un vehículo");
-        if (alquiler)
+        //if (alquiler)
     }
 
     public static void crearAlquiler() {
@@ -144,11 +144,6 @@ public class Aplicacion {
         alquiler = new AlquilerCarros();
         consola.cargarDatos();
         consola.iniciarSesion();
-        consola.mostrarOpcionesAdminGeneral();
-        consola.mostrarOpcionesAdminSede();
-        consola.mostrarOpcionesTrabajador();
-        consola.mostrarOpcionesCliente();
-        consola.guardarFactura();
     }
 
     private static String input(String mensaje) {

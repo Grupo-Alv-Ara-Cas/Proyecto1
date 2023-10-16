@@ -112,7 +112,7 @@ public class Factura {
                 Seguro Seleccionado: %s
                 Conductores Asociados: %s
                 """.formatted(usuario, modelo, tipoDeCarro, fechaInicio,
-                		lugarInicio, fechaFin, lugarEntrega, segurito, conducs, subtotalStr, totalStr);
+                		lugarInicio.getNombreSede(), fechaFin, lugarEntrega.getNombreSede(), segurito, conducs, subtotalStr, totalStr);
     }
 
     public boolean imprimirIndicaciones() {
