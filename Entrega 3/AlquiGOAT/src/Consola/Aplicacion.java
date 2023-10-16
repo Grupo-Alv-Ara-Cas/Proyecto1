@@ -104,14 +104,6 @@ public class Aplicacion {
         }
     }
 
-    public static void guardarFactura() {
-        if (factura.imprimirFactura()) {
-            System.out.println("Factura guardada con éxito");
-        } else {
-            System.out.println("Error al guardar la factura");
-        }
-    }
-
     public static void main(String[] args) {
 
         Aplicacion consola = new Aplicacion();
