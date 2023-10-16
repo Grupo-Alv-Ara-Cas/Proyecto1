@@ -32,18 +32,25 @@ public class Aplicacion {
     }
 
     public static void iniciarSesion() {
-        String login = input("Ingrese su Usuario");
-        String password = input("Ingrese su Contraseña");
-        String cuenta = alquiler.revisarCuenta(login, password);
-        if (cuenta.equals("1")) {
-            mostrarOpcionesAdminGeneral();
-        } else if (cuenta.equals("2")) {
-            mostrarOpcionesAdminSede();
-        } else if (cuenta.equals("3")) {
-            mostrarOpcionesTrabajador();
-        } else if (cuenta.equals("4")) {
-            mostrarOpcionesCliente();
-        }
+    	String crearCuenta = input("Desea crear una cuenta nueva? (Y/N)");
+    	if (crearCuenta.toLowerCase().equals("n")) {
+    		String login = input("Ingrese su Usuario");
+            String password = input("Ingrese su Contraseña");
+            String cuenta = alquiler.revisarCuenta(login, password);
+            if (cuenta.equals("1")) {
+                mostrarOpcionesAdminGeneral();
+            } else if (cuenta.equals("2")) {
+                mostrarOpcionesAdminSede();
+            } else if (cuenta.equals("3")) {
+                mostrarOpcionesTrabajador();
+            } else if (cuenta.equals("4")) {
+                mostrarOpcionesCliente();
+            }
+    	}
+    	else {
+    		
+    	}
+        
     }
 
     public static void mostrarOpcionesAdminGeneral() {
