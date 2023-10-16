@@ -174,7 +174,7 @@ class CargarDatos {
 								datosCliente[8], datosCliente[9], datosCliente[10], datosCliente[11], datosCliente[12],
 								datosCliente[13], datosCliente[14], imagenLicencia, datosCliente[16], datosCliente[17],
 								datosCliente[18], datosCliente[19]);
-						Usuarios.put(datosCliente[3], cli);
+						Usuarios.put(datosCliente[2], cli);
 					}
 
 					linea = lector.readLine();
