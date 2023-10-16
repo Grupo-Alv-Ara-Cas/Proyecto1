@@ -5,27 +5,26 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class Alquiler {
-	protected String lugarInicio;
+public class  Alquiler {
+	protected Sede lugarInicio;
 	protected String fechaInicio;
 	protected String rangoHoraInicio;
 	protected String fechaFin;
 	protected String rangoHoraFin;
-	protected String lugarEntrega;
+	protected Sede lugarEntrega;
 	protected long precio;
 	protected ArrayList<ConductorAdicional> masConductor;
 	protected ArrayList<Seguros> tipoSeguro;
 	protected Categorias tipoDeCarro;
 
-	public Alquiler(String lugarInicio, String fechaInicio, String rangoHoraInicio, String lugarFin, String fechaFin,
-			String rangoHoraFin, String lugarEntrega, long precio, Categorias tipoDeCarro) {
+	public Alquiler(Sede lugarInicio, String fechaInicio, String rangoHoraInicio, String lugarFin, String fechaFin,
+			String rangoHoraFin, Sede lugarEntrega, Categorias tipoDeCarro) {
 		this.lugarInicio = lugarInicio;
 		this.fechaInicio = fechaInicio;
 		this.rangoHoraInicio = rangoHoraInicio;
 		this.fechaFin = fechaFin;
 		this.rangoHoraFin = rangoHoraFin;
 		this.lugarEntrega = lugarEntrega;
-		this.precio = precio;
 		this.tipoDeCarro = tipoDeCarro;
 		definirPrecio();
 		masConductor = new ArrayList<ConductorAdicional>();
@@ -44,11 +43,11 @@ public class Alquiler {
 		return fechaFin;
 	}
 
-	public String getLugarEntrega() {
+	public Sede getLugarEntrega() {
 		return lugarEntrega;
 	}
 
-	public String getLugarInicio() {
+	public Sede getLugarInicio() {
 		return lugarInicio;
 	}
 
@@ -90,6 +89,10 @@ public class Alquiler {
 		LocalDate Inicio = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 		Period period = Period.between(Inicio, Fin);
 		int totalDias = period.getDays();
+		
+		if (!lugarInicio.equals(lugarEntrega)) {
+			precioExtra += 100000;
+		}
 
 		precio = ((long) totalDias) * precioDia + precioExtra;
 

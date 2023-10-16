@@ -96,7 +96,7 @@ public class GuardarDatos {
 		try {
 			PrintStream consola = System.out;
 			
-			System.setOut(new PrintStream((todosCarros)));
+			System.setOut(new PrintStream((todasSedes)));
 			
 			String datos =  nombreSede+ ","+ ubicacionSede +","+ horariosSede;
 			
