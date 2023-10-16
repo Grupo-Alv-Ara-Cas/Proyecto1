@@ -7,6 +7,7 @@ public class AdministradorGeneral extends AdministradorSede {
 
     public AdministradorGeneral(Sede sedeT, String nombreUsuario, String login, String password, Licencia datos) {
         super(sedeT, nombreUsuario, login, password, datos);
+        tipoUsuario = "1";
     }
 
     public AdministradorSede crearAdminSede(Sede sedeT, String nombreUsuario, String login, String password,

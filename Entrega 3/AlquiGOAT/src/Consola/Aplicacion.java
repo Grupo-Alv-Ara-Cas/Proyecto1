@@ -42,7 +42,7 @@ public class Aplicacion {
             String cuenta = alquiler.revisarCuenta(login, password);
             if (cuenta.equals("1")) {
                 mostrarOpcionesAdminGeneral();
-                String opcion = input("Eliga una opcion 1-9");
+                String opcion = input("Eliga una opcion 1-10");
                 if (opcion.toLowerCase().equals("1")) {
                 String sedeT = input("Ingrese la sede a la que desea asignarle el administrador");
                 String nombreUsuario = input("Ingrese el nombre del trabajador");
@@ -84,7 +84,7 @@ public class Aplicacion {
                 
             } else if (cuenta.equals("2")) {
                 mostrarOpcionesAdminSede();
-                String opcion = input("Eliga una opcion 1-9");
+                String opcion = input("Eliga una opcion 1-10");
                 if (opcion.toLowerCase().equals("1")) {
                 	String sede = input("Ingrese la sede a la que pertenece este empleado"); 
                 	String nombreUsurio = input("Ingrese el nombre y el apellido del empleado");

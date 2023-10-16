@@ -123,6 +123,7 @@ public class AlquilerCarros {
         AdministradorGeneral admin = (AdministradorGeneral) usuarios.get(login);
         admin.crearAdminSede(sedett, nombreUsuario, logins, passwords, numeroID, paisExpedicion, fechaCaducidadL,
                 imagenLicencia);
+        guardarDatos.addTrabajador(sedeT, nombreUsuario, logins, passwords, numeroID, paisExpedicion, fechaCaducidadL, imagenLicencia, "2");
     }
 
     public void agregarSeguro(String nombre, String descripcion, long precio) {

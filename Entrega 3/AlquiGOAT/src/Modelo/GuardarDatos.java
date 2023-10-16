@@ -61,7 +61,7 @@ public class GuardarDatos {
 			
 			String imagenLicencial= imagenLicencia.getPath();
 			
-			String datos =  cargo+ ","+ sedeT +","+ nombreUsuario+","+  login  +","+ password +","+ ","+ numeroID+","
+			String datos =  cargo+ ","+ sedeT +","+ nombreUsuario+","+  login  +","+ password +","+ numeroID+","
 			+paisExpedicion +","+fechaCaducidadL +","+imagenLicencial;
 			writer.newLine();
 			writer.write(datos);
