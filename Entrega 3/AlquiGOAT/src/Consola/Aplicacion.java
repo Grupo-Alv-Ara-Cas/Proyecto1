@@ -86,8 +86,10 @@ public class Aplicacion {
                 mostrarOpcionesAdminSede();
                 String opcion = input("Eliga una opcion 1-9");
                 if (opcion.toLowerCase().equals("1")) {
-                	String 
-                	alquiler.registrarInfoEmpleados()
+                	String sede = input("Ingrese la sede a la que pertenece este empleado"); 
+                	String nombreUsurio = input("Ingrese el nombre y el apellido del empleado");
+                	
+                	//alquiler.registrarInfoEmpleados();
                 }
             } else if (cuenta.equals("3")) {
                 mostrarOpcionesTrabajador();
