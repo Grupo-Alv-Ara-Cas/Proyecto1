@@ -82,6 +82,11 @@ public class Aplicacion {
                 
             } else if (cuenta.equals("2")) {
                 mostrarOpcionesAdminSede();
+                String opcion = input("Eliga una opcion 1-9");
+                if (opcion.toLowerCase().equals("1")) {
+                	String 
+                	alquiler.registrarInfoEmpleados()
+                }
             } else if (cuenta.equals("3")) {
                 mostrarOpcionesTrabajador();
             } else if (cuenta.equals("4")) {
