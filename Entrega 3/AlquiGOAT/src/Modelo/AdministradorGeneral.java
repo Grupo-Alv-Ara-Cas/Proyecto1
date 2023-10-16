@@ -23,7 +23,7 @@ public class AdministradorGeneral extends AdministradorSede {
         return vehiculo;
     }
 
-    public void bajaCarro(Vehiculo carro, HashMap<String, Categorias> categorias) {
+    public void bajaCarro(Vehiculo carro) {
     }
 
     public void agregarSeguro(HashMap<String, Seguros> seguros, String nombre, String descripcion, long precio,
@@ -31,5 +31,5 @@ public class AdministradorGeneral extends AdministradorSede {
         Seguros seguro = new Seguros(nombre, descripcion, precio, cantidadDias);
         seguros.put(nombre, seguro);
     }
-
+    
 }

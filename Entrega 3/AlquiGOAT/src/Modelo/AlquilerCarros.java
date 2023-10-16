@@ -14,6 +14,7 @@ public class AlquilerCarros {
     private HashMap<String, Categorias> categorias;
     private CargarDatos cargarDatos;
     private GuardarDatos guardarDatos;
+   
 
     private ArrayList<Reservas> lisaReservas;
 
@@ -61,14 +62,6 @@ public class AlquilerCarros {
                 codigoTarjeta, fechaCaducidadT, tipo);
     }
 
-    public void bajaCarro(Vehiculo carro) {
-
-    }
-
-    public void agregarSeguro(String nombre, String descripcion, long precio) {
-
-    }
-
     public boolean revisarDisponibilidad(String sede, String categoria) {
         Sede sedeRevisar = sedes.get(sede);
         return (sedeRevisar.revisarDisponibilidad(categoria));
@@ -88,12 +81,31 @@ public class AlquilerCarros {
 
     }
 
-    public void procesoReserva(String nombreUsuario) {
-
-    }
-
     private Vehiculo obtenerCarroDisponible(Categorias categoria) {
         return null;
     }
+    public void comprarCarro(String placa, String marca, String modelo, String color, String tipoTransmisión, String ubicacion, Boolean disponible, String sedeCarro, String categoria, String login) {
+    	AdministradorGeneral admin = (AdministradorGeneral) usuarios.get(login);
+    	Categorias categoriaActual = categorias.get(categoria);
+    	Sede sedeActual = sedes.get(sedeCarro);
+    	Vehiculo vehAdd = admin.comprarCarro(placa, marca, modelo, color, tipoTransmisión, ubicacion, disponible, sedeActual, categoriaActual);
+    	carros.put(placa,vehAdd);
+    }
+    public void bajaCarro(String placa, String login) {
+    	Vehiculo car = carros.get(placa);
+    	AdministradorGeneral admin = (AdministradorGeneral) usuarios.get(login);
+    	admin.bajaCarro(car);
+    	carros.remove(placa);
+    	
+    }
 
+	public void crearAdminSede(String sedeT, String nombreUsuario, String logins, String passwords, String numeroID,
+		String paisExpedicion, String fechaCaducidadL, File imagenLicencia, String login) {
+		Sede sedett = sedes.get(sedeT);
+		AdministradorGeneral admin = (AdministradorGeneral) usuarios.get(login);
+		admin.crearAdminSede(sedett, nombreUsuario, logins, passwords, numeroID, paisExpedicion, fechaCaducidadL, imagenLicencia);
+	}
+	public void agregarSeguro(String nombre, String descripcion, long precio) {
+		
+	}
 }
