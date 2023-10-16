@@ -17,7 +17,7 @@ public class  Alquiler {
 	protected ArrayList<Seguros> tipoSeguro;
 	protected Categorias tipoDeCarro;
 
-	public Alquiler(Sede lugarInicio, String fechaInicio, String rangoHoraInicio, String lugarFin, String fechaFin,
+	public Alquiler(Sede lugarInicio, String fechaInicio, String rangoHoraInicio, String fechaFin,
 			String rangoHoraFin, Sede lugarEntrega, Categorias tipoDeCarro) {
 		this.lugarInicio = lugarInicio;
 		this.fechaInicio = fechaInicio;

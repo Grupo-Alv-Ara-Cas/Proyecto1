@@ -5,13 +5,11 @@ public class Seguros {
     private String nombre;
     private String descripcion;
     private long precio;
-    private int cantidadDias;
 
-    public Seguros(String nombre, String descripcion, long precio, int cantidadDias) {
+    public Seguros(String nombre, String descripcion, long precio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.cantidadDias = cantidadDias;
     }
 
     public String getNombre() {
@@ -26,8 +24,5 @@ public class Seguros {
         return precio;
     }
 
-    public int getCantidadDias() {
-        return cantidadDias;
-    }
 
 }
