@@ -23,9 +23,6 @@ public class Vehiculo {
 		this.disponible = disponible;
 		this.sedeCarro = sedeCarro;
 		this.categoria = categoria;
-		if (disponible) {
-			categoria.masCarrosDisponibles(1);
-		}
 	}
 
 	public String getUbicacion() {
@@ -74,9 +71,9 @@ public class Vehiculo {
 
 	public void setDisponible(Boolean disponible) {
 		if (disponible) {
-			categoria.masCarrosDisponibles(1);
+			sedeCarro.cambiarDisponibilidadCarro(1, categoria.getNombre());
 		} else {
-			categoria.masCarrosDisponibles(-1);
+			sedeCarro.cambiarDisponibilidadCarro(-1, categoria.getNombre());
 		}
 		this.disponible = disponible;
 

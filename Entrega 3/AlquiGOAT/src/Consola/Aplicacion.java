@@ -7,10 +7,13 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import Modelo.AlquilerCarros;
+import Modelo.Factura;
 
 public class Aplicacion {
 
     private int opcionSeleccionada;
+
+    private static Factura factura;
 
     private static AlquilerCarros alquiler;
 
@@ -80,6 +83,14 @@ public class Aplicacion {
 
     }
 
+    public static void guardarFactura() {
+        if (factura.imprimirFactura()) {
+            System.out.println("Factura guardada con éxito");
+        } else {
+            System.out.println("Error al guardar la factura");
+        }
+    }
+
     public static void main(String[] args) {
 
         Aplicacion consola = new Aplicacion();
@@ -90,6 +101,7 @@ public class Aplicacion {
         consola.mostrarOpcionesAdminSede();
         consola.mostrarOpcionesTrabajador();
         consola.mostrarOpcionesCliente();
+        consola.guardarFactura();
     }
 
     private String input(String mensaje) {

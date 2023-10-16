@@ -1,6 +1,9 @@
 package Modelo;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,26 +11,24 @@ public class Factura {
     private Usuario usuario;
     private Sede sede;
     private Trabajador trabajador;
+    private Alquiler alquiler;
+    private Categorias tipoDeCarro;
+    private Vehiculo carro;
     private String lugarInicio;
     private String fechaInicio;
     private String rangoHoraInicio;
     private String lugarFin;
     private String fechaFin;
     private String rangoHoraFin;
-    private Alquiler alquiler;
-    private Categorias tipoDeCarro;
-    private Vehiculo carro;
     private String lugarEntrega;
     private long precio;
 
-    public Factura(Usuario usuario, Sede sede, Trabajador trabajador) {
+    public Factura(Usuario usuario, Sede sede, Trabajador trabajador, String lugarInicio, String fechaInicio,
+            String rangoHoraInicio, String lugarFin,
+            String fechaFin, String rangoHoraFin, Categorias tipoDeCarro, String lugarEntrega) {
         this.usuario = usuario;
         this.sede = sede;
         this.trabajador = trabajador;
-    }
-
-    public void setAlquiler(String lugarInicio, String fechaInicio, String rangoHoraInicio, String lugarFin,
-            String fechaFin, String rangoHoraFin, Categorias tipoDeCarro, String lugarEntrega) {
         this.lugarInicio = lugarInicio;
         this.fechaInicio = fechaInicio;
         this.rangoHoraInicio = rangoHoraInicio;
@@ -36,33 +37,32 @@ public class Factura {
         this.rangoHoraFin = rangoHoraFin;
         this.tipoDeCarro = tipoDeCarro;
         this.lugarEntrega = lugarEntrega;
-    }
-
-    public void setPrecio() {
-
+        alquiler = new Alquiler(lugarInicio, fechaInicio, rangoHoraInicio, lugarFin, fechaFin, rangoHoraFin,
+                lugarEntrega, precio, tipoDeCarro);
     }
 
     public long getPrecio() {
-        return precio;
+        return alquiler.getPrecio();
     }
 
-    public void opcionSeguro(Seguros seguroNuevo) {
-
+    public String conductorAdicional() {
+        return alquiler.getAnadirCondutor();
     }
 
-    public void conductorAdicional(String numeroID, String paisExpedicion, String fechaCaduca, File imagenLicencia) {
-
+    public String opcionSeguro() {
+        return alquiler.getOpcionSeguro();
     }
 
-    public void cambiarDisponibilidad() {
+    String contenido = String.valueOf(getPrecio()) + "\n" + conductorAdicional() + "\n" + opcionSeguro() + "\n";
 
-    }
+    public boolean imprimirFactura() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("./data/factura/factura" + usuario + ".txt"))) {
+            writer.write(contenido);
+            return true;
 
-    public File imprimirFactura() {
-        // Lógica para imprimir la factura y guardarla en un archivo
-        // Aquí deberías implementar la lógica para imprimir la factura y guardarla en
-        // un archivo
-        return null; // Retorna null para este ejemplo, debes implementar la lógica real
+        } catch (IOException e) {
+            return false;
+        }
     }
 
 }

@@ -5,22 +5,12 @@ import java.util.HashMap;
 public class Categorias {
 	private String nombre;
 	private long precioBase;
-	private int carrosDisponibles;
 	private HashMap<String, Vehiculo> vehiculosCategoria;
 
 	public Categorias(String nombre, long precioBase) {
 		this.nombre = nombre;
 		this.precioBase = precioBase;
 		vehiculosCategoria = new HashMap<String, Vehiculo>();
-		carrosDisponibles = 0;
-	}
-
-	public int getCarrosDisponibles() {
-		return carrosDisponibles;
-	}
-
-	public void masCarrosDisponibles(int caunto) {
-		carrosDisponibles = carrosDisponibles + caunto;
 	}
 
 	public String getNombre() {

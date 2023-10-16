@@ -25,9 +25,11 @@ public class Alquiler {
 		this.fechaFin = fechaFin;
 		this.rangoHoraFin = rangoHoraFin;
 		this.lugarEntrega = lugarEntrega;
+		this.precio = precio;
 		this.tipoDeCarro = tipoDeCarro;
 		definirPrecio();
 		masConductor = new ArrayList<ConductorAdicional>();
+		tipoSeguro = new ArrayList<Seguros>();
 	}
 
 	public String getFechaInicio() {
@@ -62,6 +64,22 @@ public class Alquiler {
 		return rangoHoraFin;
 	}
 
+	public String getAnadirCondutor() {
+		String condutores = "";
+		for (int i = 0; i < masConductor.size(); i++) {
+			condutores += masConductor.get(i).getNombre() + "\n";
+		}
+		return condutores;
+	}
+
+	public String getOpcionSeguro() {
+		String seguros = "";
+		for (int i = 0; i < tipoSeguro.size(); i++) {
+			seguros += tipoSeguro.get(i).getNombre() + "\n";
+		}
+		return seguros;
+	}
+
 	private void definirPrecio() {
 
 		long precioDia = tipoDeCarro.getPrecioBase();
@@ -79,6 +97,10 @@ public class Alquiler {
 
 	public Categorias getTipoDeCarro() {
 		return tipoDeCarro;
+	}
+
+	public void cambiarDisponibilidad() {
+
 	}
 
 }

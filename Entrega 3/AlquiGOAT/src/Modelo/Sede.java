@@ -11,6 +11,7 @@ public class Sede {
 	private AdministradorSede admin;
 	private ArrayList<Trabajador> trabajadores;
 	private HashMap<String, Vehiculo> carrosSede;
+	private HashMap<String, Integer> disponibilidadSedeCategoria;
 
 	public Sede(String nombreSede, String ubicacionSede, String horariosSede) {
 		super();
@@ -19,6 +20,7 @@ public class Sede {
 		this.horariosSede = horariosSede;
 		trabajadores = new ArrayList<Trabajador>();
 		carrosSede = new HashMap<String, Vehiculo>();
+		disponibilidadSedeCategoria = new HashMap<String, Integer>();
 	}
 
 	public String getNombreSede() {
@@ -38,7 +40,23 @@ public class Sede {
 	}
 
 	public void agregarCarros(Vehiculo carro) {
+		String categoria = carro.getCategoria().getNombre();
+		if (disponibilidadSedeCategoria.containsKey(categoria)) {
+			if (carro.getDisponible()) {
+				disponibilidadSedeCategoria.put(categoria, disponibilidadSedeCategoria.get(categoria) + 1);
+			}
+		} else {
+			if (carro.getDisponible()) {
+				disponibilidadSedeCategoria.put(categoria, 1);
+			} else {
+				disponibilidadSedeCategoria.put(categoria, 0);
+			}
+		}
 		carrosSede.put(carro.getPlaca(), carro);
+	}
+
+	public void cambiarDisponibilidadCarro(Integer numero, String categoria) {
+		disponibilidadSedeCategoria.put(categoria, disponibilidadSedeCategoria.get(categoria) + numero);
 	}
 
 	public void quitarCarros(Vehiculo carro) {
