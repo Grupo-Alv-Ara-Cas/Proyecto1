@@ -43,8 +43,8 @@ public class AlquilerCarros {
         usuarios = cargarDatos.cargarUsuarios(sedes);
         seguros = cargarDatos.cargarSeguros();
         reservasEmpresa = cargarDatos.cargarResevas(usuarios, sedes, categorias);
-        guardarDatos = new GuardarDatos(todosTrabajadores, todosClientes, todosCarros, todasSedes, todosReservas,
-                todosSeguros);
+        guardarDatos= new GuardarDatos(todosTrabajadores, todosClientes, todosCarros, todasSedes,
+                todosReservas, todosSeguros);
 
     }
 
