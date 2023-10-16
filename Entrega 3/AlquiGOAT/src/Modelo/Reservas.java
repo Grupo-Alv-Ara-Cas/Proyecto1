@@ -13,6 +13,7 @@ public class Reservas extends Alquiler {
 		super(lugarInicio, fechaInicio, rangoHoraInicio, fechaFin, rangoHoraFin, lugarEntrega,
 				tipoDeCarro);
 		this.usuario = usuario ; 
+		
 		precioReserva();
 		aPagar = precio - precioReserva;
 	}

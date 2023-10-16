@@ -226,7 +226,7 @@ class CargarDatos {
 				Sede lugarFin = sedes.get(datosReservas[3]);
 				Categorias categori = categoria.get(datosReservas[5]);
 				
-				Reservas res = new Reservas(lugarInicio, datosReservas[2], lugarInicio.getHorariosSede(),  lugarFin.getHorariosSede(),  datosReservas[4], lugarFin, categori, user);
+				Reservas res = new Reservas(lugarInicio, datosReservas[2], lugarInicio.getHorariosSede(), datosReservas[4], lugarFin.getHorariosSede(), lugarFin, categori, user);
 				reservas.put(datosReservas[0], res);
 				linea = lector.readLine();
 			}

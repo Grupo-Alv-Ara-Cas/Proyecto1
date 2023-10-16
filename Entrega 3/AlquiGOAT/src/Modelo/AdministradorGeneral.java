@@ -26,9 +26,8 @@ public class AdministradorGeneral extends AdministradorSede {
     public void bajaCarro(Vehiculo carro) {
     }
 
-    public void agregarSeguro(HashMap<String, Seguros> seguros, String nombre, String descripcion, long precio,
-            int cantidadDias) {
-        Seguros seguro = new Seguros(nombre, descripcion, precio, cantidadDias);
+    public void agregarSeguro(HashMap<String, Seguros> seguros, String nombre, String descripcion, long precio) {
+        Seguros seguro = new Seguros(nombre, descripcion, precio);
         seguros.put(nombre, seguro);
     }
     

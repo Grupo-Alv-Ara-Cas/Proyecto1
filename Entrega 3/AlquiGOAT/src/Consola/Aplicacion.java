@@ -27,8 +27,10 @@ public class Aplicacion {
         File todosCarros = new File("./data/todosCarros.csv");
         File todasSedes = new File("./data/todasSedes.csv");
         File todosCategorias = new File("./data/todosCategorias.csv");
+        File todosReservas = new File("./data/todosReservas.csv");
+        File todosSeguros = new File("./data/todosSeguros.csv");
 
-        alquiler.cargarDatos(todosTrabajadores, todosClientes, todosCarros, todasSedes, todosCategorias);
+        alquiler.cargarDatos(todosTrabajadores, todosClientes, todosCarros, todasSedes, todosCategorias, todosReservas, todosSeguros);
 
     }
 

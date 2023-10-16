@@ -26,9 +26,9 @@ public class  Alquiler {
 		this.rangoHoraFin = rangoHoraFin;
 		this.lugarEntrega = lugarEntrega;
 		this.tipoDeCarro = tipoDeCarro;
-		definirPrecio();
 		masConductor = new ArrayList<ConductorAdicional>();
 		tipoSeguro = new ArrayList<Seguros>();
+		definirPrecio();
 	}
 
 	public String getFechaInicio() {
