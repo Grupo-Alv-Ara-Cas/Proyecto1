@@ -58,6 +58,16 @@ public class Sede {
 	public void cambiarDisponibilidadCarro(Integer numero, String categoria) {
 		disponibilidadSedeCategoria.put(categoria, disponibilidadSedeCategoria.get(categoria) + numero);
 	}
+	
+	public boolean revisarDisponibilidad(String categoria) {
+		int cantidadCarros = disponibilidadSedeCategoria.get(categoria);
+		
+		boolean diponible = cantidadCarros >= 1;
+		
+		return (diponible);
+		
+	}
+	
 
 	public void quitarCarros(Vehiculo carro) {
 		carrosSede.remove(carro.getPlaca());

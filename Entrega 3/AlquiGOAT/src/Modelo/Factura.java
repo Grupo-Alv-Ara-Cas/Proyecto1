@@ -37,8 +37,6 @@ public class Factura {
         this.rangoHoraFin = rangoHoraFin;
         this.tipoDeCarro = tipoDeCarro;
         this.lugarEntrega = lugarEntrega;
-        alquiler = new Alquiler(lugarInicio, fechaInicio, rangoHoraInicio, lugarFin, fechaFin, rangoHoraFin,
-                lugarEntrega, precio, tipoDeCarro);
     }
 
     public long getPrecio() {
