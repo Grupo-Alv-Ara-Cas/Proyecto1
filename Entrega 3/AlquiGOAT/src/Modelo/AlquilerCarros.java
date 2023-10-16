@@ -13,8 +13,18 @@ public class AlquilerCarros {
     private HashMap<String, Categorias> categorias;
     private CargarDatos cargarDatos;
 
-    public void AlquilerCarros() {
 
+    public String revisarCuenta(String usuario, String password) {
+    if (usuarios.containsKey(usuario)) {
+    	Usuario user = usuarios.get(usuario);
+    	String contrasena = user.getPassword();
+    	if (contrasena.equals(password)) {
+    	String tipoUsuario = user.getTipoUsuario();
+    	return (tipoUsuario);
+    	}
+    	
+    }
+    return (null);
     }
 
     public void cargarDatos(File todosTrabajadores, File todosClientes, File todosCarros, File todasSedes,

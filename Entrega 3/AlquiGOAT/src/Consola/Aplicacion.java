@@ -7,12 +7,14 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import Modelo.AlquilerCarros;
+import Modelo.Sede;
 
 public class Aplicacion {
 
     private int opcionSeleccionada;
 
     private static AlquilerCarros alquiler;
+    private static Sede sedeDisponibles;
 
     public static void cargarDatos() {
 
@@ -27,7 +29,21 @@ public class Aplicacion {
     }
 
     public static void iniciarSesion() {
-
+    	String login = input("Ingrese su Usuario");
+    	String password = input("Ingrese su Contraseña");
+    	String cuenta = alquiler.revisarCuenta(login, password);
+    	if (cuenta.equals("1")) {
+    		mostrarOpcionesAdminGeneral();
+    	}
+    	else if (cuenta.equals("2")) {
+    		mostrarOpcionesAdminSede();
+    	}
+    	else if (cuenta.equals("3")) {
+    		mostrarOpcionesTrabajador();
+    	}
+    	else if (cuenta.equals("4")) {
+    		mostrarOpcionesCliente();
+    	}
     }
 
     public static void mostrarOpcionesAdminGeneral() {
@@ -71,13 +87,13 @@ public class Aplicacion {
 
     public static void mostrarOpcionesCliente() {
 
-        System.out.println("1. ");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("5. Cerrar pedido y guardar factura");
-        System.out.println("6. Consultar la información de un pedido por id");
+        System.out.println("1. Alquilar un vehículo");
 
+    }
+    
+    public static void crearAlquiler() {
+    	System.out.println("A continuación le mostrraremos las sedes disponibles");
+    	sedeDisponibles.getSede();
     }
 
     public static void main(String[] args) {
@@ -92,7 +108,7 @@ public class Aplicacion {
         consola.mostrarOpcionesCliente();
     }
 
-    private String input(String mensaje) {
+    private static String input(String mensaje) {
         try {
             System.out.print(mensaje + ": ");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

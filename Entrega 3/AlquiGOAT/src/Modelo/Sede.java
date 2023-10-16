@@ -52,5 +52,13 @@ public class Sede {
 	public AdministradorSede getAdmin() {
 		return admin;
 	}
+	public String getSede() {
+		String nombre = getNombreSede();
+		String ubicacion = getUbicacionSede();
+		String horario = getHorariosSede();
+		String detalles = nombre + "," + ubicacion + "," + horario;
+		return detalles;
+				
+	}
 
 }
