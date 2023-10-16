@@ -13,11 +13,15 @@ public class GuardarDatos {
 	private File todosClientes;
 	private File todosCarros;
 	private File todasSedes;
-	public GuardarDatos(File todosTrabajadores, File todosClientes, File todosCarros, File todasSedes) {
+	private File todasReservas;
+	private File todasSeguros;
+	public GuardarDatos(File todosTrabajadores, File todosClientes, File todosCarros, File todasSedes, File todasReservas, File todosSeguros) {
 		this.todosTrabajadores = todosTrabajadores;
 		this.todosClientes = todosClientes;
 		this.todosCarros = todosCarros;
 		this.todasSedes = todasSedes;
+		this.todasReservas = todasReservas;
+		this.todasSeguros = todosSeguros;
 	}
 	
 	public void addCliente(String nombreUsuario, String login, String password, String fechaNacimiento,
@@ -114,6 +118,28 @@ public class GuardarDatos {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+		
+		public void addReserva(String nombreSede, String ubicacionSede, String horariosSede) {
+			
+			try (BufferedWriter writer = new BufferedWriter(new FileWriter(todasReservas, true))){
+				
+		
+				
+				String datos =  nombreSede+ ","+ ubicacionSede +","+ horariosSede;
+				
+				writer.newLine();
+				writer.write(datos);
+
+			}
+			catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
 	}
 	}
 	

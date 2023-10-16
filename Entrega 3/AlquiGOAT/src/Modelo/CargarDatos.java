@@ -12,14 +12,19 @@ class CargarDatos {
 	private File todosCarros;
 	private File todasSedes;
 	private File todosCategorias;
+	private File todosReservas;
+	private File todosSeguros;
 
 	public CargarDatos(File todosTrabajadores, File todosClientes, File todosCarros, File todasSedes,
-			File todosCategorias) {
+			File todosCategorias, File todosReservas, File todosSeguros) {
+		super();
 		this.todosTrabajadores = todosTrabajadores;
 		this.todosClientes = todosClientes;
 		this.todosCarros = todosCarros;
 		this.todasSedes = todasSedes;
 		this.todosCategorias = todosCategorias;
+		this.todosReservas = todosReservas;
+		this.todosSeguros = todosSeguros;
 	}
 
 	public HashMap<String, Sede> cargarSedes() {
@@ -186,6 +191,49 @@ class CargarDatos {
 			return Usuarios;
 
 		}
+	}
+	
+	public HashMap<String, Seguros> cargarSeguros() {
+		HashMap<String, Seguros> seguros = new HashMap<String, Seguros>();
+		try (BufferedReader lector = new BufferedReader(new FileReader(todosSeguros))) {
+			String linea = lector.readLine();
+			linea = lector.readLine();
+			while (linea != null) {
+				String[] datosSeguros = linea.split(",");
+				long precio = Long.parseLong(datosSeguros[1]);
+				Seguros seg = new Seguros(datosSeguros[0], datosSeguros[2], precio);
+				seguros.put(datosSeguros[0], seg);
+				linea = lector.readLine();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return seguros;
+		
+		
+
+	}
+	
+	public HashMap<String, Reservas> cargarResevas(HashMap<String, Usuario> Usuarios, HashMap<String, Sede> sedes, HashMap<String, Categorias> categoria) {
+		HashMap<String, Reservas> reservas = new HashMap<String, Reservas>();
+		try (BufferedReader lector = new BufferedReader(new FileReader(todosReservas))) {
+			String linea = lector.readLine();
+			linea = lector.readLine();
+			while (linea != null) {
+				String[] datosReservas = linea.split(",");
+				Usuario user = Usuarios.get(datosReservas[0]);
+				Sede lugarInicio = sedes.get(datosReservas[1]);
+				Sede lugarFin = sedes.get(datosReservas[3]);
+				Categorias categori = categoria.get(datosReservas[5]);
+				
+				Reservas res = new Reservas(lugarInicio, datosReservas[2], lugarInicio.getHorariosSede(),  lugarFin.getHorariosSede(),  datosReservas[4], lugarFin, categori, user);
+				reservas.put(datosReservas[0], res);
+				linea = lector.readLine();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return reservas;
 	}
 
 }
