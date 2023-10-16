@@ -4,12 +4,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Factura {
     private Usuario usuario;
-    private Sede sede;
     private Trabajador trabajador;
     private Alquiler alquiler;
     private Categorias tipoDeCarro;
@@ -20,7 +17,20 @@ public class Factura {
     private String fechaFin;
     private String rangoHoraFin;
     private Sede lugarEntrega;
-    private long precio;
+    private String lugarInicioS = lugarInicio.getNombreSede();
+    private String lugarEntregaS = lugarEntrega.getNombreSede();
+    private String trabajadorSede = trabajador.getNombreUsuario();
+    private String placa = carro.getPlaca();
+    private String marca = carro.getMarca();
+    private String modelo = carro.getModelo();
+    private String color = carro.getColor();
+    private String tipoTransmision = carro.getTipoTransmisión();
+    private String segurito = String.valueOf(opcionSeguro()) + "\n";
+    private String conducs = String.valueOf(conductorAdicional()) + "\n";
+    private long subtotal = getPrecio();
+    private long total = (long) (getPrecio() * 0.19);
+    private String subtotalStr = String.valueOf(subtotal);
+    private String totalStr = String.valueOf(total);
 
     public Factura(Usuario usuario, Trabajador trabajador, Categorias tipoDeCarro) {
         this.usuario = usuario;
@@ -35,6 +45,20 @@ public class Factura {
         this.rangoHoraFin = alquiler.getRangoHoraFin();
         this.tipoDeCarro = alquiler.getTipoDeCarro();
         this.lugarEntrega = alquiler.getLugarEntrega();
+        this.lugarInicioS = lugarInicio.getNombreSede();
+        this.lugarEntregaS = lugarEntrega.getNombreSede();
+        this.trabajadorSede = trabajador.getNombreUsuario();
+        this.placa = carro.getPlaca();
+        this.marca = carro.getMarca();
+        this.modelo = carro.getModelo();
+        this.color = carro.getColor();
+        this.tipoTransmision = carro.getTipoTransmisión();
+        this.segurito = String.valueOf(opcionSeguro()) + "\n";
+        this.conducs = String.valueOf(conductorAdicional()) + "\n";
+        long subtotal = getPrecio();
+        long total = (long) (getPrecio() * 0.19);
+        this.subtotalStr = String.valueOf(subtotal);
+        this.totalStr = String.valueOf(total);
     }
 
     public long getPrecio() {
@@ -53,19 +77,7 @@ public class Factura {
         return alquiler.getOpcionSeguro();
     }
     
-    String sedeNombre = sede.getNombreSede();
-    String trabajadorSede = trabajador.getNombreUsuario();
-	String placa = carro.getPlaca();
-	String marca = carro.getMarca();
-	String modelo = carro.getModelo();
-    String color = carro.getColor();
-	String tipoTransmision = carro.getTipoTransmisión();
-    String segurito = String.valueOf(opcionSeguro()) + "\n";
-    String conducs = String.valueOf(conductorAdicional()) + "\n";
-    long subtotal = getPrecio();
-    long total = (long) (getPrecio() * 0.19);
-    String subtotalStr = String.valueOf(subtotal);
-    String totalStr = String.valueOf(total);
+
     
     private String generarContenidoFactura() {
         return """
@@ -75,6 +87,7 @@ public class Factura {
                 Cliente: %s
                 Carro Alquilado: %s
                 Categoría del Carro: %s
+                Marca: 
                 Placa: %s
                 Color: %s
                 Tipo de Transmisión: %s
@@ -86,12 +99,12 @@ public class Factura {
                 Conductores Asociados: %s
                 SUBTOTAL: %s
                 TOTAL: %s
-                """.formatted(trabajadorSede, sedeNombre, usuario, modelo, tipoDeCarro, placa, color, tipoTransmision, fechaInicio,
-                		lugarInicio.getNombreSede(), fechaFin, lugarEntrega.getNombreSede(), segurito, conducs, subtotalStr, totalStr);
+                """.formatted(trabajadorSede, lugarInicioS, usuario, modelo, tipoDeCarro.getNombre(), marca, placa, color, tipoTransmision, fechaInicio,
+                		lugarInicioS, fechaFin, lugarEntregaS, segurito, conducs, subtotalStr, totalStr);
     }
 
     public boolean imprimirFactura() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("./data/factura/factura" + usuario.getNombreUsuario() + ".txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("./factura/comprobante_" + usuario.getNombreUsuario() + ".txt"))) {
             writer.write(generarContenidoFactura());
             return true;
 
@@ -100,24 +113,27 @@ public class Factura {
         }
     }
     
+    
     private String generarContenidoIndicaciones() {
         return """
                 ***** Indicaciones de Uso *****
                 Querido %s, AlquiGOAT le recuerda las siguientes indicaciones para hacer uso de nuestros vehículos:
                 El carro Alquilado es un %s de la categoría %s.
                 La fecha de Inicio del Alquiler: %s
-                El ugar de Inicio del Alquiler: %s
-                La fecha de Finalización del Alquiler: %s
-                El lugar de Finalización del Alquiler: %s
+                Sede donde se recibió el vehículo: %s
                 Seguro Seleccionado: %s
                 Conductores Asociados: %s
-                """.formatted(usuario, modelo, tipoDeCarro, fechaInicio,
-                		lugarInicio.getNombreSede(), fechaFin, lugarEntrega.getNombreSede(), segurito, conducs, subtotalStr, totalStr);
+                La fecha de Finalización del Alquiler: %s
+                Sede donde se dejará el vehículo: %s
+                Este alquiler suma a un costo de: %s (sin impuestos)
+                Para un total de: %s (19% IVA)
+                """.formatted(usuario, modelo, tipoDeCarro.getNombre(), marca, fechaInicio,
+                		lugarInicioS, segurito, conducs, fechaFin, lugarEntregaS, subtotalStr, totalStr);
     }
 
     public boolean imprimirIndicaciones() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("./data/factura/factura" + usuario.getNombreUsuario() + ".txt"))) {
-            writer.write(generarContenidoFactura());
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("./facturas/indicaciones_" + usuario.getNombreUsuario() + ".txt"))) {
+            writer.write(generarContenidoIndicaciones());
             return true;
 
         } catch (IOException e) {
