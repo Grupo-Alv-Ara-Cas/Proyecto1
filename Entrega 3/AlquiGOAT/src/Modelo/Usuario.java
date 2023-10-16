@@ -2,6 +2,10 @@ package Modelo;
 
 public class Usuario {
 
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+
 	protected String nombreUsuario;
 	protected String login;
 	protected String password;
