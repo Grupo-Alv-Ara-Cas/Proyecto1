@@ -21,11 +21,14 @@ public class AlquilerCarros {
             File todasCategorias) {
 
         cargarDatos = new CargarDatos(todosTrabajadores, todosClientes, todosCarros, todasSedes, todasCategorias);
-        categorias = cargarDatos.cargarCategoria();
-        sedes = cargarDatos.cargarSedes();
+        categorias = cargarDatos.cargarCategoria(); 
+        sedes = cargarDatos.cargarSedes() ;
         carros = cargarDatos.cargarVehiculos(sedes, categorias);
         usuarios = cargarDatos.cargarUsuarios(sedes);
-
+        
     }
+    
+    
+    
 
 }
