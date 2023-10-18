@@ -1,8 +1,10 @@
 package Modelo;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -122,7 +124,7 @@ public class GuardarDatos {
 		
 		public void addReserva(String nombreSede, String ubicacionSede, String horariosSede) {
 			
-			try (BufferedWriter writer = new BufferedWriter(new FileWriter(todasReservas, true))){
+			try (BufferedWriter writer = new BufferedWriter(new FileWriter(todasSeguros, true))){
 				
 		
 				
@@ -141,5 +143,45 @@ public class GuardarDatos {
 			}
 		
 	}
+		
+		public void addSeguros (String nombre, String precio, String descripcion) {
+			try (BufferedWriter writer = new BufferedWriter(new FileWriter(todasReservas, true))){
+					String datos =  nombre+ ","+ precio +","+ descripcion;
+					
+					writer.newLine();
+					writer.write(datos);
+
+			}
+			catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		}
+		
+	public void quitarCarro (String placa) {
+		
+		
+		try (BufferedReader Cl = new BufferedReader(new FileReader(todosCarros));
+	             BufferedWriter CR = new BufferedWriter(new FileWriter(todosCarros))) {
+	            String linea;
+	            while ((linea = Cl.readLine()) != null) {
+	                String[] datosCarro  = linea.split(","); 
+	                if (!placa.equals(datosCarro[0])) {
+	                    CR.write(linea + "\n");
+	                }
+	            }
+
+
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+		
 	}
+		
+
 	

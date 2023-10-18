@@ -112,9 +112,8 @@ public class AlquilerCarros {
     }
 
     public void bajaCarro(String placa, String login) {
-        Vehiculo car = carros.get(placa);
         AdministradorGeneral admin = (AdministradorGeneral) usuarios.get(login);
-        admin.bajaCarro(car);
+        admin.bajaCarro(placa, guardarDatos);
         carros.remove(placa);
 
     }

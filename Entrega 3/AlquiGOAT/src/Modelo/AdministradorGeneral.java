@@ -24,7 +24,8 @@ public class AdministradorGeneral extends AdministradorSede {
         return vehiculo;
     }
 
-    public void bajaCarro(Vehiculo carro) {
+    public void bajaCarro(String placa, GuardarDatos borrar) {
+    	borrar.quitarCarro(placa);
     }
 
     public void agregarSeguro(HashMap<String, Seguros> seguros, String nombre, String descripcion, long precio) {
