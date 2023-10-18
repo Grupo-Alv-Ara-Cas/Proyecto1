@@ -14,6 +14,7 @@ public class AlquilerCarros {
     private HashMap<String, Categorias> categorias;
     private HashMap<String, Reservas> reservasEmpresa;
     private HashMap<String, Seguros> seguros;
+    private HashMap<String, Alquiler> alquilerEmpresa;
     private CargarDatos cargarDatos;
     private GuardarDatos guardarDatos;
 
@@ -122,16 +123,52 @@ public class AlquilerCarros {
             String paisExpedicion, String fechaCaducidadL, File imagenLicencia, String login) {
         Sede sedett = sedes.get(sedeT);
         AdministradorGeneral admin = (AdministradorGeneral) usuarios.get(login);
-        admin.crearAdminSede(sedett, nombreUsuario, logins, passwords, numeroID, paisExpedicion, fechaCaducidadL,
+        AdministradorSede adminSede = admin.crearAdminSede(sedett, nombreUsuario, logins, passwords, numeroID, paisExpedicion, fechaCaducidadL,
                 imagenLicencia);
+        usuarios.put(logins, adminSede);
         guardarDatos.addTrabajador(sedeT, nombreUsuario, logins, passwords, numeroID, paisExpedicion, fechaCaducidadL, imagenLicencia, "2");
     }
 
-    public void agregarSeguro(String nombre, String descripcion, long precio) {
-    	Seguros price = seguros.get(descripcion);
-    	Seguros NameSeg = seguros.get(nombre);
-    	Seguros descr = seguros.get(descripcion);
-    	
-    	\\\\\\\\\\ TODO 
+    public void agregarSeguro(String nombre, String descripcion, String  precio) {
+    long precios = Long.parseLong(precio);
+    Seguros sguro1 = new Seguros(precio, descripcion, precios);
+    seguros.put(nombre, sguro1);
+    
+    guardarDatos.addSeguros(nombre, precio, descripcion);
+    
     }
+
+	public void addCondutorextra(String nombre, String fecha, String numeorID, String paisExpedicion, File documento, String loginu) {
+		Licencia linceniaActrual = new Licencia(numeorID,  paisExpedicion, fecha, documento);
+		ConductorAdicional nuevoC = new ConductorAdicional(linceniaActrual, nombre);
+		Alquiler alqui = alquilerEmpresa.get(loginu);
+		alqui.anadirCondutor(nuevoC);
+	}
+
+	public void crearAlquiler(String fechFin, String fechInicio, String lugarEntrega, String lugarInicio,
+			String categoria, String tipoSeguro, String loginUsuario) {
+		
+		Sede sedeInicio = sedes.get(lugarInicio);
+		Sede sedeEntrega = sedes.get(lugarEntrega);
+		Categorias ctegoriaEste = categorias.get(categoria);
+		
+		Alquiler nalquiler = new Alquiler(sedeInicio,fechInicio, sedeInicio.getHorariosSede(), fechFin, sedeEntrega.getHorariosSede(), sedeEntrega, ctegoriaEste );
+		alquilerEmpresa.put(loginUsuario, nalquiler);
+		
+		
+	}
+
+	public HashMap<String, Sede> getSedes() {
+		return sedes;
+	}
+
+	public HashMap<String, Categorias> getCategorias() {
+		return categorias;
+	}
+
+	public HashMap<String, Seguros> getSeguros() {
+		return seguros;
+	}
+	
+	
 }
