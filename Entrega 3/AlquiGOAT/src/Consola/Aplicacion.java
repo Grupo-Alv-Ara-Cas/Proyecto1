@@ -35,6 +35,7 @@ public class Aplicacion {
     }
 
     public static void iniciarSesion() {
+    	try {
     	String crearCuenta = input("Desea crear una cuenta nueva? (Y/N)");
     	if (crearCuenta.toLowerCase().equals("n")) {
     		String login = input("Ingrese su Usuario");
@@ -44,6 +45,8 @@ public class Aplicacion {
                 mostrarOpcionesAdminGeneral();
                 String opcion = input("Eliga una opcion 1-10");
                 if (opcion.toLowerCase().equals("1")) {
+                	try { 
+                
                 String sedeT = input("Ingrese la sede a la que desea asignarle el administrador");
                 String nombreUsuario = input("Ingrese el nombre del trabajador");
                 String logins = input("Ingrese el nombre de Usuario (login) del trabajador");
@@ -54,6 +57,9 @@ public class Aplicacion {
                 String licenciapng = input("Ingrese acá una imágen de la licencia del trabajador");
                 File imagenLicencia = new File(licenciapng);
                 alquiler.crearAdminSede(sedeT, nombreUsuario, logins, passwords, numeroID, paisExpedicion, fechaCaducidadL, imagenLicencia, login);
+                 } catch (Exception e) {
+                	 System.err.println("Ha ocurrido un error al ingresar datos del administrador: " + e.getMessage());
+                 }
                 }
                 	else if (opcion.toLowerCase().equals("2")) {
                 	String placa = input("Ingrese la placa del vehículo comprado");
@@ -107,8 +113,8 @@ public class Aplicacion {
     		while (seguir) {
     			login = input("El usuario introducido ya existe.\n Cree un nuevo nombre de usuario");
     			seguir = alquiler.rebisarUsuario(login);
-    		}
-    		
+    		} 
+    
     		String password = input("Cree una contraseña");
     		String fechaNacimiento = input("Escriba su fecha de nacimiento en el formato dd-mm-yyyy");
     		String nacionalidad = input("Escriba su nacionalidad");
@@ -134,7 +140,10 @@ public class Aplicacion {
     				ciudadResidencia, direccionResidencia, codigoPostal, numeroID,
     				paisExpedicion, fechaCaducidadL, imagenLicencia, numeroTarjeta,
     				codigoTarjeta, fechaCaducidadT, tipo);
-    		
+    	}
+    	}
+    	catch (Exception e) {
+    		System.err.println("Ha ocurrido un error: " + e.getMessage());
     	}
         
     }
