@@ -129,6 +129,10 @@ public class AlquilerCarros {
     }
 
     public void agregarSeguro(String nombre, String descripcion, long precio) {
-
+    	Seguros price = seguros.get(descripcion);
+    	Seguros NameSeg = seguros.get(nombre);
+    	Seguros descr = seguros.get(descripcion);
+    	
+    	\\\\\\\\\\ TODO 
     }
 }
