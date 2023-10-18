@@ -101,6 +101,14 @@ public class Aplicacion {
     		System.out.println("A continuación podra crear su cuenta de Usuario");
     		String nombreUsuario = input("Escriba acá su nombre y apellido");
     		String login = input("Cree un nombre de usuario");
+    		
+    		Boolean seguir = alquiler.rebisarUsuario(login);
+    		
+    		while (seguir) {
+    			login = input("El usuario introducido ya existe.\n Cree un nuevo nombre de usuario");
+    			seguir = alquiler.rebisarUsuario(login);
+    		}
+    		
     		String password = input("Cree una contraseña");
     		String fechaNacimiento = input("Escriba su fecha de nacimiento en el formato dd-mm-yyyy");
     		String nacionalidad = input("Escriba su nacionalidad");
@@ -126,6 +134,7 @@ public class Aplicacion {
     				ciudadResidencia, direccionResidencia, codigoPostal, numeroID,
     				paisExpedicion, fechaCaducidadL, imagenLicencia, numeroTarjeta,
     				codigoTarjeta, fechaCaducidadT, tipo);
+    		
     	}
         
     }

@@ -47,14 +47,17 @@ public class AlquilerCarros {
                 todosSeguros);
 
     }
+    
+    public boolean rebisarUsuario(String login){
+    	return (usuarios.containsKey(login));
+    }
 
-    public int crearCliente(String nombreUsuario, String login, String password, String fechaNacimiento,
+    public void crearCliente(String nombreUsuario, String login, String password, String fechaNacimiento,
             String nacionalidad, File imagenDocumento, String numeroCelular, String correo, String paisResidencia,
             String ciudadResidencia, String direccionResidencia, String codigoPostal, String numeroID,
             String paisExpedicion, String fechaCaducidadL, File imagenLicencia, String numeroTarjeta,
             String codigoTarjeta, String fechaCaducidadT, String tipo) {
-        int x = 0;
-        if (!usuarios.containsKey(login)) {
+         
             Licencia datosLicencia = new Licencia(numeroID, paisExpedicion, fechaCaducidadL, imagenLicencia);
             Tarjeta datosTarjeta = new Tarjeta(numeroTarjeta, codigoTarjeta, fechaCaducidadT, tipo);
             DatosContacto dataContact = new DatosContacto(numeroCelular, correo, paisResidencia, ciudadResidencia,
@@ -68,9 +71,8 @@ public class AlquilerCarros {
                     ciudadResidencia, direccionResidencia, codigoPostal, numeroID,
                     paisExpedicion, fechaCaducidadL, imagenLicencia, numeroTarjeta,
                     codigoTarjeta, fechaCaducidadT, tipo);
-            x = 1;
-        }
-        return (x);
+           
+        
     }
 
     public boolean revisarDisponibilidad(String sede, String categoria) {
