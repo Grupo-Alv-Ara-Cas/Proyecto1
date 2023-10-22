@@ -109,6 +109,8 @@ public class AlquilerCarros {
 		factura.imprimirFactura();
 		factura.imprimirIndicaciones();
 		
+		carro.setUbicacion(logins);		
+		reservasEmpresa.remove(logins);
     }
 
 

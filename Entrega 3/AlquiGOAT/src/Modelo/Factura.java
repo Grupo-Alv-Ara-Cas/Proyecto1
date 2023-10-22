@@ -31,13 +31,14 @@ public class Factura {
     private long total = (long) (getPrecio() * 19 / 100);
     private String subtotalStr = String.valueOf(subtotal);
     private String totalStr = String.valueOf(total);
-
-    public Factura(Usuario usuario, Trabajador trabajador) {
+    
+    
+    public Factura(Usuario cliente, Trabajador trabajador2) {
         this.usuario = usuario;
         this.trabajador = trabajador;
     }
-    
-    public void setAlquish(Alquiler alquiler) {
+
+	public void setAlquish(Alquiler alquiler) {
     	tipoDeCarro = alquiler.getTipoDeCarro();
     	this.lugarInicio = alquiler.getLugarInicio();
         this.fechaInicio = alquiler.getFechaInicio();
