@@ -214,7 +214,7 @@ class CargarDatos {
 
 	}
 	
-	public HashMap<String, Reservas> cargarResevas(HashMap<String, Usuario> Usuarios, HashMap<String, Sede> sedes, HashMap<String, Categorias> categoria) {
+	public HashMap<String, Reservas> cargarResevas(HashMap<String, Usuario> Usuarios, HashMap<String, Sede> sedes, HashMap<String, Categorias> categoria, HashMap<String, Seguros> seguros) {
 		HashMap<String, Reservas> reservas = new HashMap<String, Reservas>();
 		try (BufferedReader lector = new BufferedReader(new FileReader(todosReservas))) {
 			String linea = lector.readLine();
@@ -228,6 +228,24 @@ class CargarDatos {
 				
 				Reservas res = new Reservas(lugarInicio, datosReservas[2], lugarInicio.getHorariosSede(), datosReservas[4], lugarFin.getHorariosSede(), lugarFin, categori, user);
 				reservas.put(datosReservas[0], res);
+				
+				String[] conductoresExtra = datosReservas[6].split("/");
+				
+				for (String conductro: conductoresExtra) {
+					String[] conductorActual = conductro.split("%");
+					File imagen = new File(conductorActual[4]);
+					Licencia datosLicencia = new Licencia(conductorActual[1], conductorActual[2], conductorActual[3], imagen);
+					ConductorAdicional condu = new ConductorAdicional(datosLicencia, conductorActual[0]);
+					res.anadirCondutor(condu);
+				}
+				
+				String[] tipoSeguros = datosReservas[7].split("/");
+				
+				for (String seguroT: tipoSeguros) {
+					Seguros segurd = seguros.get(seguroT);
+					res.anadirSeguro(segurd);
+				}
+				
 				linea = lector.readLine();
 			}
 		} catch (IOException e) {

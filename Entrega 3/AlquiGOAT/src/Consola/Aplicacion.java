@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -38,105 +39,135 @@ public class Aplicacion {
 
     public static void iniciarSesion() {
     	try {
+    	Boolean apagar = true;
+    	while(apagar) {
     	String crearCuenta = input("Desea crear una cuenta nueva? (Y/N)");
     	if (crearCuenta.toLowerCase().equals("n")) {
     		String login = input("Ingrese su Usuario");
             String password = input("Ingrese su Contraseña");
             String cuenta = alquiler.revisarCuenta(login, password);
-            if (cuenta.equals("1")) {
-                mostrarOpcionesAdminGeneral();
-                String opcion = input("Eliga una opcion 1-10");
-                if (opcion.toLowerCase().equals("1")) {
-                	AminSede(login);
-                }
-                else if (opcion.toLowerCase().equals("2")) {
-                	comprarCarr(login);
-               }
-                else if (opcion.toLowerCase().equals("3")) {
-            		String carro = input("Ingrese el vehículo al que le dara de baja");
-            		alquiler.bajaCarro(carro, login);
-                }
-                else if (opcion.toLowerCase().equals("4")) {
-            		String nombre = input("Ingrese el nombre del seguro (regular, completo, sencillo)");
-            		String descripcion = input("Ingrese la descripcion del vehículo");
-            		String precio = input("Ingrese el precio del seguro");
-            		
-            		alquiler.agregarSeguro(nombre, descripcion, precio);
-            	}
-                
-                else if (opcion.toLowerCase().equals("5")) {
-                	crearAlquileres();
-                }	
-                
-            } else if (cuenta.equals("2")) {
-                mostrarOpcionesAdminSede();
-                String opcion = input("Eliga una opcion 1-10");
-                if (opcion.toLowerCase().equals("1")) {
-                	String sede = input("Ingrese la sede a la que pertenece este empleado"); 
-                	String nombreUsurio = input("Ingrese el nombre y el apellido del empleado");
-                	
-                	//alquiler.registrarInfoEmpleados();
-                }
-            } else if (cuenta.equals("3")) {
-                mostrarOpcionesTrabajador();
-            } else if (cuenta.equals("4")) {
-                mostrarOpcionesCliente();
+            String opcion = "";
+            while (!opcion.equals("0")) {
+	            if (cuenta.equals("1")) {
+	                mostrarOpcionesAdminGeneral();
+	                opcion = input("Eliga una opcion 0-10");
+	                if (opcion.toLowerCase().equals("1")) {
+	                	AdminSede(login);
+	                }
+	                else if (opcion.toLowerCase().equals("2")) {
+	                	comprarCarr(login);
+	               }
+	                else if (opcion.toLowerCase().equals("3")) {
+	                	crearCliente();
+	               } 
+	                else if (opcion.toLowerCase().equals("4")) {
+	                	comprarCarr(login);
+	               }
+	                else if (opcion.toLowerCase().equals("5")) {
+	            		String carro = input("Ingrese la placa del vehículo al que dara de baja");
+	            		alquiler.bajaCarro(carro);
+	                }
+	                else if (opcion.toLowerCase().equals("6")) {
+	            		String nombre = input("Ingrese el nombre del seguro (regular, completo, sencillo)");
+	            		String descripcion = input("Ingrese la descripcion del vehículo");
+	            		String precio = input("Ingrese el precio del seguro");
+	            		
+	            		alquiler.agregarSeguro(nombre, descripcion, precio);
+	            	} 
+	                
+	                else if (opcion.toLowerCase().equals("7")) {
+	                	crearAlquileres();
+	                }
+	                else if (opcion.toLowerCase().equals("8")) {
+	                	anadirCondutor();
+	                }
+	                
+	                else if (opcion.toLowerCase().equals("9")) {
+	                	entregarCarrro(login);
+	                }
+	                
+	            } else if (cuenta.equals("2")) {
+	                mostrarOpcionesAdminSede();
+	                opcion = input("Eliga una opcion 1-10");
+	                if (opcion.toLowerCase().equals("1")) {
+	                	String sede = input("Ingrese la sede a la que pertenece este empleado"); 
+	                	String nombreUsurio = input("Ingrese el nombre y el apellido del empleado");
+	                	
+	                	//alquiler.registrarInfoEmpleados();
+	                }
+	            } else if (cuenta.equals("3")) {
+	                mostrarOpcionesTrabajador();
+	            } else if (cuenta.equals("4")) {
+	                mostrarOpcionesCliente();
+	            }
             }
     	}
     	else {
-    		crearUsuario();
+    		crearCliente();
     	}
+    	String apagars = input("¿Desea apagar la aplicacion? (Y/N)");
+    	apagar = apagars.toLowerCase().equals("y");
     	}
+    	alquiler.gurdarCarros();
+    	alquiler.gurdarResevras();
+    	}
+    	
     	catch (Exception e) {
     		System.err.println("Ha ocurrido un error: " + e.getMessage());
+    		alquiler.gurdarCarros();
     	}
-        
+    	
     }
 
 
 	public static void mostrarOpcionesAdminGeneral() {
 
-        System.out.println("1. Crear administrador de una sede");
-        System.out.println("2. Comprar nuevo vehículo");
-        System.out.println("3. Dar de baja a un vehículo");
-        System.out.println("4. Crear seguro al vehículo");
-        System.out.println("5. Alquilar un vehículo");
-        System.out.println("6. Hacer la entrega de un vehículo");
-        System.out.println("7. Hacer recibimiento de un vehículo");
-        System.out.println("8. Registrar un conductor extra para el vehículo");
-        System.out.println("9. Actualizar el estado de un vehículo");
-
+		System.out.println("0. Hacer logaut");
+		System.out.println("1. Crear administrador de una sede");
+        System.out.println("2. Registrar la infomarción de empleado");
+        System.out.println("3. Registrar información de cliente");
+        System.out.println("4. Comprar nuevo vehículo");
+        System.out.println("5. Dar de baja a un vehículo");
+        System.out.println("6. Crear seguro al vehículo");
+        System.out.println("7. Alquilar un vehículo");
+        System.out.println("8. Registrar conductores extras para el vehículo");
+        System.out.println("9. Hacer la entrega de un vehículo");
+        System.out.println("10. Hacer recibimiento de un vehículo");
+        System.out.println("11. Actualizar el estado de un vehículo");
     }
 
     public static void mostrarOpcionesAdminSede() {
 
-        System.out.println("1. Registrar la infomarción de empleado");
+    	System.out.println("0. Hacer logaut");
+    	System.out.println("1. Registrar la infomarción de empleado");
         System.out.println("2. Registrar información de cliente");
         System.out.println("3. Agregar un trabajador a la sede");
         System.out.println("4. Agregar carro a la sede");
         System.out.println("5. Remover carro de la sede");
         System.out.println("6. Alquilar un vehículo");
-        System.out.println("7. Hacer la entrega de un vehículo");
-        System.out.println("8. Hacer recibimiento de un vehículo");
-        System.out.println("9. Registrar un conductor extra para el vehículo");
+        System.out.println("7. Registrar conductores extras para el vehículo");
+        System.out.println("8. Hacer la entrega de un vehículo");
+        System.out.println("9. Hacer recibimiento de un vehículo");
         System.out.println("10. Actualizar el estado de un vehículo");
-
+        System.out.println("11. Imprimir factura");
     }
 
     public static void mostrarOpcionesTrabajador() {
 
-        System.out.println("1. Hacer la entrega de un vehículo");
-        System.out.println("2. Hacer recibimiento de un vehículo");
-        System.out.println("3. Registrar un conductor extra para el vehículo");
-        System.out.println("4. Actualizar el estado de un vehículo");
-        System.out.println("5. Alquilar un vehículo");
+    	System.out.println("0. Hacer logaut");
+    	System.out.println("1. Registrar información de cliente");
+        System.out.println("2. Registrar un conductor extra para el vehículo");
+    	System.out.println("3. Alquilar un vehículo");
+    	System.out.println("4. Hacer la entrega de un vehículo");
+        System.out.println("5. Hacer recibimiento de un vehículo");
+        System.out.println("6. Actualizar el estado de un vehículo");
+        
 
     }
 
     public static void mostrarOpcionesCliente() {
-
-        System.out.println("1. Alquilar un vehículo");
-        //if (alquiler)
+    	System.out.println("0. Hacer logaut");
+    	System.out.println("1. Hacer reserva de un vehículo");
     }
 
     public static void crearAlquiler() {
@@ -161,7 +192,7 @@ public class Aplicacion {
     }
 
     
-    private static void crearUsuario () {
+    private static void crearCliente () {
     	
     	System.out.println("A continuación podra crear su cuenta de Usuario");
 		String nombreUsuario = input("Escriba acá su nombre y apellido");
@@ -200,7 +231,7 @@ public class Aplicacion {
     	
     }
     
-    private static void AminSede(String login) {
+    private static void AdminSede(String login) {
     	try {
             String sedeT = input("Ingrese la sede a la que desea asignarle el administrador");
             String nombreUsuario = input("Ingrese el nombre del trabajador");
@@ -250,29 +281,36 @@ public class Aplicacion {
     	mostrarCosas(setSedes);
     	String lugarInicioNum1 = input("Ingrese el numero de la sede que desea para resivir el carro");
     	String lugarEntregaNum1 = input("Ingrese el numero de la sede que desea para entregar el carro");
-    	int lugarInicioNum =  Integer. parseInt(lugarInicioNum1);
-    	int lugarEntregaNum =Integer. parseInt(lugarEntregaNum1);
+    	int lugarInicioNum =  Integer. parseInt(lugarInicioNum1)-1;
+    	int lugarEntregaNum =Integer. parseInt(lugarEntregaNum1)-1;
     	String lugarInicio = (String) arraySede[lugarInicioNum];
     	String lugarEntrega = (String) arraySede[lugarEntregaNum];
     	
     	mostrarCosas(setCategorias);
     	String categoriaNum1 = input("Ingrese el numero de la categoria que desea");
-    	int categoriaNum =  Integer. parseInt(categoriaNum1);
+    	int categoriaNum =  Integer. parseInt(categoriaNum1)-1;
     	String categoria = (String) arrayCategoria[categoriaNum];
     	Boolean revisarDiponibilidad = alquiler.revisarDisponibilidad(lugarInicio, categoria);
     	while (revisarDiponibilidad) {
     		categoria = input("Ingrese una nueva categoria");
     		revisarDiponibilidad = alquiler.revisarDisponibilidad(lugarInicio, categoria);
     	}
-    	
+    	System.out.print("0: ninguno");
     	mostrarCosas(setSeguros);
-    	String tipoSeguroNum1 = input("Ingrese el seguro que desae");
-    	int tipoSeguroNum =  Integer. parseInt(tipoSeguroNum1);
-    	String tipoSeguro = (String) arraySeguro[tipoSeguroNum];
+    	String tipoSeguroNum1 = input("Ingrese los seguro que desae separados por coma").replaceAll(" ", "");
     	
+    	String[] listaSeguros = tipoSeguroNum1.split(",");
+    	
+    	ArrayList<String> tipoSeguro = new ArrayList<String>();
+    	for (String seguro: listaSeguros) {
+    		if (!seguro.equals("0") ) {
+	    	int tipoSeguroNum =  Integer. parseInt(seguro)-1;
+	    	tipoSeguro.add((String) arraySeguro[tipoSeguroNum]);
+	    	}
+    	}
     	String loginUsuario = input("Ingrese el login del usuario");
     	
-    	alquiler.crearAlquiler(fechFin, fechaInicio, lugarEntrega, lugarInicio, categoria,  tipoSeguro, loginUsuario);
+    	alquiler.crearAlquiler(fechFin, fechaInicio, lugarEntrega, lugarInicio, categoria, loginUsuario,tipoSeguro );
     	
     	}
 		
@@ -294,14 +332,27 @@ public class Aplicacion {
     }
     
     private static void mostrarCosas(Set<String> setSedes) {
-    	int numero = 0;
+    	int numero = 1;
     	for (String nombre: setSedes) {
     		System.out.print(numero +": "+nombre );
     	}
     	
     }
 
-    
+	private static void entregarCarrro(String login) {
+		
+		String logins = input("Ingrese el login del usuario");
+    	String tipo = input("Ingrese si es 1: Reserva o 2: Alquiler");
+    	String placa = input("Ingrese la placa del Carro");
+    	if (tipo.endsWith("2")){
+    		alquiler.finalisarAlquiler(login, logins, placa);
+    	}
+    	else {
+    		alquiler.finalizarReserva(login, logins, placa);
+    	}
+    	
+		
+	}
     
     private static String input(String mensaje) {
         try {

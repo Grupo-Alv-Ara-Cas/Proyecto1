@@ -31,12 +31,19 @@ public class  Alquiler {
 		definirPrecio();
 	}
 
+	
+	
+	
 	public String getFechaInicio() {
 		return fechaInicio;
 	}
 
 	public void anadirCondutor(ConductorAdicional condutor) {
 		masConductor.add(condutor);
+	}
+	
+	public void anadirSeguro(Seguros seg) {
+		tipoSeguro.add(seg);
 	}
 
 	public String getFechaFin() {
@@ -62,6 +69,16 @@ public class  Alquiler {
 	public String getRangoHoraFin() {
 		return rangoHoraFin;
 	}
+
+	public ArrayList<Seguros> getTipoSeguro() {
+		return tipoSeguro;
+	}
+
+	public ArrayList<ConductorAdicional> getMasConductor() {
+		return masConductor;
+	}
+	
+
 
 	public String getAnadirCondutor() {
 		String condutores = "";
