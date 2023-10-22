@@ -76,7 +76,8 @@ public class Aplicacion {
 	            	} 
 	                
 	                else if (opcion.toLowerCase().equals("7")) {
-	                	crearAlquileres();
+	                	String loginUsuario = input("Ingrese el login del usuario");
+	                	crearAlquileresReservas(1, loginUsuario);
 	                }
 	                else if (opcion.toLowerCase().equals("8")) {
 	                	anadirCondutor();
@@ -92,8 +93,7 @@ public class Aplicacion {
 	                if (opcion.toLowerCase().equals("1")) {
 	                	String sede = input("Ingrese la sede a la que pertenece este empleado"); 
 	                	String nombreUsurio = input("Ingrese el nombre y el apellido del empleado");
-	                	
-	                	//alquiler.registrarInfoEmpleados();
+	                
 	                }
 	            } else if (cuenta.equals("3")) {
 	                mostrarOpcionesTrabajador();
@@ -263,7 +263,7 @@ public class Aplicacion {
                 ubicacion, disponible, sedeCarro, categoria, login); 
     }
     
-    private static void crearAlquileres() {
+    private static void crearAlquileresReservas(int num, String loginUsuario) {
     	HashMap<String, Sede> mapaSedes = alquiler.getSedes();
     	Set<String> setSedes = mapaSedes.keySet();
     	Object[] arraySede = setSedes.toArray();
@@ -308,9 +308,10 @@ public class Aplicacion {
 	    	tipoSeguro.add((String) arraySeguro[tipoSeguroNum]);
 	    	}
     	}
-    	String loginUsuario = input("Ingrese el login del usuario");
     	
-    	alquiler.crearAlquiler(fechFin, fechaInicio, lugarEntrega, lugarInicio, categoria, loginUsuario,tipoSeguro );
+    	if (num== 1) {
+    		alquiler.crearAlquiler(fechFin, fechaInicio, lugarEntrega, lugarInicio, categoria, loginUsuario,tipoSeguro );
+    	}
     	
     	}
 		
