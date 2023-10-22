@@ -70,11 +70,6 @@ public class Vehiculo {
 	}
 
 	public void setDisponible(Boolean disponible) {
-		if (disponible) {
-			sedeCarro.cambiarDisponibilidadCarro(1, categoria.getNombre());
-		} else {
-			sedeCarro.cambiarDisponibilidadCarro(-1, categoria.getNombre());
-		}
 		this.disponible = disponible;
 
 	}

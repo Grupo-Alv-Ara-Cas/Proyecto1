@@ -32,5 +32,10 @@ public class Licencia {
 	public File getImagenLicencia() {
 		return imagenLicencia;
 	}
+	
+	public String recuperarDatos() {
+		String licenciaImagen = imagenLicencia.getName();
+		return (numeroID+"%"+paisExpedicion+"%"+fechaCaducidadL+"%"+licenciaImagen);
+	}
 
 }

@@ -55,7 +55,11 @@ public class Sede {
 		carrosSede.put(carro.getPlaca(), carro);
 	}
 
-	public void cambiarDisponibilidadCarro(Integer numero, String categoria) {
+	public void cambiarDisponibilidadCarro(Boolean disponoble, String categoria) {
+		int numero = -1;
+		if (disponoble) {
+			numero = 1;
+		}
 		disponibilidadSedeCategoria.put(categoria, disponibilidadSedeCategoria.get(categoria) + numero);
 	}
 	

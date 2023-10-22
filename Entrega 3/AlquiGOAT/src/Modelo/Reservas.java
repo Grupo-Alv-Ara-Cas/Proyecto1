@@ -33,5 +33,6 @@ public class Reservas extends Alquiler {
 	public long getaPagar() {
 		return aPagar;
 	}
+	
 
 }

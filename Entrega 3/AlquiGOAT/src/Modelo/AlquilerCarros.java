@@ -18,7 +18,6 @@ public class AlquilerCarros {
     private CargarDatos cargarDatos;
     private GuardarDatos guardarDatos;
 
-    private ArrayList<Reservas> lisaReservas;
 
     public String revisarCuenta(String usuario, String password) {
         if (usuarios.containsKey(usuario)) {
@@ -43,7 +42,7 @@ public class AlquilerCarros {
         carros = cargarDatos.cargarVehiculos(sedes, categorias);
         usuarios = cargarDatos.cargarUsuarios(sedes);
         seguros = cargarDatos.cargarSeguros();
-        reservasEmpresa = cargarDatos.cargarResevas(usuarios, sedes, categorias);
+        reservasEmpresa = cargarDatos.cargarResevas(usuarios, sedes, categorias, seguros);
         guardarDatos = new GuardarDatos(todosTrabajadores, todosClientes, todosCarros, todasSedes, todosReservas,
                 todosSeguros);
 
@@ -94,13 +93,24 @@ public class AlquilerCarros {
 
     }
 
-    public void finalizarReserva() {
-
+    public void finalizarReserva(String login, String logins, String placa) {
+		Reservas reservaActual = reservasEmpresa.get(logins);
+		Vehiculo carro = carros.get(placa);
+		
+		Usuario cliente = usuarios.get(logins);
+		
+		Trabajador trabajador = (Trabajador) usuarios.get(login);
+		
+		Factura factura = new Factura(cliente, trabajador);
+		factura.setAlquish(reservaActual);
+		factura.setCarro(carro);
+		carro.setDisponible(false);
+		
+		factura.imprimirFactura();
+		factura.imprimirIndicaciones();
+		
     }
 
-    private Vehiculo obtenerCarroDisponible(Categorias categoria) {
-        return null;
-    }
 
     public void comprarCarro(String placa, String marca, String modelo, String color, String tipoTransmisión,
             String ubicacion, Boolean disponible, String sedeCarro, String categoria, String login) {
@@ -112,9 +122,7 @@ public class AlquilerCarros {
         carros.put(placa, vehAdd);
     }
 
-    public void bajaCarro(String placa, String login) {
-        AdministradorGeneral admin = (AdministradorGeneral) usuarios.get(login);
-        admin.bajaCarro(placa, guardarDatos);
+    public void bajaCarro(String placa) {
         carros.remove(placa);
 
     }
@@ -146,7 +154,7 @@ public class AlquilerCarros {
 	}
 
 	public void crearAlquiler(String fechFin, String fechInicio, String lugarEntrega, String lugarInicio,
-			String categoria, String tipoSeguro, String loginUsuario) {
+			String categoria, String loginUsuario, ArrayList<String> segurosd) {
 		
 		Sede sedeInicio = sedes.get(lugarInicio);
 		Sede sedeEntrega = sedes.get(lugarEntrega);
@@ -154,10 +162,35 @@ public class AlquilerCarros {
 		
 		Alquiler nalquiler = new Alquiler(sedeInicio,fechInicio, sedeInicio.getHorariosSede(), fechFin, sedeEntrega.getHorariosSede(), sedeEntrega, ctegoriaEste );
 		alquilerEmpresa.put(loginUsuario, nalquiler);
-		
-		
+		for (String seguro: segurosd) {
+			Seguros seg = seguros.get(seguro);
+			nalquiler.anadirSeguro(seg);
+		}
+		sedeInicio.cambiarDisponibilidadCarro(false, ctegoriaEste.getNombre());
 	}
 
+	public void finalisarAlquiler(String login, String logins, String placa) {
+		Alquiler aluilqerActual = alquilerEmpresa.get(logins);
+		Vehiculo carro = carros.get(placa);
+		
+		Usuario cliente = usuarios.get(logins);
+		
+		Trabajador trabajador = (Trabajador) usuarios.get(login);
+		
+		Factura factura = new Factura(cliente, trabajador);
+		factura.setAlquish(aluilqerActual);
+		factura.setCarro(carro);
+		carro.setDisponible(false);
+		
+		factura.imprimirFactura();
+		factura.imprimirIndicaciones();
+		
+	}
+	
+	public void gurdarCarros() {
+		guardarDatos.guardarCarros(carros);
+	}
+	
 	public HashMap<String, Sede> getSedes() {
 		return sedes;
 	}
@@ -169,6 +202,12 @@ public class AlquilerCarros {
 	public HashMap<String, Seguros> getSeguros() {
 		return seguros;
 	}
+
+	public void gurdarResevras() {
+		guardarDatos.guardarReserva(reservasEmpresa);
+	}
+
+	
 	
 	
 }

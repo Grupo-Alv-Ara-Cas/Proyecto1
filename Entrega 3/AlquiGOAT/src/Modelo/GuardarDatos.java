@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GuardarDatos {
 
@@ -65,29 +67,6 @@ public class GuardarDatos {
 			
 			String datos =  cargo+ ","+ sedeT +","+ nombreUsuario+","+  login  +","+ password +","+ numeroID+","
 			+paisExpedicion +","+fechaCaducidadL +","+imagenLicencial;
-			writer.newLine();
-			writer.write(datos);
-		}
-		catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	}
-	
-	public void addVheiculo(String placa, String categoria, String sedeCarro, String marca, String modelo, String color,
-			String tipoTransmisión, String ubicacion,
-			String disponible) {
-		
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(todosCarros, true))){
-		
-			
-			
-			String datos =  placa+ ","+ categoria +","+ sedeCarro+","+  sedeCarro  +","+ marca +","+ ","+ modelo+","
-			+color +","+tipoTransmisión +","+ubicacion+","+disponible;
-			
 			writer.newLine();
 			writer.write(datos);
 		}
@@ -162,26 +141,80 @@ public class GuardarDatos {
 		}
 		}
 		
-	public void quitarCarro (String placa) {
+	public void guardarCarros (HashMap<String, Vehiculo> carros) {
 		
 		
-		try (BufferedReader Cl = new BufferedReader(new FileReader(todosCarros));
-	             BufferedWriter CR = new BufferedWriter(new FileWriter(todosCarros))) {
-	            String linea;
-	            while ((linea = Cl.readLine()) != null) {
-	                String[] datosCarro  = linea.split(","); 
-	                if (!placa.equals(datosCarro[0])) {
-	                    CR.write(linea + "\n");
+		try (  BufferedWriter CR = new BufferedWriter(new FileWriter(todosCarros))) {
+			String linea;
+			linea = "placa,categoria,sede_carro,marca,modelo,color,tipo_transmision,ubicacion,disponible";
+			CR.write(linea + "\n");
+			for(String placa: carros.keySet()) {
+				Vehiculo carro =  carros.get(placa);
+				
+				String categoria = carro.getCategoria().getNombre();
+				String sede = carro.getSedeCarro().getSede();
+				
+				linea = placa +","+categoria+","+ sede+","+carro.getMarca()+","+carro.getModelo()+","+carro.getColor()+","+carro.getTipoTransmisión()+","+carro.getUbicacion()+","+carro.getDisponible();
+				
+				CR.write(linea + "\n");
+			}
+			
 	                }
-	            }
-
-
-	        } catch (IOException e) {
+	         catch (IOException e) {
 	            e.printStackTrace();
 	        }
 	    }
-		
-	}
-		
-
 	
+	public void guardarReserva (HashMap<String, Reservas> reservas) {
+		
+		
+		try (  BufferedWriter CR = new BufferedWriter(new FileWriter(todasReservas))) {
+			String linea;
+			linea = "loginReserva,lugarInicio,fechaInicio,lugarFin,fechaFin,categoria,condutoresExtra";
+			CR.write(linea + "\n");
+			for(String login: reservas.keySet()) {
+				Reservas reserva =  reservas.get(login);
+				
+				String categoria = reserva.getTipoDeCarro().getNombre();
+				String sedeInico = reserva.getLugarInicio().getSede();
+				String fechaInico = reserva.getFechaInicio();
+				String lugarFin = reserva.getLugarEntrega().getSede();
+				String fechaFin = reserva.getFechaFin();
+				ArrayList<ConductorAdicional> conductoresEsxtra = reserva.getMasConductor();
+				String datosRecolectado = "";
+				for (ConductorAdicional conductor: conductoresEsxtra) {
+					String nombre = conductor.getNombre();
+					String datosLicencia = conductor.getLicencia().recuperarDatos();
+					String todosDatos = nombre+"%"+datosLicencia;
+					if (datosRecolectado.equals("")) {
+						datosRecolectado = todosDatos;
+					}
+					else {
+						datosRecolectado += "/" + todosDatos;
+					}
+				}
+				
+				ArrayList<Seguros> segurosReserva = reserva.getTipoSeguro();
+				String stringSeguros = "";
+				for (Seguros seguroT: segurosReserva) {
+					String nombreSeguro = seguroT.getNombre();
+					if (stringSeguros.equals("")) {
+						stringSeguros = nombreSeguro;
+					}
+					else {
+						stringSeguros += "/" + nombreSeguro;
+					}
+				}
+				
+				linea = login +","+sedeInico+","+ fechaInico+","+lugarFin+","+fechaFin+","+categoria+","+datosRecolectado+","+stringSeguros;
+				
+				CR.write(linea + "\n");
+			}
+			
+	                }
+	         catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	
+	}

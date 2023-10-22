@@ -32,12 +32,13 @@ public class Factura {
     private String subtotalStr = String.valueOf(subtotal);
     private String totalStr = String.valueOf(total);
 
-    public Factura(Usuario usuario, Trabajador trabajador, Categorias tipoDeCarro) {
+    public Factura(Usuario usuario, Trabajador trabajador) {
         this.usuario = usuario;
         this.trabajador = trabajador;
     }
     
     public void setAlquish(Alquiler alquiler) {
+    	tipoDeCarro = alquiler.getTipoDeCarro();
     	this.lugarInicio = alquiler.getLugarInicio();
         this.fechaInicio = alquiler.getFechaInicio();
         this.rangoHoraInicio = alquiler.getRangoHoraInicio();
