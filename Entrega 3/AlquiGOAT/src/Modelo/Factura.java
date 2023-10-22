@@ -28,7 +28,7 @@ public class Factura {
     private String segurito = String.valueOf(opcionSeguro()) + "\n";
     private String conducs = String.valueOf(conductorAdicional()) + "\n";
     private long subtotal = getPrecio();
-    private long total = (long) (getPrecio() * 0.19);
+    private long total = (long) (getPrecio() * 19 / 100);
     private String subtotalStr = String.valueOf(subtotal);
     private String totalStr = String.valueOf(total);
 
@@ -55,8 +55,8 @@ public class Factura {
         this.tipoTransmision = carro.getTipoTransmisión();
         this.segurito = String.valueOf(opcionSeguro()) + "\n";
         this.conducs = String.valueOf(conductorAdicional()) + "\n";
-        long subtotal = getPrecio();
-        long total = (long) (getPrecio() * 0.19);
+        this.subtotal = (long) getPrecio();
+        this.total = (long) (getPrecio() * 19 / 100);
         this.subtotalStr = String.valueOf(subtotal);
         this.totalStr = String.valueOf(total);
     }
