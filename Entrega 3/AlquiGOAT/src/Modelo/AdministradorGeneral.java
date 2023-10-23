@@ -31,3 +31,4 @@ public class AdministradorGeneral extends AdministradorSede {
     }
     
 }
+/////dar de baja a un carro 
