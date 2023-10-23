@@ -2,20 +2,20 @@
 Trabajador: Miguel Castillo
 Sede: AlquiAutos
 Cliente: nicolas arango
-Carro Alquilado: F-PACE
-Categoría del Carro: suv
-Marca: Jaguar
-Placa: QRS789
-Color: blanco
-Tipo de Transmisión: automatica
-Fecha de Inicio del Alquiler: 12-10-2023
+Carro Alquilado: Camaro
+Categoría del Carro: deportivo
+Marca: Chevrolet
+Placa: STU901
+Color: amarillo
+Tipo de Transmisión: manual
+Fecha de Inicio del Alquiler: 10-10-2023
 Lugar de Inicio del Alquiler: AlquiAutos
-Fecha de Finalización del Alquiler: 24-10-2023
+Fecha de Finalización del Alquiler: 24-12-2023
 Lugar de Finalización del Alquiler: AlquiAutos
 Seguro Seleccionado: Seguro completo
 
 
 Conductores Asociados: 
 
-SUBTOTAL: 21600000
-TOTAL: 25704000
+SUBTOTAL: 56000000
+TOTAL: 66640000

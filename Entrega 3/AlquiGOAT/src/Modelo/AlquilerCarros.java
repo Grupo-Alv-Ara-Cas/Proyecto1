@@ -288,7 +288,7 @@ public class AlquilerCarros {
 	}
 
 	public void gurdarHistorial() {
-		guardarDatos.guardarHistorial ( historiales);
+		guardarDatos.guardarHistorial(historiales);
 	}
 
 	public void crearTrabajdor(String sedeT, String nombreUsuario, String loginEmpleado, String passwords, String numeroID,
