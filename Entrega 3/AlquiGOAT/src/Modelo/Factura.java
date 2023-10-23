@@ -17,50 +17,60 @@ public class Factura {
     private String fechaFin;
     private String rangoHoraFin;
     private Sede lugarEntrega;
-    private String lugarInicioS = lugarInicio.getNombreSede();
-    private String lugarEntregaS = lugarEntrega.getNombreSede();
-    private String trabajadorSede = trabajador.getNombreUsuario();
-    private String placa = carro.getPlaca();
-    private String marca = carro.getMarca();
-    private String modelo = carro.getModelo();
-    private String color = carro.getColor();
-    private String tipoTransmision = carro.getTipoTransmisión();
-    private String segurito = String.valueOf(opcionSeguro()) + "\n";
-    private String conducs = String.valueOf(conductorAdicional()) + "\n";
-    private long subtotal = getPrecio();
-    private long total = (long) (getPrecio() * 19 / 100);
-    private String subtotalStr = String.valueOf(subtotal);
-    private String totalStr = String.valueOf(total);
+    private String lugarInicioS;
+    private String lugarEntregaS;
+    private String nombreCliente;
+    private String trabajadorSede;
+    private String placa;
+    private String marca;
+    private String modelo;
+    private String color;
+    private String tipoTransmision;
+    private String segurito;
+    private String conducs;
+    private long subtotal;
+    private long total;
+    private String subtotalStr;
+    private String totalStr;
     
     
-    public Factura(Usuario cliente, Trabajador trabajador2) {
-        this.usuario = usuario;
+    public Factura(Usuario cliente, Trabajador trabajador, Alquiler alqui, Vehiculo carro ) {
+        this.usuario = cliente;
         this.trabajador = trabajador;
+        nombreCliente = cliente.getNombreUsuario();
+        trabajadorSede = trabajador.getNombreUsuario();
+        this.alquiler = alqui;
+        this.carro = carro;
+        Alquish();
+        
     }
 
-	public void setAlquish(Alquiler alquiler) {
+	public void Alquish() {
     	tipoDeCarro = alquiler.getTipoDeCarro();
-    	this.lugarInicio = alquiler.getLugarInicio();
-        this.fechaInicio = alquiler.getFechaInicio();
-        this.rangoHoraInicio = alquiler.getRangoHoraInicio();
-        this.fechaFin = alquiler.getFechaFin();
-        this.rangoHoraFin = alquiler.getRangoHoraFin();
-        this.tipoDeCarro = alquiler.getTipoDeCarro();
-        this.lugarEntrega = alquiler.getLugarEntrega();
-        this.lugarInicioS = lugarInicio.getNombreSede();
-        this.lugarEntregaS = lugarEntrega.getNombreSede();
-        this.trabajadorSede = trabajador.getNombreUsuario();
-        this.placa = carro.getPlaca();
-        this.marca = carro.getMarca();
-        this.modelo = carro.getModelo();
-        this.color = carro.getColor();
-        this.tipoTransmision = carro.getTipoTransmisión();
-        this.segurito = String.valueOf(opcionSeguro()) + "\n";
-        this.conducs = String.valueOf(conductorAdicional()) + "\n";
-        this.subtotal = (long) getPrecio();
-        this.total = (long) (getPrecio() * 19 / 100);
-        this.subtotalStr = String.valueOf(subtotal);
-        this.totalStr = String.valueOf(total);
+    	lugarInicio = alquiler.getLugarInicio();
+        fechaInicio = alquiler.getFechaInicio();
+        rangoHoraInicio = alquiler.getRangoHoraInicio();
+        fechaFin = alquiler.getFechaFin();
+        rangoHoraFin = alquiler.getRangoHoraFin();
+        tipoDeCarro = alquiler.getTipoDeCarro();
+        lugarEntrega = alquiler.getLugarEntrega();
+        lugarInicioS = lugarInicio.getNombreSede();
+        lugarEntregaS = lugarEntrega.getNombreSede();
+        trabajadorSede = trabajador.getNombreUsuario();
+        nombreCliente = usuario.getNombreUsuario();
+        placa = carro.getPlaca();
+        marca = carro.getMarca();
+        modelo = carro.getModelo();
+        color = carro.getColor();
+        tipoTransmision = carro.getTipoTransmisión();
+        segurito = String.valueOf(opcionSeguro()) + "\n";
+        conducs = String.valueOf(conductorAdicional()) + "\n";
+        subtotal = (long) getPrecio();
+        total = (long) (getPrecio() * 19 / 100);
+        subtotalStr = String.valueOf(subtotal);
+        totalStr = String.valueOf(total);
+        lugarEntregaS = lugarEntrega.getNombreSede();
+        lugarInicioS = lugarInicio.getNombreSede();
     }
 
     public long getPrecio() {
@@ -101,12 +111,12 @@ public class Factura {
                 Conductores Asociados: %s
                 SUBTOTAL: %s
                 TOTAL: %s
-                """.formatted(trabajadorSede, lugarInicioS, usuario, modelo, tipoDeCarro.getNombre(), marca, placa, color, tipoTransmision, fechaInicio,
+                """.formatted(trabajadorSede, lugarInicioS, nombreCliente, modelo, tipoDeCarro.getNombre(), marca, placa, color, tipoTransmision, fechaInicio,
                 		lugarInicioS, fechaFin, lugarEntregaS, segurito, conducs, subtotalStr, totalStr);
     }
 
     public boolean imprimirFactura() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("./factura/comprobante_" + usuario.getNombreUsuario() + ".txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("./facturas/comprobante_" + usuario.getNombreUsuario() + ".txt"))) {
             writer.write(generarContenidoFactura());
             return true;
 
@@ -129,7 +139,7 @@ public class Factura {
                 Sede donde se dejará el vehículo: %s
                 Este alquiler suma a un costo de: %s (sin impuestos)
                 Para un total de: %s (19% IVA)
-                """.formatted(usuario, modelo, tipoDeCarro.getNombre(), marca, fechaInicio,
+                """.formatted(nombreCliente, modelo, tipoDeCarro.getNombre(), marca, fechaInicio,
                 		lugarInicioS, segurito, conducs, fechaFin, lugarEntregaS, subtotalStr, totalStr);
     }
 

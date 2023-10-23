@@ -64,9 +64,14 @@ public class Sede {
 	}
 	
 	public boolean revisarDisponibilidad(String categoria) {
-		int cantidadCarros = disponibilidadSedeCategoria.get(categoria);
+		boolean diponible= true;
+		if (disponibilidadSedeCategoria.containsKey(categoria)){
+			int cantidadCarros = disponibilidadSedeCategoria.get(categoria);
+			
+			diponible = cantidadCarros < 1;
+			
 		
-		boolean diponible = cantidadCarros >= 1;
+		}
 		
 		return (diponible);
 		

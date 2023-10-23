@@ -17,6 +17,16 @@ public class AlquilerCarros {
     private HashMap<String, Alquiler> alquilerEmpresa;
     private CargarDatos cargarDatos;
     private GuardarDatos guardarDatos;
+    
+    public AlquilerCarros() {
+    	alquilerEmpresa = new HashMap<String, Alquiler>();
+    	carros = new HashMap<String, Vehiculo>();
+    	sedes = new HashMap<String, Sede>();
+    	usuarios = new HashMap<String, Usuario>();
+    	categorias = new HashMap<String, Categorias>();
+    	reservasEmpresa = new HashMap<String, Reservas>();
+    	seguros = new HashMap<String, Seguros>();
+    }
 
 
     public String revisarCuenta(String usuario, String password) {
@@ -101,9 +111,7 @@ public class AlquilerCarros {
 		
 		Trabajador trabajador = (Trabajador) usuarios.get(login);
 		
-		Factura factura = new Factura(cliente, trabajador);
-		factura.setAlquish(reservaActual);
-		factura.setCarro(carro);
+		Factura factura = new Factura(cliente, trabajador, reservaActual, carro);
 		carro.setDisponible(false);
 		
 		factura.imprimirFactura();
@@ -179,9 +187,7 @@ public class AlquilerCarros {
 		
 		Trabajador trabajador = (Trabajador) usuarios.get(login);
 		
-		Factura factura = new Factura(cliente, trabajador);
-		factura.setAlquish(aluilqerActual);
-		factura.setCarro(carro);
+		Factura factura = new Factura(cliente, trabajador, aluilqerActual, carro );
 		carro.setDisponible(false);
 		
 		factura.imprimirFactura();

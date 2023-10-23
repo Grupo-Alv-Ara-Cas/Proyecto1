@@ -152,9 +152,9 @@ public class GuardarDatos {
 				Vehiculo carro =  carros.get(placa);
 				
 				String categoria = carro.getCategoria().getNombre();
-				String sede = carro.getSedeCarro().getSede();
+				String sede = carro.getSedeCarro().getNombreSede();
 				
-				linea = placa +","+categoria+","+ sede+","+carro.getMarca()+","+carro.getModelo()+","+carro.getColor()+","+carro.getTipoTransmisión()+","+carro.getUbicacion()+","+carro.getDisponible();
+				linea = placa +","+categoria+","+ sede+","+carro.getMarca()+","+carro.getModelo()+","+carro.getColor()+","+carro.getTipoTransmisión()+","+carro.getUbicacion()+","+carro.getDisponible().toString();
 				
 				CR.write(linea + "\n");
 			}
@@ -170,15 +170,14 @@ public class GuardarDatos {
 		
 		try (  BufferedWriter CR = new BufferedWriter(new FileWriter(todasReservas))) {
 			String linea;
-			linea = "loginReserva,lugarInicio,fechaInicio,lugarFin,fechaFin,categoria,condutoresExtra";
+			linea = "loginReserva,lugarInicio,fechaInicio,lugarFin,fechaFin,categoria,condutoresExtra,tipoDeseguro";
 			CR.write(linea + "\n");
 			for(String login: reservas.keySet()) {
 				Reservas reserva =  reservas.get(login);
-				
 				String categoria = reserva.getTipoDeCarro().getNombre();
-				String sedeInico = reserva.getLugarInicio().getSede();
+				String sedeInico = reserva.getLugarInicio().getNombreSede();
 				String fechaInico = reserva.getFechaInicio();
-				String lugarFin = reserva.getLugarEntrega().getSede();
+				String lugarFin = reserva.getLugarEntrega().getNombreSede();
 				String fechaFin = reserva.getFechaFin();
 				ArrayList<ConductorAdicional> conductoresEsxtra = reserva.getMasConductor();
 				String datosRecolectado = "";

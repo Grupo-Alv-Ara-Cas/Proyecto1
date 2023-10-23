@@ -38,9 +38,10 @@ public class Aplicacion {
     }
 
     public static void iniciarSesion() {
-    	try {
+    	
     	Boolean apagar = true;
     	while(apagar) {
+    	try {
     	String crearCuenta = input("Desea crear una cuenta nueva? (Y/N)");
     	if (crearCuenta.toLowerCase().equals("n")) {
     		String login = input("Ingrese su Usuario");
@@ -50,7 +51,7 @@ public class Aplicacion {
             while (!opcion.equals("0")) {
 	            if (cuenta.equals("1")) {
 	                mostrarOpcionesAdminGeneral();
-	                opcion = input("Eliga una opcion 0-10");
+	                opcion = input("\n Eliga una opcion 0-10");
 	                if (opcion.toLowerCase().equals("1")) {
 	                	AdminSede(login);
 	                }
@@ -76,7 +77,7 @@ public class Aplicacion {
 	            	} 
 	                
 	                else if (opcion.toLowerCase().equals("7")) {
-	                	String loginUsuario = input("Ingrese el login del usuario");
+	                	String loginUsuario = input("Ingrese el login del cliente");
 	                	crearAlquileresReservas(1, loginUsuario);
 	                }
 	                else if (opcion.toLowerCase().equals("8")) {
@@ -106,23 +107,23 @@ public class Aplicacion {
     		crearCliente();
     	}
     	String apagars = input("¿Desea apagar la aplicacion? (Y/N)");
-    	apagar = apagars.toLowerCase().equals("y");
+    	apagar = !(apagars.toLowerCase()).equals("y");
     	}
-    	alquiler.gurdarCarros();
-    	alquiler.gurdarResevras();
-    	}
-    	
     	catch (Exception e) {
     		System.err.println("Ha ocurrido un error: " + e.getMessage());
-    		alquiler.gurdarCarros();
     	}
+	    	alquiler.gurdarCarros();
+	    	alquiler.gurdarResevras();
+    	}
+    	
+    	
     	
     }
 
 
 	public static void mostrarOpcionesAdminGeneral() {
 
-		System.out.println("0. Hacer logaut");
+		System.out.println("0. Hacer Log-Out");
 		System.out.println("1. Crear administrador de una sede");
         System.out.println("2. Registrar la infomarción de empleado");
         System.out.println("3. Registrar información de cliente");
@@ -138,7 +139,7 @@ public class Aplicacion {
 
     public static void mostrarOpcionesAdminSede() {
 
-    	System.out.println("0. Hacer logaut");
+    	System.out.println("0. Hacer Log-Out");
     	System.out.println("1. Registrar la infomarción de empleado");
         System.out.println("2. Registrar información de cliente");
         System.out.println("3. Agregar un trabajador a la sede");
@@ -154,7 +155,7 @@ public class Aplicacion {
 
     public static void mostrarOpcionesTrabajador() {
 
-    	System.out.println("0. Hacer logaut");
+    	System.out.println("0. Hacer Log-Out");
     	System.out.println("1. Registrar información de cliente");
         System.out.println("2. Registrar un conductor extra para el vehículo");
     	System.out.println("3. Alquilar un vehículo");
@@ -166,7 +167,7 @@ public class Aplicacion {
     }
 
     public static void mostrarOpcionesCliente() {
-    	System.out.println("0. Hacer logaut");
+    	System.out.println("0. Hacer Log-Out");
     	System.out.println("1. Hacer reserva de un vehículo");
     }
 
@@ -202,27 +203,28 @@ public class Aplicacion {
 		while (seguir) {
 			login = input("El usuario introducido ya existe.\n Cree un nuevo nombre de usuario");
 			seguir = alquiler.rebisarUsuario(login);
-		} 
+		}
+		System.out.println("Complete los siguientes datos\n");
 		String password = input("Cree una contraseña");
-		String fechaNacimiento = input("Escriba su fecha de nacimiento en el formato dd-mm-yyyy");
-		String nacionalidad = input("Escriba su nacionalidad");
-		String documentopng = input("Ingrese acá una imágen de su documento de identidad");
+		String fechaNacimiento = input("Su fecha de nacimiento (dd-mm-yyyy)");
+		String nacionalidad = input("Su nacionalidad");
+		String documentopng = input("Imagen de su documento de identidad");
 		File imagenDocumento = new File(documentopng);
-		String numeroCelular = input("Escriba su número de celular con la debida extensión, dependiendo de su país");
-		String correo = input("Escriba su correo electrónico de contacto");
-		String paisResidencia = input("Escriba su país de residencia");
-		String ciudadResidencia = input("Escriba su cuidad de residencia");
-		String direccionResidencia = input("Escriba su direccion de residencia");
-		String codigoPostal = input("Escriba su código postal");
-		String numeroID = input("Escriba su número de documento");
-		String paisExpedicion = input("Escriba el país de expedición de su documento");
-		String fechaCaducidadL = input("Escriba la fecha de caducidad de su licencia (dd-mm-yyyy)");
-		String licenciapng = input("Ingrese acá una imágen de su licencia de conducción");
+		String numeroCelular = input("Número de celular con la extensión respectiva");
+		String correo = input("Correo electrónico de contacto");
+		String paisResidencia = input("País de residencia");
+		String ciudadResidencia = input("Ciudad de residencia");
+		String direccionResidencia = input("Direccion de residencia");
+		String codigoPostal = input("Código postal");
+		String numeroID = input("Número de documento");
+		String paisExpedicion = input("País de expedición de su documento");
+		String fechaCaducidadL = input("Fecha de caducidad de su licencia (dd-mm-yyyy)");
+		String licenciapng = input("Imagen de su licencia de conducción");
 		File imagenLicencia = new File(licenciapng);
-		String numeroTarjeta = input("Ingrese el número de su tarjeta con la que hará el pago");
-		String codigoTarjeta = input("Ingrese el código de su targeta");
+		String numeroTarjeta = input("Número de su tarjeta con la que hará el pago");
+		String codigoTarjeta = input("Código de la tarjeta");
 		String fechaCaducidadT = input("Ingrese la fecha de caducidad de su tarjeta (mm-yy)");
-		String tipo = input("Ingrese el tipo de tarjeta (Visa, MasterCard...)");
+		String tipo = input("Tipo de tarjeta (Visa, Mastercard, ...)");
 		alquiler.crearCliente(nombreUsuario, login, password, fechaNacimiento,
 				nacionalidad, imagenDocumento, numeroCelular, correo, paisResidencia,
 				ciudadResidencia, direccionResidencia, codigoPostal, numeroID,
@@ -233,14 +235,14 @@ public class Aplicacion {
     
     private static void AdminSede(String login) {
     	try {
-            String sedeT = input("Ingrese la sede a la que desea asignarle el administrador");
-            String nombreUsuario = input("Ingrese el nombre del trabajador");
-            String logins = input("Ingrese el nombre de Usuario (login) del trabajador");
-            String passwords = input("Ingrese la cocntraseña para este login");
-            String numeroID = input("Ingrese el numero de documento del ttrabajador");
-            String paisExpedicion = input("Ingrese el pais donde se expede el documentto ingresdo previamente");
+            String sedeT = input("Sede a la que desea asignarle el administrador");
+            String nombreUsuario = input("Nombre del trabajador");
+            String logins = input("Nombre de Usuario (Log-In) del trabajador");
+            String passwords = input("Contraseña para este Log-In");
+            String numeroID = input("Número de documento del ttrabajador");
+            String paisExpedicion = input("País de expedición del documento");
             String fechaCaducidadL = input("Ingrese la fecha de caducidad de la licencia del trabajador");
-            String licenciapng = input("Ingrese acá una imágen de la licencia del trabajador");
+            String licenciapng = input("Ingrese acá una imagen de la licencia del trabajador");
             File imagenLicencia = new File(licenciapng);
             alquiler.crearAdminSede(sedeT, nombreUsuario, logins, passwords, numeroID, paisExpedicion, fechaCaducidadL, imagenLicencia, login);
              } catch (Exception e) {
@@ -249,16 +251,15 @@ public class Aplicacion {
     }
     
     private static void comprarCarr(String login) {
-    	String placa = input("Ingrese la placa del vehículo comprado");
-    	String marca = input("Ingrese la marca del vehículo comprado");
-    	String modelo = input("Ingrese el modelo del vehículo comprado");
-    	String color = input("Ingrese el color del vehículo comprado");
-    	String tipoTransmisión = input("Ingrese el tipo de transmision del vehículo comprado");
-    	String ubicacion = input("Ingrese en que sede esta ubicado el vehículo");
-    	String disponibilidad = input("Ingrese si el vehículo esta disponible o no");
-    	Boolean disponible = Boolean.parseBoolean(disponibilidad);
-    	String sedeCarro = input("Ingrese nuevamente en que sede se encuentra el vehículo");
-    	String categoria = input("Ingrese la categoria a la que pertenece el vehículo");
+    	String placa = input("Placa del vehículo comprado");
+    	String marca = input("Marca del vehículo comprado");
+    	String modelo = input("Modelo del vehículo comprado");
+    	String color = input("Color del vehículo comprado");
+    	String tipoTransmisión = input("Tipo de transmisión del vehículo comprado");
+    	String ubicacion = "Sede";
+    	Boolean disponible = true;
+    	String sedeCarro = input("Sede en la que se ubicará el vehículo");
+    	String categoria = input("Categoría a la que pertenece el vehículo");
     	alquiler.comprarCarro(placa, marca, modelo, color, tipoTransmisión,
                 ubicacion, disponible, sedeCarro, categoria, login); 
     }
@@ -276,28 +277,31 @@ public class Aplicacion {
     	Set<String> setSeguros = mapaSeguro.keySet();
     	Object[] arraySeguro = setSeguros.toArray();
     	
-    	String fechaInicio = input("Ingrese la fecha de inico");
-    	String fechFin = input("Ingrese la fecha de fina");
+    	System.out.println("\nComplete los siguientes datos acorde al alquiler");
+    	String fechaInicio = input("Fecha de inicio (dd-mm-yyyy)");
+    	String fechFin = input("Fecha de finalización (dd-mm-yyyy)");
     	mostrarCosas(setSedes);
-    	String lugarInicioNum1 = input("Ingrese el numero de la sede que desea para resivir el carro");
-    	String lugarEntregaNum1 = input("Ingrese el numero de la sede que desea para entregar el carro");
-    	int lugarInicioNum =  Integer. parseInt(lugarInicioNum1)-1;
-    	int lugarEntregaNum =Integer. parseInt(lugarEntregaNum1)-1;
+    	String lugarInicioNum1 = input("Número de la sede que desea para recibir el carro");
+    	String lugarEntregaNum1 = input("Número de la sede que desea para entregar el carro");
+    	int lugarInicioNum =  Integer.parseInt(lugarInicioNum1)-1;
+    	int lugarEntregaNum =Integer.parseInt(lugarEntregaNum1)-1;
     	String lugarInicio = (String) arraySede[lugarInicioNum];
     	String lugarEntrega = (String) arraySede[lugarEntregaNum];
     	
     	mostrarCosas(setCategorias);
-    	String categoriaNum1 = input("Ingrese el numero de la categoria que desea");
-    	int categoriaNum =  Integer. parseInt(categoriaNum1)-1;
+    	String categoriaNum1 = input("Número de la categoría que desea");
+    	int categoriaNum =  Integer.parseInt(categoriaNum1)-1;
     	String categoria = (String) arrayCategoria[categoriaNum];
     	Boolean revisarDiponibilidad = alquiler.revisarDisponibilidad(lugarInicio, categoria);
     	while (revisarDiponibilidad) {
-    		categoria = input("Ingrese una nueva categoria");
+        	categoriaNum1 = input("Ingrese una nueva categoria");
+        	categoriaNum =  Integer.parseInt(categoriaNum1)-1;
+        	categoria = (String) arrayCategoria[categoriaNum];
     		revisarDiponibilidad = alquiler.revisarDisponibilidad(lugarInicio, categoria);
     	}
-    	System.out.print("0: ninguno");
+    	System.out.println("0: ninguno\n");
     	mostrarCosas(setSeguros);
-    	String tipoSeguroNum1 = input("Ingrese los seguro que desae separados por coma").replaceAll(" ", "");
+    	String tipoSeguroNum1 = input("Ingrese los seguros que desea separados por coma").replaceAll(" ", "");
     	
     	String[] listaSeguros = tipoSeguroNum1.split(",");
     	
@@ -309,7 +313,7 @@ public class Aplicacion {
 	    	}
     	}
     	
-    	if (num== 1) {
+    	if (num == 1) {
     		alquiler.crearAlquiler(fechFin, fechaInicio, lugarEntrega, lugarInicio, categoria, loginUsuario,tipoSeguro );
     	}
     	
@@ -317,12 +321,12 @@ public class Aplicacion {
 		
 	
     private static void anadirCondutor() {
-    	String loginp = input("¿cual es el login de la persona?");
-		String conductores = input("¿Cuantos condutores?");
+    	String loginp = input("¿Cuál es el Log-In de la persona?");
+		String conductores = input("¿Cuántos condutores?");
 		int cantidad = Integer. parseInt(conductores);
 		int contador = 1;
 		while (contador <= cantidad) {
-			String nombre = input("Ingrese el color del vehículo comprado");
+			String nombre = input("Nombre completo del conductor adicional");
 			String paseConduccionImagen = input("Ingrese el color del vehículo comprado");
 			String fechaCaducidad = input("Ingrese el color del vehículo comprado");
 			String nummeroID = input("Ingrese el color del vehículo comprado");
@@ -335,15 +339,17 @@ public class Aplicacion {
     private static void mostrarCosas(Set<String> setSedes) {
     	int numero = 1;
     	for (String nombre: setSedes) {
-    		System.out.print(numero +": "+nombre );
+    		
+    		System.out.println(numero + ": "+nombre + "\n" );
+    		numero ++;
     	}
     	
     }
 
 	private static void entregarCarrro(String login) {
 		
-		String logins = input("Ingrese el login del usuario");
-    	String tipo = input("Ingrese si es 1: Reserva o 2: Alquiler");
+		String logins = input("Ingrese el Log-In del usuario");
+    	String tipo = input("Ingrese si es 1: Reserva\n2: Alquiler");
     	String placa = input("Ingrese la placa del Carro");
     	if (tipo.endsWith("2")){
     		alquiler.finalisarAlquiler(login, logins, placa);
