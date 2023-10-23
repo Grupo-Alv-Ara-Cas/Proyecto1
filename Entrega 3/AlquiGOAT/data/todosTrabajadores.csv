@@ -1,5 +1,5 @@
 cargo,sede,nombre_usuario,login,password,numero_id,pais_expedicion,fecha_caducidad,imagen_licencia
-1,AlquiAutos,Miguel Castillo,ms.castillo,303633993,3033633553,Colombia,33-30-3030,imagen3.png
+1,AlquiAutos,Miguel Castillo,ms.castillo,1,3033633553,Colombia,33-30-3030,imagen3.png
 2,AlquiAutos,Andres Perez,a.perez,202633993,3033633553,Colombia,33-30-3030,imagen3.png
 2,AlquiAutos,Carlos Ramirez,c.ramirez,303633994,3033633553,Colombia,33-30-3030,imagen3.png
 3,GOATRental,Andres Ramos,a.ramos,303633995,3033633554,Colombia,33-30-3030,imagen4.png
@@ -33,4 +33,3 @@ cargo,sede,nombre_usuario,login,password,numero_id,pais_expedicion,fecha_caducid
 3,GOATRental,Ana Maria Gomez,a.m.gomez,303634033,3033633583,Colombia,33-30-3030,imagen33.png
 3,AlquiAutos,Sergio Gonzalez,s.gonzalez,303634034,3033633583,Colombia,33-30-3030,imagen33.png
 3,AlquiAutos,Marcela Arango,m.arango,303634035,3033633584,Colombia,33-30-3030,imagen34.png
-3,GOATRental,Carlos Gutierrez,c.gutierrez,303634036,303363358
