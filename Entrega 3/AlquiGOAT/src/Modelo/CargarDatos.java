@@ -228,6 +228,8 @@ class CargarDatos {
 				Sede lugarFin = sedes.get(datosReservas[3]);
 				Categorias categori = categoria.get(datosReservas[5]);
 				
+				lugarInicio.cambiarDisponibilidadCarro(false, categori.getNombre());
+				
 				Reservas res = new Reservas(lugarInicio, datosReservas[2], lugarInicio.getHorariosSede(), datosReservas[4], lugarFin.getHorariosSede(), lugarFin, categori, user);
 				reservas.put(datosReservas[0], res);
 				
@@ -243,10 +245,12 @@ class CargarDatos {
 				
 				String[] tipoSeguros = datosReservas[7].split("/");
 				
+				
 				for (String seguroT: tipoSeguros) {
 					Seguros segurd = seguros.get(seguroT);
 					res.anadirSeguro(segurd);
 				}
+				
 				
 				linea = lector.readLine();
 			}

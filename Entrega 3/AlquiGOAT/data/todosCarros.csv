@@ -1,6 +1,58 @@
 placa,categoria,sede_carro,marca,modelo,color,tipo_transmision,ubicacion,disponible
 XMK420,camioneta,AlquiAutos,BYD,SongYang,azul metalico,electrica,reparando,false
 IJT411,deportivo,GOATRental,BMW,M4,rojo,automatica,sede,true
-JMY952,suv,GOATRental,mercedes,GLC 350e,gris espacial,hibrida,lavando,false
-FOL368,lujo,AlquiAutos,mercedes,Maybach,vinotinto,automatica,alquilado,false
-FOL378,lujo,AlquiAutos,mercedes,Maybach,vinotinto,automatica,alquilado,false
+JMY952,suv,GOATRental,mercedes,GLC 350e,gris espacial,hibrida,sede,true
+FOL368,lujo,AlquiAutos,mercedes,Maybach,vinotinto,automatica,sede,true
+FOL378,lujo,AlquiAutos,mercedes,Maybach,vinotinto,automatica,sede,true
+ABC123,camioneta,AlquiAutos,Toyota,Rav4,azul,automatica,sede,true
+DEF456,deportivo,GOATRental,Ford,Mustang,rojo,manual,sede,true
+GHI789,suv,AlquiAutos,Honda,CR-V,blanco,automatica,sede,true
+JKL012,lujo,GOATRental,BMW,7 Series,plata,automatica,sede,true
+MNO345,compacto,AlquiAutos,Hyundai,Elantra,gris,automatica,sede,true
+PQR678,camioneta,GOATRental,Jeep,Grand Cherokee,negro,automatica,sede,true
+STU901,deportivo,AlquiAutos,Chevrolet,Camaro,amarillo,manual,sede,true
+VWX234,suv,GOATRental,Mercedes,GLA 250,gris,automatica,sede,true
+YZA567,lujo,AlquiAutos,Audi,A8,azul,automatica,sede,true
+BCD890,compacto,GOATRental,Toyota,Corolla,plata,automatica,sede,true
+EFG123,camioneta,AlquiAutos,Nissan,Murano,blanco,automatica,sede,true
+HIJ456,deportivo,GOATRental,Porsche,911 Turbo,rojo,automatica,sede,true
+KLM789,suv,AlquiAutos,Ford,Escape,azul,automatica,sede,true
+NOP012,lujo,GOATRental,Lexus,LS 500,negro,automatica,sede,true
+QRS345,compacto,AlquiAutos,Honda,Civic,blanco,automatica,sede,true
+TUV678,camioneta,GOATRental,Subaru,Outback,verde,automatica,sede,true
+WXY901,deportivo,AlquiAutos,Mercedes,AMG GT,plata,automatica,sede,true
+ZAB234,suv,AlquiAutos,Jeep,Wrangler,negro,automatica,sede,true
+BCD567,lujo,GOATRental,Bentley,Continental GT,azul,automatica,sede,true
+EFG890,compacto,AlquiAutos,Kia,Forte,gris,automatica,sede,true
+HIJ123,camioneta,GOATRental,GMC,Yukon,blanco,automatica,sede,true
+KLM456,deportivo,AlquiAutos,Acura,NSX,rojo,automatica,sede,true
+NOP789,suv,GOATRental,Volvo,XC90,gris,automatica,sede,true
+QRS012,lujo,AlquiAutos,Lamborghini,Huracan,amarillo,automatica,sede,true
+TUV345,compacto,AlquiAutos,Mazda,3,plata,automatica,sede,true
+WXY678,camioneta,GOATRental,Land Rover,Discovery Sport,verde,automatica,sede,true
+ZAB901,deportivo,AlquiAutos,Subaru,BRZ,azul,manual,sede,true
+BCD234,suv,AlquiAutos,Cadillac,Escalade,negro,automatica,sede,true
+EFG567,lujo,GOATRental,Rolls-Royce,Ghost,negro,automatica,sede,true
+HIJ890,compacto,AlquiAutos,Infiniti,Q50,gris,automatica,sede,true
+KLM123,camioneta,GOATRental,Tesla,Model X,rojo,electrica,sede,true
+NOP456,deportivo,AlquiAutos,McLaren,720S,amarillo,automatica,sede,true
+QRS789,suv,AlquiAutos,Jaguar,F-PACE,blanco,automatica,sede,true
+TUV012,lujo,GOATRental,Alfa Romeo,Stelvio,rojo,automatica,sede,true
+WXY345,compacto,AlquiAutos,Genesis,G70,azul,automatica,sede,true
+ZAB678,camioneta,GOATRental,Porsche,Cayenne,plata,automatica,sede,true
+BCD901,deportivo,AlquiAutos,Mini,Cooper S,gris,manual,sede,true
+EFG234,suv,AlquiAutos,Volvo,XC60,blanco,automatica,sede,true
+HIJ567,lujo,GOATRental,Cadillac,CT6,negro,automatica,sede,true
+KLM890,compacto,AlquiAutos,Lexus,UX,gris,automatica,sede,true
+NOP123,camioneta,GOATRental,Ferrari,Portofino,rojo,automatica,sede,true
+QRS456,deportivo,AlquiAutos,Subaru,WRX,azul,manual,sede,true
+TUV789,suv,AlquiAutos,Jeep,Cherokee,verde,automatica,sede,true
+WXY012,lujo,GOATRental,Audi,Q7,negro,automatica,sede,true
+ZAB345,compacto,AlquiAutos,BMW,3 Series,plata,automatica,sede,true
+BCD678,camioneta,GOATRental,Honda,Pilot,azul,automatica,sede,true
+EFG901,deportivo,AlquiAutos,Chevrolet,Corvette,rojo,manual,sede,true
+HIJ234,suv,AlquiAutos,Mercedes,GLE 350,blanco,automatica,sede,true
+KLM567,lujo,GOATRental,Lincoln,Continental,plata,automatica,sede,true
+NOP890,compacto,AlquiAutos,Toyota,Yaris,azul,automatica,sede,true
+QRS123,camioneta,GOATRental,Land Rover,Range Rover Sport,verde,automatica,sede,true
+TUV456,deportivo,AlquiAutos,Nissan,370Z,rojo,manual,sede,true

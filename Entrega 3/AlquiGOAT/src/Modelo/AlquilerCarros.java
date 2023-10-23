@@ -366,7 +366,7 @@ public class AlquilerCarros {
 		
 		for (Vehiculo carro :valores) {
 			String tipoCarroActual = carro.getCategoria().getNombre();
-			if (tipoCarroActual.equals(tipoCarro)) {
+			if (tipoCarroActual.equals(tipoCarro)&& carro.getDisponible()) {
 				carrosAseptaod.add(carro.getPlaca());
 			}
 		}
