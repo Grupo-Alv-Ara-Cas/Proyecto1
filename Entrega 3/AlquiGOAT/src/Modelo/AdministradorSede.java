@@ -29,19 +29,4 @@ public class AdministradorSede extends Trabajador {
 		
     }
 
-    public void registrarInfoClientes() {
-    }
-
-    public void agregarTrabajadorSede(Trabajador empleado) {
-    
-    }
-
-    public void agregarCarrosSede(Vehiculo carro) {
-    
-    }
-
-    public void quitarCarrosSede(Vehiculo carro) {
-    
-    }
-
 }
