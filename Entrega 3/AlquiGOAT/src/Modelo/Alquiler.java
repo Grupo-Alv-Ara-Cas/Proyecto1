@@ -118,9 +118,4 @@ public class  Alquiler {
 	public Categorias getTipoDeCarro() {
 		return tipoDeCarro;
 	}
-
-	public void cambiarDisponibilidad() {
-
-	}
-
 }

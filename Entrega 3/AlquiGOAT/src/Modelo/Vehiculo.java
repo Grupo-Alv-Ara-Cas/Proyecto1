@@ -10,6 +10,7 @@ public class Vehiculo {
 	private Boolean disponible;
 	private Sede sedeCarro;
 	private Categorias categoria;
+	
 
 	public Vehiculo(String placa, Categorias categoria, Sede sedeCarro, String marca, String modelo, String color,
 			String tipoTransmisión, String ubicacion,
@@ -29,8 +30,9 @@ public class Vehiculo {
 		return ubicacion;
 	}
 
-	public void setUbicacion(String ubicacion) {
+	public String setUbicacion(String ubicacion, String historia) {
 		this.ubicacion = ubicacion;
+		return (historia+"%"+ubicacion);
 	}
 
 	public String getPlaca() {

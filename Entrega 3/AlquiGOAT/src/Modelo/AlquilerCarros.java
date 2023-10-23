@@ -6,8 +6,6 @@ import java.util.HashMap;
 
 public class AlquilerCarros {
 
-    // private HashMap<String, String> trabajadores;
-    // private HashMap<String, String> clientes;
     private HashMap<String, Vehiculo> carros;
     private HashMap<String, Sede> sedes;
     private HashMap<String, Usuario> usuarios;
@@ -15,6 +13,7 @@ public class AlquilerCarros {
     private HashMap<String, Reservas> reservasEmpresa;
     private HashMap<String, Seguros> seguros;
     private HashMap<String, Alquiler> alquilerEmpresa;
+    private HashMap<String, String> historiales;
     private CargarDatos cargarDatos;
     private GuardarDatos guardarDatos;
 
@@ -33,10 +32,10 @@ public class AlquilerCarros {
     }
 
     public void cargarDatos(File todosTrabajadores, File todosClientes, File todosCarros, File todasSedes,
-            File todasCategorias, File todosReservas, File todosSeguros) {
+            File todasCategorias, File todosReservas, File todosSeguros, File historiales) {
 
         cargarDatos = new CargarDatos(todosTrabajadores, todosClientes, todosCarros, todasSedes, todasCategorias,
-                todosReservas, todosSeguros);
+                todosReservas, todosSeguros, historiales);
         categorias = cargarDatos.cargarCategoria();
         sedes = cargarDatos.cargarSedes();
         carros = cargarDatos.cargarVehiculos(sedes, categorias);
@@ -44,11 +43,11 @@ public class AlquilerCarros {
         seguros = cargarDatos.cargarSeguros();
         reservasEmpresa = cargarDatos.cargarResevas(usuarios, sedes, categorias, seguros);
         guardarDatos = new GuardarDatos(todosTrabajadores, todosClientes, todosCarros, todasSedes, todosReservas,
-                todosSeguros);
+                todosSeguros, historiales);
 
     }
     
-    public boolean rebisarUsuario(String login){
+    public boolean revisarUsuario(String login){
     	return (usuarios.containsKey(login));
     }
 
@@ -93,13 +92,13 @@ public class AlquilerCarros {
 
     }
 
-    public void finalizarReserva(String login, String logins, String placa) {
-		Reservas reservaActual = reservasEmpresa.get(logins);
+    public void finalizarReserva(String loginTra, String loginCli, String placa) {
+		Reservas reservaActual = reservasEmpresa.get(loginCli);
 		Vehiculo carro = carros.get(placa);
 		
-		Usuario cliente = usuarios.get(logins);
+		Usuario cliente = usuarios.get(loginCli);
 		
-		Trabajador trabajador = (Trabajador) usuarios.get(login);
+		Trabajador trabajador = (Trabajador) usuarios.get(loginTra);
 		
 		Factura factura = new Factura(cliente, trabajador);
 		factura.setAlquish(reservaActual);
@@ -109,8 +108,10 @@ public class AlquilerCarros {
 		factura.imprimirFactura();
 		factura.imprimirIndicaciones();
 		
-		carro.setUbicacion(logins);		
-		reservasEmpresa.remove(logins);
+		String historias = historiales.get(placa);
+		historias = carro.setUbicacion(loginCli, historias);
+		historiales.put(placa, historias);
+		reservasEmpresa.remove(loginCli);
     }
 
 
@@ -171,21 +172,40 @@ public class AlquilerCarros {
 		sedeInicio.cambiarDisponibilidadCarro(false, ctegoriaEste.getNombre());
 	}
 
-	public void finalisarAlquiler(String login, String logins, String placa) {
-		Alquiler aluilqerActual = alquilerEmpresa.get(logins);
+	public void finalizarAlquiler(String loginTra, String loginCli, String placa) {
+		Alquiler alquilerActual = alquilerEmpresa.get(loginCli);
 		Vehiculo carro = carros.get(placa);
 		
-		Usuario cliente = usuarios.get(logins);
+		Usuario cliente = usuarios.get(loginCli);
 		
-		Trabajador trabajador = (Trabajador) usuarios.get(login);
+		Trabajador trabajador = (Trabajador) usuarios.get(loginTra);
 		
 		Factura factura = new Factura(cliente, trabajador);
-		factura.setAlquish(aluilqerActual);
+		factura.setAlquish(alquilerActual);
 		factura.setCarro(carro);
 		carro.setDisponible(false);
 		
 		factura.imprimirFactura();
 		factura.imprimirIndicaciones();
+		
+	}
+	
+	public void recibirCarro(String loginTra, String loginCli, String placa, String sede) {
+		Vehiculo carro = carros.get(placa);
+		Sede sedeEntrega= sedes.get(sede);
+	
+		Sede sedeAnterior = carro.getSedeCarro();
+		sedeAnterior.quitarCarros(carro);
+		
+		String historias = historiales.get(placa);
+		historias = carro.setUbicacion("lavando", historias);
+		historiales.put(placa, historias);
+		
+		if (!(sedeAnterior.getSede()).equals(sede)) {
+			sedeAnterior.quitarCarros(carro);
+			carro.setSedeCarro(sedeEntrega);
+			sedeEntrega.agregarCarros(carro);
+		}
 		
 	}
 	
@@ -207,6 +227,59 @@ public class AlquilerCarros {
 
 	public void gurdarResevras() {
 		guardarDatos.guardarReserva(reservasEmpresa);
+	}
+
+	public void cambiarEstadoCarro(String placa, int estado) {
+		Vehiculo carro = carros.get(placa);
+		Sede sede = carro.getSedeCarro();
+		String categoria = carro.getCategoria().getNombre();
+		if (estado == 1) {
+			if (carro.getDisponible()) {
+				carro.setDisponible(false);
+				sede.cambiarDisponibilidadCarro(false, categoria);
+				String historias = historiales.get(placa);
+				historias = carro.setUbicacion("lavando", historias);
+				historiales.put(placa, historias);
+			}
+			else {
+				String historias = historiales.get(placa);
+				historias = carro.setUbicacion("lavando", historias);
+				historiales.put(placa, historias);
+			}
+			
+		}
+		else if (estado == 2) {
+			
+			if (carro.getDisponible()) {
+				carro.setDisponible(false);
+				sede.cambiarDisponibilidadCarro(false, categoria);
+				String historias = historiales.get(placa);
+				historias = carro.setUbicacion("arreglando", historias);
+				historiales.put(placa, historias);
+			}
+			else {
+				String historias = historiales.get(placa);
+				historias = carro.setUbicacion("arreglando", historias);
+				historiales.put(placa, historias);
+			}
+			
+		}
+		else if (estado == 3) {
+			if (carro.getDisponible()) {
+				String historias = historiales.get(placa);
+				historias = carro.setUbicacion("sede", historias);
+				historiales.put(placa, historias);
+			}
+			else {
+				carro.setDisponible(true);
+				sede.cambiarDisponibilidadCarro(true, categoria);
+				String historias = historiales.get(placa);
+				historias = carro.setUbicacion("sede", historias);
+				historiales.put(placa, historias);
+			}
+			
+		}
+		
 	}
 
 	

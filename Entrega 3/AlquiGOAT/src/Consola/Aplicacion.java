@@ -12,16 +12,13 @@ import Modelo.AlquilerCarros;
 import Modelo.Categorias;
 import Modelo.Sede;
 import Modelo.Seguros;
-import Modelo.Factura;
-import Modelo.AdministradorGeneral;
+
 
 public class Aplicacion {
 
-    private int opcionSeleccionada;
 
-    private static Factura factura;
+
     private static AlquilerCarros alquiler;
-    private static Sede sedeDisponibles;
 
     public static void cargarDatos() {
 
@@ -32,8 +29,9 @@ public class Aplicacion {
         File todosCategorias = new File("./data/todosCategorias.csv");
         File todosReservas = new File("./data/todosReservas.csv");
         File todosSeguros = new File("./data/todosSeguros.csv");
+        File historiales = new File("./historialCarros/historiales.csv");
 
-        alquiler.cargarDatos(todosTrabajadores, todosClientes, todosCarros, todasSedes, todosCategorias, todosReservas, todosSeguros);
+        alquiler.cargarDatos(todosTrabajadores, todosClientes, todosCarros, todasSedes, todosCategorias, todosReservas, todosSeguros, historiales);
 
     }
 
@@ -50,7 +48,7 @@ public class Aplicacion {
             while (!opcion.equals("0")) {
 	            if (cuenta.equals("1")) {
 	                mostrarOpcionesAdminGeneral();
-	                opcion = input("Eliga una opcion 0-10");
+	                opcion = input("Eliga una opcion 0-11");
 	                if (opcion.toLowerCase().equals("1")) {
 	                	AdminSede(login);
 	                }
@@ -86,6 +84,12 @@ public class Aplicacion {
 	                else if (opcion.toLowerCase().equals("9")) {
 	                	entregarCarrro(login);
 	                }
+	                else if (opcion.toLowerCase().equals("10")) {
+	                	recibirCarro(login);
+	                }
+	                else if (opcion.toLowerCase().equals("11")) {
+	                	cambiarEstadoCarro(login);
+	                }
 	                
 	            } else if (cuenta.equals("2")) {
 	                mostrarOpcionesAdminSede();
@@ -119,6 +123,35 @@ public class Aplicacion {
     	
     }
 
+
+	private static void recibirCarro(String loginTra) {
+		HashMap<String, Sede> mapaSedes = alquiler.getSedes();
+    	Set<String> setSedes = mapaSedes.keySet();
+    	Object[] arraySede = setSedes.toArray();
+    	
+		System.out.println("Llene los siguentes campos"); 
+		String loginCli = input("Login del cliente");
+		String placa = input("Placa del carro");
+		mostrarCosas( setSedes );
+		String sede = input("Sede en la que se encuentra");
+		int sedeNum =Integer.parseInt(sede)-1;
+    	String sedeFinal = (String) arraySede[sedeNum];
+    	alquiler.recibirCarro(loginTra, loginCli, placa, sede);
+    	System.out.println("El vehículo se ha recibido con éxito!");
+    	System.out.println("RECUERDA LAVAR EL VEHÍCULO ANTES DE HABILITARLO DE NUEVO");
+	}
+
+	private static void cambiarEstadoCarro(String login) {
+		System.out.println("Llene los siguentes campos");
+		String placa = input("Placa del carro");
+		System.out.println("1. Lavando");
+		System.out.println("2. Arreglando");
+        System.out.println("3. Sede");
+        String estado = input("Estado del carro");
+        int num = Integer.parseInt(estado);
+        alquiler.cambiarEstadoCarro(placa, num);
+		
+	}
 
 	public static void mostrarOpcionesAdminGeneral() {
 
@@ -170,18 +203,8 @@ public class Aplicacion {
     	System.out.println("1. Hacer reserva de un vehículo");
     }
 
-    public static void crearAlquiler() {
-        System.out.println("A continuación le mostraremos las sedes disponibles");
-        sedeDisponibles.getSede();
-    }
 
-    public static void guardarFactura() {
-        if (factura.imprimirFactura()) {
-            System.out.println("Factura guardada con éxito");
-        } else {
-            System.out.println("Error al guardar la factura");
-        }
-    }
+
 
     public static void main(String[] args) {
 
@@ -197,11 +220,11 @@ public class Aplicacion {
     	System.out.println("A continuación podra crear su cuenta de Usuario");
 		String nombreUsuario = input("Escriba acá su nombre y apellido");
 		String login = input("Cree un nombre de usuario");
-		Boolean seguir = alquiler.rebisarUsuario(login);
+		Boolean seguir = alquiler.revisarUsuario(login);
 		
 		while (seguir) {
 			login = input("El usuario introducido ya existe.\n Cree un nuevo nombre de usuario");
-			seguir = alquiler.rebisarUsuario(login);
+			seguir = alquiler.revisarUsuario(login);
 		} 
 		String password = input("Cree una contraseña");
 		String fechaNacimiento = input("Escriba su fecha de nacimiento en el formato dd-mm-yyyy");
@@ -340,16 +363,16 @@ public class Aplicacion {
     	
     }
 
-	private static void entregarCarrro(String login) {
+	private static void entregarCarrro(String loginTra) {
 		
-		String logins = input("Ingrese el login del usuario");
+		String loginCli = input("Ingrese el login del usuario");
     	String tipo = input("Ingrese si es 1: Reserva o 2: Alquiler");
     	String placa = input("Ingrese la placa del Carro");
     	if (tipo.endsWith("2")){
-    		alquiler.finalisarAlquiler(login, logins, placa);
+    		alquiler.finalizarAlquiler(loginTra, loginCli, placa);
     	}
     	else {
-    		alquiler.finalizarReserva(login, logins, placa);
+    		alquiler.finalizarReserva(loginTra, loginCli, placa);
     	}
     	
 		

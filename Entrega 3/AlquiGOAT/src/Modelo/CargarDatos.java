@@ -14,9 +14,10 @@ class CargarDatos {
 	private File todosCategorias;
 	private File todosReservas;
 	private File todosSeguros;
+	private File historiales;
 
 	public CargarDatos(File todosTrabajadores, File todosClientes, File todosCarros, File todasSedes,
-			File todosCategorias, File todosReservas, File todosSeguros) {
+			File todosCategorias, File todosReservas, File todosSeguros, File historiales) {
 		super();
 		this.todosTrabajadores = todosTrabajadores;
 		this.todosClientes = todosClientes;
@@ -25,6 +26,7 @@ class CargarDatos {
 		this.todosCategorias = todosCategorias;
 		this.todosReservas = todosReservas;
 		this.todosSeguros = todosSeguros;
+		this.historiales = historiales;
 	}
 
 	public HashMap<String, Sede> cargarSedes() {
@@ -253,5 +255,20 @@ class CargarDatos {
 		}
 		return reservas;
 	}
+	public HashMap<String, String> cargarHistorial() {
+		HashMap<String, String> carroHist = new HashMap<String, String>();
+		try (BufferedReader lector = new BufferedReader(new FileReader(historiales))) {
+			String linea = lector.readLine();
+			linea = lector.readLine();
+			while (linea != null) {
+				String[] historialCarros = linea.split(",");
+				carroHist.put(historialCarros[0], historialCarros[1]);
+				linea = lector.readLine();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return carroHist;
 
+	}
 }

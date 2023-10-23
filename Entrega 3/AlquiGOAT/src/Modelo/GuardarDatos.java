@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.HashMap;
 
 public class GuardarDatos {
@@ -19,13 +19,15 @@ public class GuardarDatos {
 	private File todasSedes;
 	private File todasReservas;
 	private File todasSeguros;
-	public GuardarDatos(File todosTrabajadores, File todosClientes, File todosCarros, File todasSedes, File todasReservas, File todosSeguros) {
+	private File historiales;
+	public GuardarDatos(File todosTrabajadores, File todosClientes, File todosCarros, File todasSedes, File todasReservas, File todosSeguros, File historiales) {
 		this.todosTrabajadores = todosTrabajadores;
 		this.todosClientes = todosClientes;
 		this.todosCarros = todosCarros;
 		this.todasSedes = todasSedes;
 		this.todasReservas = todasReservas;
 		this.todasSeguros = todosSeguros;
+		this.historiales = historiales;
 	}
 	
 	public void addCliente(String nombreUsuario, String login, String password, String fechaNacimiento,
@@ -123,23 +125,21 @@ public class GuardarDatos {
 		
 	}
 		
-		public void addSeguros (String nombre, String precio, String descripcion) {
-			try (BufferedWriter writer = new BufferedWriter(new FileWriter(todasReservas, true))){
-					String datos =  nombre+ ","+ precio +","+ descripcion;
-					
-					writer.newLine();
-					writer.write(datos);
+	public void addSeguros (String nombre, String precio, String descripcion) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(todasReservas, true))){
+			String datos =  nombre+ ","+ precio +","+ descripcion;
+			
+			writer.newLine();
+			writer.write(datos);
 
-			}
-			catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			catch (IOException e1) {
-			// TODO Auto-generated catch block
+		}
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		}
+	}
 		
 	public void guardarCarros (HashMap<String, Vehiculo> carros) {
 		
@@ -208,6 +208,22 @@ public class GuardarDatos {
 				
 				linea = login +","+sedeInico+","+ fechaInico+","+lugarFin+","+fechaFin+","+categoria+","+datosRecolectado+","+stringSeguros;
 				
+				CR.write(linea + "\n");
+			}
+			
+	                }
+	         catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	public void guardarHistorial (HashMap<String, String> historiale) {
+		try ( BufferedWriter CR = new BufferedWriter(new FileWriter(historiales))) {
+			String linea;
+			linea = "placa,seguimiento";
+			CR.write(linea + "\n");
+			for(String placa: historiale.keySet()) {
+				String seguimiento =  historiale.get(placa);
+				linea = placa +","+seguimiento;
 				CR.write(linea + "\n");
 			}
 			
