@@ -72,8 +72,7 @@ public class Aplicacion {
 								crearAlquileresReservas(1, loginUsuario);
 							} else if (opcion.toLowerCase().equals("8")) {
 								anadirCondutor();
-							}
-							else if (opcion.toLowerCase().equals("9")) {
+							} else if (opcion.toLowerCase().equals("9")) {
 								entregarCarrro(login);
 							} else if (opcion.toLowerCase().equals("10")) {
 								recibirCarro(login);
@@ -89,38 +88,32 @@ public class Aplicacion {
 								crearCliente();
 							} else if (opcion.toLowerCase().equals("3")) {
 								anadirTrabajdorSede(login);
-							} 
-							else if (opcion.toLowerCase().equals("4")) {
+							} else if (opcion.toLowerCase().equals("4")) {
 								anadirCarroSede(login);
-							} 
-							else if (opcion.toLowerCase().equals("5")) {
+							} else if (opcion.toLowerCase().equals("5")) {
 								String loginUsuario = input("Ingrese el login del cliente");
 								crearAlquileresReservas(1, loginUsuario);
 							} else if (opcion.toLowerCase().equals("6")) {
 								anadirCondutor();
-							}
-							else if (opcion.toLowerCase().equals("7")) {
+							} else if (opcion.toLowerCase().equals("7")) {
 								entregarCarrro(login);
 							} else if (opcion.toLowerCase().equals("8")) {
 								recibirCarro(login);
 							} else if (opcion.toLowerCase().equals("9")) {
 								cambiarEstadoCarro(login);
 							}
-						} 
-						else if (cuenta.equals("3")) {
+						} else if (cuenta.equals("3")) {
 							mostrarOpcionesTrabajador();
 							mostrarOpcionesAdminSede();
 							opcion = input("Eliga una opcion 0-9");
 							if (opcion.toLowerCase().equals("1")) {
 								crearCliente();
-							} 
-							else if (opcion.toLowerCase().equals("2")) {
+							} else if (opcion.toLowerCase().equals("2")) {
 								String loginUsuario = input("Ingrese el login del cliente");
 								crearAlquileresReservas(1, loginUsuario);
 							} else if (opcion.toLowerCase().equals("6")) {
 								anadirCondutor();
-							}
-							else if (opcion.toLowerCase().equals("3")) {
+							} else if (opcion.toLowerCase().equals("3")) {
 								entregarCarrro(login);
 							} else if (opcion.toLowerCase().equals("4")) {
 								recibirCarro(login);
@@ -129,9 +122,10 @@ public class Aplicacion {
 							}
 						} else if (cuenta.equals("4")) {
 							mostrarOpcionesCliente();
+							opcion = input("Eliga una opcion");
 							if (opcion.toLowerCase().equals("1")) {
 								crearAlquileresReservas(2, login);
-							} 
+							}
 						}
 					}
 				} else {
@@ -146,9 +140,7 @@ public class Aplicacion {
 			alquiler.gurdarResevras();
 			alquiler.gurdarHistorial();
 		}
-		}
-
-	
+	}
 
 	private static void anadirCarroSede(String login) {
 		String placa = input("Ingrese la placa del carro que va a cambiar de sede");
@@ -246,7 +238,7 @@ public class Aplicacion {
 
 	private static void crearCliente() {
 
-		System.out.println("A continuación podra crear su cuenta de Usuario");
+		System.out.println("A continuación podrá crear su cuenta de Usuario");
 		String nombreUsuario = input("Escriba acá su nombre y apellido");
 		String login = input("Cree un nombre de usuario");
 		Boolean seguir = alquiler.revisarUsuario(login);
@@ -303,7 +295,7 @@ public class Aplicacion {
 			System.err.println("Ha ocurrido un error al ingresar datos del administrador: " + e.getMessage());
 		}
 	}
-	
+
 	private static void crearEmpleado(String login) {
 		try {
 			String sedeT = input("Sede a la que desea asignarle el trabajador");
@@ -328,12 +320,12 @@ public class Aplicacion {
 		String marca = input("Marca del vehículo comprado");
 		String modelo = input("Modelo del vehículo comprado");
 		String color = input("Color del vehículo comprado");
-		String tipoTransmisión = input("Tipo de transmisión del vehículo comprado");
+		String tipoTransmision = input("Tipo de transmisión del vehículo comprado");
 		String ubicacion = "Sede";
 		Boolean disponible = true;
 		String sedeCarro = input("Sede en la que se ubicará el vehículo");
 		String categoria = input("Categoría a la que pertenece el vehículo");
-		alquiler.comprarCarro(placa, marca, modelo, color, tipoTransmisión,
+		alquiler.comprarCarro(placa, marca, modelo, color, tipoTransmision,
 				ubicacion, disponible, sedeCarro, categoria, login);
 	}
 
@@ -374,7 +366,7 @@ public class Aplicacion {
 		String categoria = (String) arrayCategoria[categoriaNum];
 		Boolean revisarDiponibilidad = alquiler.revisarDisponibilidad(lugarInicio, categoria);
 		while (revisarDiponibilidad) {
-			categoriaNum1 = input("Ingrese una nueva categoria");
+			categoriaNum1 = input("Seleccione una categoría");
 			categoriaNum = Integer.parseInt(categoriaNum1) - 1;
 			categoria = (String) arrayCategoria[categoriaNum];
 			revisarDiponibilidad = alquiler.revisarDisponibilidad(lugarInicio, categoria);
@@ -396,15 +388,14 @@ public class Aplicacion {
 		if (num == 1) {
 			alquiler.crearAlquiler(fechFin, fechaInicio, lugarEntrega, lugarInicio, categoria, loginUsuario,
 					tipoSeguro);
+		} else if (num == 2) {
+			alquiler.cerarReserva(fechFin, fechaInicio, lugarEntrega, lugarInicio, categoria, loginUsuario,
+					tipoSeguro);
+			String coductorExtra = input("¿quiere registrar más conductores? (Y/N)");
+			if (coductorExtra.toLowerCase().equals("y")) {
+				anadirCondutor();
 			}
-		else if (num == 2) {
-				alquiler.cerarReserva(fechFin, fechaInicio, lugarEntrega, lugarInicio, categoria, loginUsuario,
-						tipoSeguro);
-				String coductorExtra = input("¿quiere registrar más conductores? (Y/N)");
-				if (coductorExtra.toLowerCase().equals("y")) {
-					anadirCondutor();
-				}
-				System.out.println("La reserva se cargo correctamente.");
+			System.out.println("La reserva se cargo correctamente.");
 		}
 
 	}
@@ -435,6 +426,7 @@ public class Aplicacion {
 		}
 
 	}
+
 	private static void mostrarCosasLista(ArrayList<String> placasPocibles) {
 		int numero = 1;
 		for (String nombre : placasPocibles) {
@@ -453,7 +445,7 @@ public class Aplicacion {
 		mostrarCosasLista(placasPocibles);
 		String placaString = input("Ingrese la placa del Carro");
 		int lugarEntregaNum = Integer.parseInt(placaString) - 1;
-		String placa = (String)  placasPocibles.get(lugarEntregaNum) ;
+		String placa = (String) placasPocibles.get(lugarEntregaNum);
 		if (tipo.endsWith("2")) {
 			alquiler.finalizarAlquiler(loginTra, loginCli, placa);
 		} else {

@@ -1,0 +1,18 @@
+***** Indicaciones de Uso *****
+Querido nicolas arango
+, AlquiGOAT le recuerda las siguientes indicaciones para hacer uso de nuestros vehículos:
+El carro Alquilado es un M4
+de la categoría deportivo.
+La fecha de Inicio del Alquiler: 12-10-2023
+Sede donde se recibió el vehículo: GOATRental
+Seguro Seleccionado: Seguro completo
+
+
+Conductores Asociados: 
+
+La fecha de Finalización del Alquiler: 19-10-2023
+Sede donde se dejará el vehículo: GOATRental
+Este alquiler suma a un costo de: 28000000
+(sin impuestos)
+Para un total de: 33320000
+(19 IVA)
