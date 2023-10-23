@@ -338,6 +338,13 @@ public class Aplicacion {
 	}
 
 	private static void crearAlquileresReservas(int num, String loginUsuario) {
+		
+		Boolean revicion = alquiler.revisarUsuario(loginUsuario);
+		while (!revicion) {
+			loginUsuario = input("Ingrese un login que exista del cliente");
+			revicion = alquiler.revisarUsuario(loginUsuario);
+		}
+		
 		HashMap<String, Sede> mapaSedes = alquiler.getSedes();
 		Set<String> setSedes = mapaSedes.keySet();
 		Object[] arraySede = setSedes.toArray();
