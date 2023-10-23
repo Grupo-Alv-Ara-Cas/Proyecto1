@@ -189,7 +189,7 @@ public class AlquilerCarros {
 
 		Trabajador trabajador = (Trabajador) usuarios.get(loginTra);
 
-		Factura factura = new Factura(cliente, trabajador, aluilqerActual, carro);
+		Factura factura = new Factura(cliente, trabajador, alquilerActual, carro);
 		carro.setDisponible(false);
 
 		factura.imprimirFactura();
