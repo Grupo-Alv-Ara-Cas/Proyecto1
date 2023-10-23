@@ -2,20 +2,20 @@
 Trabajador: Miguel Castillo
 Sede: AlquiAutos
 Cliente: nicolas arango
-Carro Alquilado: Camaro
-Categoría del Carro: deportivo
-Marca: Chevrolet
-Placa: STU901
-Color: amarillo
-Tipo de Transmisión: manual
-Fecha de Inicio del Alquiler: 10-10-2023
+Carro Alquilado: 3
+Categoría del Carro: sedan
+Marca: Mazda
+Placa: TUV345
+Color: plata
+Tipo de Transmisión: automatica
+Fecha de Inicio del Alquiler: 10-12-2023
 Lugar de Inicio del Alquiler: AlquiAutos
-Fecha de Finalización del Alquiler: 24-12-2023
+Fecha de Finalización del Alquiler: 12-12-2023
 Lugar de Finalización del Alquiler: AlquiAutos
 Seguro Seleccionado: Seguro completo
 
 
 Conductores Asociados: 
 
-SUBTOTAL: 56000000
-TOTAL: 66640000
+SUBTOTAL: 3000000
+TOTAL: 3570000

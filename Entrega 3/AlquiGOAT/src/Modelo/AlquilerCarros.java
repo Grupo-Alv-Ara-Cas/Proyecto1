@@ -116,7 +116,11 @@ public class AlquilerCarros {
 		factura.imprimirFactura();
 		factura.imprimirIndicaciones();
 
-		String historias = historiales.get(placa);
+		String historias = "";
+				
+		if (historiales.containsKey(placa)) {
+					historias = historiales.get(placa);
+				}		
 		historias = carro.setUbicacion(loginCli, historias);
 		historiales.put(placa, historias);
 		reservasEmpresa.remove(loginCli);
@@ -192,11 +196,19 @@ public class AlquilerCarros {
 		Trabajador trabajador = (Trabajador) usuarios.get(loginTra);
 
 		Factura factura = new Factura(cliente, trabajador, alquilerActual, carro);
-		carro.setUbicacion(loginCli, "alquilado");
+		
 		carro.setDisponible(false);
 
 		factura.imprimirFactura();
 		factura.imprimirIndicaciones();
+		String historias = "";
+		
+		if (historiales.containsKey(placa)) {
+					historias = historiales.get(placa);
+				}		
+		historias = carro.setUbicacion(loginCli, historias);
+		historiales.put(placa, historias);
+		reservasEmpresa.remove(loginCli);
 
 	}
 
@@ -206,8 +218,14 @@ public class AlquilerCarros {
 
 		Sede sedeAnterior = carro.getSedeCarro();
 		sedeAnterior.quitarCarros(carro);
+		
+		String historias = "";
+	
+		if (historiales.containsKey(placa)) {
+			historias = historiales.get(placa);
+		}
 
-		String historias = historiales.get(placa);
+	
 		historias = carro.setUbicacion("lavando", historias);
 		historiales.put(placa, historias);
 
@@ -247,11 +265,20 @@ public class AlquilerCarros {
 			if (carro.getDisponible()) {
 				carro.setDisponible(false);
 				sede.cambiarDisponibilidadCarro(false, categoria);
-				String historias = historiales.get(placa);
+				String historias = "";
+				
+				if (historiales.containsKey(placa)) {
+					historias = historiales.get(placa);
+				}
+
 				historias = carro.setUbicacion("lavando", historias);
 				historiales.put(placa, historias);
 			} else {
-				String historias = historiales.get(placa);
+				String historias = "";
+				
+				if (historiales.containsKey(placa)) {
+					historias = historiales.get(placa);
+				}				
 				historias = carro.setUbicacion("lavando", historias);
 				historiales.put(placa, historias);
 			}
@@ -261,25 +288,39 @@ public class AlquilerCarros {
 			if (carro.getDisponible()) {
 				carro.setDisponible(false);
 				sede.cambiarDisponibilidadCarro(false, categoria);
-				String historias = historiales.get(placa);
+				String historias = "";
+				
+				if (historiales.containsKey(placa)) {
+					historias = historiales.get(placa);
+				}
 				historias = carro.setUbicacion("arreglando", historias);
 				historiales.put(placa, historias);
 			} else {
-				String historias = historiales.get(placa);
+				String historias = "";
+				
+				if (historiales.containsKey(placa)) {
+					historias = historiales.get(placa);
+				}				
 				historias = carro.setUbicacion("arreglando", historias);
 				historiales.put(placa, historias);
 			}
 
 		} else if (estado == 3) {
 			if (carro.getDisponible()) {
-				String historias = historiales.get(placa);
-				historias = carro.setUbicacion("sede", historias);
+				String historias = "";
+				
+				if (historiales.containsKey(placa)) {
+					historias = historiales.get(placa);
+				}				historias = carro.setUbicacion("sede", historias);
 				historiales.put(placa, historias);
 			} else {
 				carro.setDisponible(true);
 				sede.cambiarDisponibilidadCarro(true, categoria);
-				String historias = historiales.get(placa);
-				historias = carro.setUbicacion("sede", historias);
+				String historias = "";
+				
+				if (historiales.containsKey(placa)) {
+					historias = historiales.get(placa);
+				}				historias = carro.setUbicacion("sede", historias);
 				historiales.put(placa, historias);
 			}
 

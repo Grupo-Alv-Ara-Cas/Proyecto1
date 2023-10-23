@@ -1,16 +1,16 @@
 ***** Indicaciones de Uso *****
 Querido nicolas arango
 AlquiGOAT le recuerda las siguientes indicaciones para hacer uso de nuestros vehículos:
-El carro Alquilado es un Chevrolet Camaro de la categoría deportivo.
-La fecha de Inicio del Alquiler: 10-10-2023
+El carro Alquilado es un Mazda 3 de la categoría sedan.
+La fecha de Inicio del Alquiler: 10-12-2023
 Sede donde se recibió el vehículo: AlquiAutos
 Seguro Seleccionado: Seguro completo
 
 
 Conductores Asociados: 
 
-La fecha de Finalización del Alquiler: 24-12-2023
+La fecha de Finalización del Alquiler: 12-12-2023
 Sede donde se dejará el vehículo: AlquiAutos
-Este alquiler suma a un costo de: 56000000 (sin impuestos)
-Para un total de: 66640000
+Este alquiler suma a un costo de: 3000000 (sin impuestos)
+Para un total de: 3570000
 (19 IVA)
