@@ -1,6 +1,6 @@
 placa,categoria,sede_carro,marca,modelo,color,tipo_transmision,ubicacion,disponible
 QRS345,sedan,AlquiAutos,Honda,Civic,blanco,automatica,sede,true
-QRS789,suv,AlquiAutos,Jaguar,F-PACE,blanco,automatica,sede,true
+QRS789,suv,AlquiAutos,Jaguar,F-PACE,blanco,automatica,nicoarango,false
 YZA567,lujo,AlquiAutos,Audi,A8,azul,automatica,sede,true
 KLM456,deportivo,AlquiAutos,Acura,NSX,rojo,automatica,sede,true
 WXY678,camioneta,GOATRental,Land Rover,Discovery Sport,verde,automatica,sede,true

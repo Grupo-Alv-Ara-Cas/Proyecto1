@@ -26,6 +26,7 @@ public class AlquilerCarros {
 		categorias = new HashMap<String, Categorias>();
 		reservasEmpresa = new HashMap<String, Reservas>();
 		seguros = new HashMap<String, Seguros>();
+		historiales= new HashMap<String, String>();
 	}
 
 	public String revisarCuenta(String usuario, String password) {

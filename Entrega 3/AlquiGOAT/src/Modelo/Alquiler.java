@@ -110,6 +110,10 @@ public class  Alquiler {
 		if (!lugarInicio.equals(lugarEntrega)) {
 			precioExtra += 100000;
 		}
+		
+		for(Seguros seguro: tipoSeguro) {
+			precioExtra += seguro.getPrecio();
+		}
 
 		precio = ((long) totalDias) * precioDia + precioExtra;
 
