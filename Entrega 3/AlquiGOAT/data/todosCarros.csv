@@ -1,6 +1,6 @@
 placa,categoria,sede_carro,marca,modelo,color,tipo_transmision,ubicacion,disponible
-JMY952,suv,GOATRental,mercedes,GLC 350e,gris espacial,hibrida,lavando,false
-IJT411,deportivo,GOATRental,BMW,M4,rojo,automatica,sede,true
 XMK420,camioneta,AlquiAutos,BYD,SongYang,azul metalico,electrica,reparando,false
-FOL378,lujo,AlquiAutos,mercedes,Maybach,vinotinto,automatica,alquilado,false
+IJT411,deportivo,GOATRental,BMW,M4,rojo,automatica,sede,true
+JMY952,suv,GOATRental,mercedes,GLC 350e,gris espacial,hibrida,lavando,false
 FOL368,lujo,AlquiAutos,mercedes,Maybach,vinotinto,automatica,alquilado,false
+FOL378,lujo,AlquiAutos,mercedes,Maybach,vinotinto,automatica,alquilado,false

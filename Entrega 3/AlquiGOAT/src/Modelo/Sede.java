@@ -1,15 +1,19 @@
 package Modelo;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 
 public class Sede {
+
+	public HashMap<String, Vehiculo> getCarrosSede() {
+		return carrosSede;
+	}
 
 	private String nombreSede;
 	private String ubicacionSede;
 	private String horariosSede;
 	private AdministradorSede admin;
-	private ArrayList<Trabajador> trabajadores;
+	private HashMap<String, Trabajador> trabajadores;
 	private HashMap<String, Vehiculo> carrosSede;
 	private HashMap<String, Integer> disponibilidadSedeCategoria;
 
@@ -18,7 +22,7 @@ public class Sede {
 		this.nombreSede = nombreSede;
 		this.ubicacionSede = ubicacionSede;
 		this.horariosSede = horariosSede;
-		trabajadores = new ArrayList<Trabajador>();
+		trabajadores = new HashMap<String, Trabajador>();
 		carrosSede = new HashMap<String, Vehiculo>();
 		disponibilidadSedeCategoria = new HashMap<String, Integer>();
 	}
@@ -36,7 +40,7 @@ public class Sede {
 	}
 
 	public void agregarTrabajador(Trabajador empleado) {
-		trabajadores.add(empleado);
+		trabajadores.put(empleado.getNombreUsuario(), empleado);
 	}
 
 	public void agregarCarros(Vehiculo carro) {
@@ -97,6 +101,11 @@ public class Sede {
 		String detalles = nombre + "," + ubicacion + "," + horario;
 		return detalles;
 
+	}
+
+	public void eliminarTrabajador(Trabajador empleado) {
+		// TODO Auto-generated method stub
+		trabajadores.remove(empleado.getNombreUsuario());
 	}
 
 }

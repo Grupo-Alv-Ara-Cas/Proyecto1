@@ -2,6 +2,7 @@ package Modelo;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class AlquilerCarros {
@@ -284,4 +285,94 @@ public class AlquilerCarros {
 
 	}
 
+	public void gurdarHistorial() {
+		guardarDatos.guardarHistorial ( historiales);
+	}
+
+	public void crearTrabajdor(String sedeT, String nombreUsuario, String loginEmpleado, String passwords, String numeroID,
+			String paisExpedicion, String fechaCaducidadL, File imagenLicencia, String login) {
+		Sede sedett = sedes.get(sedeT);
+		AdministradorSede admin = (AdministradorSede) usuarios.get(login);
+		Trabajador empleado = admin.crearTrabajador(sedett, nombreUsuario, loginEmpleado, passwords, numeroID,
+				paisExpedicion, fechaCaducidadL,
+				imagenLicencia);
+		usuarios.put(loginEmpleado, empleado);
+		guardarDatos.addTrabajador(sedeT, nombreUsuario, loginEmpleado, passwords, numeroID, paisExpedicion, fechaCaducidadL,
+				imagenLicencia, "2");
+	}
+
+	public void addTrabajador(String trabajdor, String login) {
+		AdministradorSede jefe = (AdministradorSede) usuarios.get(login);
+		
+		Trabajador empleado = (Trabajador) usuarios.get(trabajdor);
+		Sede sedeAnterior = empleado.getSedeT();
+		Sede sede = jefe.getSedeT();
+		empleado.setSedeT(sede);
+		sede.agregarTrabajador(empleado);
+		sedeAnterior.eliminarTrabajador(empleado);
+		
+	}
+
+	public void anadirCarroSede(String placa, String login) {
+		AdministradorSede jefe = (AdministradorSede) usuarios.get(login);
+		Sede sede = jefe.getSedeT();
+		Vehiculo carro = carros.get(placa);
+		Sede sedeAnterior = carro.getSedeCarro();
+		sedeAnterior.quitarCarros(carro);
+		sede.agregarCarros(carro);
+	}
+
+	public void cerarReserva(String fechFin, String fechaInicio, String lugarEntrega, String lugarInicio,
+			String categoria, String loginUsuario, ArrayList<String> tipoSeguro) {
+		Sede sedeInicio = sedes.get(lugarInicio);
+		Sede sedeEntrega = sedes.get(lugarEntrega);
+		Categorias ctegoriaEste = categorias.get(categoria);
+		Usuario cliente = usuarios.get(loginUsuario);
+
+		Reservas reservaActual = new Reservas(sedeInicio, fechaInicio, sedeInicio.getHorariosSede(), fechFin,
+				sedeEntrega.getHorariosSede(), sedeEntrega, ctegoriaEste, cliente);
+		reservasEmpresa.put(loginUsuario, reservaActual);
+		for (String seguro : tipoSeguro) {
+			Seguros seg = seguros.get(seguro);
+			reservaActual.anadirSeguro(seg);
+		}
+		sedeInicio.cambiarDisponibilidadCarro(false, categoria);
+		
+		
+	}
+
+
+	public ArrayList<String> placasPosibles(String loginCli) {
+		Alquiler reserva;
+		if (reservasEmpresa.containsKey(loginCli)) {
+			reserva = reservasEmpresa.get(loginCli);
+		}
+		else if (alquilerEmpresa.containsKey(loginCli)) {
+			reserva = alquilerEmpresa.get(loginCli);
+		}
+		else {
+			return(null);
+		}
+		String tipoCarro = reserva.getTipoDeCarro().getNombre();
+		
+		ArrayList<String> carrosAseptaod = new ArrayList<String>();
+		
+		Sede lugar = reserva.getLugarInicio();
+		
+		HashMap<String, Vehiculo> carrosSede = lugar.getCarrosSede();
+		
+		Collection<Vehiculo> valores = carrosSede.values();
+		
+		for (Vehiculo carro :valores) {
+			String tipoCarroActual = carro.getCategoria().getNombre();
+			if (tipoCarroActual.equals(tipoCarro)) {
+				carrosAseptaod.add(carro.getPlaca());
+			}
+		}
+		return carrosAseptaod;
+		
+	}
+		
 }
+
+

@@ -1,6 +1,12 @@
 package Modelo;
 
+import java.io.File;
+
 public class Trabajador extends Usuario {
+
+	public void setSedeT(Sede sedeT) {
+		this.sedeT = sedeT;
+	}
 
 	private Sede sedeT;
 
@@ -13,6 +19,8 @@ public class Trabajador extends Usuario {
 	public void entregarCarro(Vehiculo carro, Usuario recibe) {
 
 	}
+	
+    
 
 	public Sede getSedeT() {
 		return sedeT;
