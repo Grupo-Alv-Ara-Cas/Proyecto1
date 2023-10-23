@@ -65,8 +65,8 @@ public class Factura {
         tipoTransmision = carro.getTipoTransmisión();
         segurito = String.valueOf(opcionSeguro()) + "\n";
         conducs = String.valueOf(conductorAdicional()) + "\n";
-        subtotal = (long) getPrecio();
-        total = (long) (getPrecio() * 19 / 100);
+        subtotal = (long) (getPrecio());
+        total = (long) ((getPrecio() * 19 / 100) + getPrecio());
         subtotalStr = String.valueOf(subtotal);
         totalStr = String.valueOf(total);
         lugarEntregaS = lugarEntrega.getNombreSede();
@@ -99,7 +99,7 @@ public class Factura {
                 Cliente: %s
                 Carro Alquilado: %s
                 Categoría del Carro: %s
-                Marca: 
+                Marca: %s
                 Placa: %s
                 Color: %s
                 Tipo de Transmisión: %s
@@ -129,8 +129,9 @@ public class Factura {
     private String generarContenidoIndicaciones() {
         return """
                 ***** Indicaciones de Uso *****
-                Querido %s, AlquiGOAT le recuerda las siguientes indicaciones para hacer uso de nuestros vehículos:
-                El carro Alquilado es un %s de la categoría %s.
+                Querido %s
+                AlquiGOAT le recuerda las siguientes indicaciones para hacer uso de nuestros vehículos:
+                El carro Alquilado es un %s %s de la categoría %s.
                 La fecha de Inicio del Alquiler: %s
                 Sede donde se recibió el vehículo: %s
                 Seguro Seleccionado: %s
@@ -138,8 +139,9 @@ public class Factura {
                 La fecha de Finalización del Alquiler: %s
                 Sede donde se dejará el vehículo: %s
                 Este alquiler suma a un costo de: %s (sin impuestos)
-                Para un total de: %s (19% IVA)
-                """.formatted(nombreCliente, modelo, tipoDeCarro.getNombre(), marca, fechaInicio,
+                Para un total de: %s 
+                (19 IVA)
+                """.formatted(nombreCliente,marca, modelo, tipoDeCarro.getNombre(), fechaInicio,
                 		lugarInicioS, segurito, conducs, fechaFin, lugarEntregaS, subtotalStr, totalStr);
     }
 

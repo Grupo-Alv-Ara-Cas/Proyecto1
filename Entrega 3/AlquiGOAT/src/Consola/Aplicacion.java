@@ -94,6 +94,7 @@ public class Aplicacion {
 							mostrarOpcionesTrabajador();
 						} else if (cuenta.equals("4")) {
 							mostrarOpcionesCliente();
+							opcion = input("Eliga una opcion");
 						}
 					}
 				} else {
@@ -198,7 +199,7 @@ public class Aplicacion {
 
 	private static void crearCliente() {
 
-		System.out.println("A continuación podra crear su cuenta de Usuario");
+		System.out.println("A continuación podrá crear su cuenta de Usuario");
 		String nombreUsuario = input("Escriba acá su nombre y apellido");
 		String login = input("Cree un nombre de usuario");
 		Boolean seguir = alquiler.revisarUsuario(login);
@@ -259,12 +260,12 @@ public class Aplicacion {
 		String marca = input("Marca del vehículo comprado");
 		String modelo = input("Modelo del vehículo comprado");
 		String color = input("Color del vehículo comprado");
-		String tipoTransmisión = input("Tipo de transmisión del vehículo comprado");
+		String tipoTransmision = input("Tipo de transmisión del vehículo comprado");
 		String ubicacion = "Sede";
 		Boolean disponible = true;
 		String sedeCarro = input("Sede en la que se ubicará el vehículo");
 		String categoria = input("Categoría a la que pertenece el vehículo");
-		alquiler.comprarCarro(placa, marca, modelo, color, tipoTransmisión,
+		alquiler.comprarCarro(placa, marca, modelo, color, tipoTransmision,
 				ubicacion, disponible, sedeCarro, categoria, login);
 	}
 
@@ -298,7 +299,7 @@ public class Aplicacion {
 		String categoria = (String) arrayCategoria[categoriaNum];
 		Boolean revisarDiponibilidad = alquiler.revisarDisponibilidad(lugarInicio, categoria);
 		while (revisarDiponibilidad) {
-			categoriaNum1 = input("Ingrese una nueva categoria");
+			categoriaNum1 = input("Seleccione una categoría");
 			categoriaNum = Integer.parseInt(categoriaNum1) - 1;
 			categoria = (String) arrayCategoria[categoriaNum];
 			revisarDiponibilidad = alquiler.revisarDisponibilidad(lugarInicio, categoria);

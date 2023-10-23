@@ -1,0 +1,21 @@
+***** Factura de Alquiler *****
+Trabajador: Miguel Castillo
+Sede: GOATRental
+Cliente: nicolas arango
+Carro Alquilado: M4
+Categoría del Carro: deportivo
+Marca: BMW
+Placa: IJT411
+Color: rojo
+Tipo de Transmisión: automatica
+Fecha de Inicio del Alquiler: 12-10-2023
+Lugar de Inicio del Alquiler: GOATRental
+Fecha de Finalización del Alquiler: 19-10-2023
+Lugar de Finalización del Alquiler: GOATRental
+Seguro Seleccionado: Seguro completo
+
+
+Conductores Asociados: 
+
+SUBTOTAL: 28000000
+TOTAL: 33320000
