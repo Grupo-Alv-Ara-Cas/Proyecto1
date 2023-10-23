@@ -28,5 +28,12 @@ public class AdministradorSede extends Trabajador {
 			String paisExpedicion, String fechaCaducidadL, File imagenLicencia) {
 		
     }
+	
+	public Trabajador crearTrabajador(Sede sedeT, String nombreUsuario, String login, String password,
+            String numeroID, String paisExpedicion, String fechaCaducidadL, File imagenLicencia) {
+        Licencia datosLicencia = new Licencia(numeroID, paisExpedicion, fechaCaducidadL, imagenLicencia);
+        Trabajador trabajdor = new Trabajador(sedeT, nombreUsuario, login, password, datosLicencia);
+        return trabajdor;
+    }
 
 }

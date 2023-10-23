@@ -49,9 +49,9 @@ public class Aplicacion {
 							mostrarOpcionesAdminGeneral();
 							opcion = input("Eliga una opcion 0-11");
 							if (opcion.toLowerCase().equals("1")) {
-								AdminSede(login);
+								adminSede(login);
 							} else if (opcion.toLowerCase().equals("2")) {
-								comprarCarr(login);
+								crearEmpleado(login);
 							} else if (opcion.toLowerCase().equals("3")) {
 								crearCliente();
 							} else if (opcion.toLowerCase().equals("4")) {
@@ -72,29 +72,60 @@ public class Aplicacion {
 								crearAlquileresReservas(1, loginUsuario);
 							} else if (opcion.toLowerCase().equals("8")) {
 								anadirCondutor();
-							}
-
-							else if (opcion.toLowerCase().equals("9")) {
+							} else if (opcion.toLowerCase().equals("9")) {
 								entregarCarrro(login);
 							} else if (opcion.toLowerCase().equals("10")) {
 								recibirCarro(login);
 							} else if (opcion.toLowerCase().equals("11")) {
 								cambiarEstadoCarro(login);
 							}
-
 						} else if (cuenta.equals("2")) {
 							mostrarOpcionesAdminSede();
-							opcion = input("Eliga una opcion 1-10");
+							opcion = input("Eliga una opcion 0-9");
 							if (opcion.toLowerCase().equals("1")) {
-								String sede = input("Ingrese la sede a la que pertenece este empleado");
-								String nombreUsurio = input("Ingrese el nombre y el apellido del empleado");
-
+								crearEmpleado(login);
+							} else if (opcion.toLowerCase().equals("2")) {
+								crearCliente();
+							} else if (opcion.toLowerCase().equals("3")) {
+								anadirTrabajdorSede(login);
+							} else if (opcion.toLowerCase().equals("4")) {
+								anadirCarroSede(login);
+							} else if (opcion.toLowerCase().equals("5")) {
+								String loginUsuario = input("Ingrese el login del cliente");
+								crearAlquileresReservas(1, loginUsuario);
+							} else if (opcion.toLowerCase().equals("6")) {
+								anadirCondutor();
+							} else if (opcion.toLowerCase().equals("7")) {
+								entregarCarrro(login);
+							} else if (opcion.toLowerCase().equals("8")) {
+								recibirCarro(login);
+							} else if (opcion.toLowerCase().equals("9")) {
+								cambiarEstadoCarro(login);
 							}
 						} else if (cuenta.equals("3")) {
 							mostrarOpcionesTrabajador();
+							mostrarOpcionesAdminSede();
+							opcion = input("Eliga una opcion 0-9");
+							if (opcion.toLowerCase().equals("1")) {
+								crearCliente();
+							} else if (opcion.toLowerCase().equals("2")) {
+								String loginUsuario = input("Ingrese el login del cliente");
+								crearAlquileresReservas(1, loginUsuario);
+							} else if (opcion.toLowerCase().equals("6")) {
+								anadirCondutor();
+							} else if (opcion.toLowerCase().equals("3")) {
+								entregarCarrro(login);
+							} else if (opcion.toLowerCase().equals("4")) {
+								recibirCarro(login);
+							} else if (opcion.toLowerCase().equals("5")) {
+								cambiarEstadoCarro(login);
+							}
 						} else if (cuenta.equals("4")) {
 							mostrarOpcionesCliente();
 							opcion = input("Eliga una opcion");
+							if (opcion.toLowerCase().equals("1")) {
+								crearAlquileresReservas(2, login);
+							}
 						}
 					}
 				} else {
@@ -107,8 +138,18 @@ public class Aplicacion {
 			}
 			alquiler.gurdarCarros();
 			alquiler.gurdarResevras();
+			alquiler.gurdarHistorial();
 		}
+	}
 
+	private static void anadirCarroSede(String login) {
+		String placa = input("Ingrese la placa del carro que va a cambiar de sede");
+		alquiler.anadirCarroSede(placa, login);
+	}
+
+	private static void anadirTrabajdorSede(String login) {
+		String trabajdor = input("Ingrese el codigo del trabajador que desea añadir a la sede");
+		alquiler.addTrabajador(trabajdor, login);
 	}
 
 	private static void recibirCarro(String loginTra) {
@@ -123,7 +164,7 @@ public class Aplicacion {
 		String sede = input("Sede en la que se encuentra");
 		int sedeNum = Integer.parseInt(sede) - 1;
 		String sedeFinal = (String) arraySede[sedeNum];
-		alquiler.recibirCarro(loginTra, loginCli, placa, sede);
+		alquiler.recibirCarro(loginTra, loginCli, placa, sedeFinal);
 		System.out.println("El vehículo se ha recibido con éxito!");
 		System.out.println("RECUERDA LAVAR EL VEHÍCULO ANTES DE HABILITARLO DE NUEVO");
 	}
@@ -163,21 +204,19 @@ public class Aplicacion {
 		System.out.println("2. Registrar información de cliente");
 		System.out.println("3. Agregar un trabajador a la sede");
 		System.out.println("4. Agregar carro a la sede");
-		System.out.println("5. Remover carro de la sede");
-		System.out.println("6. Alquilar un vehículo");
-		System.out.println("7. Registrar conductores extras para el vehículo");
-		System.out.println("8. Hacer la entrega de un vehículo");
-		System.out.println("9. Hacer recibimiento de un vehículo");
-		System.out.println("10. Actualizar el estado de un vehículo");
-		System.out.println("11. Imprimir factura");
+		System.out.println("5. Alquilar un vehículo");
+		System.out.println("6. Registrar conductores extras para el vehículo");
+		System.out.println("7. Hacer la entrega de un vehículo");
+		System.out.println("8. Hacer recibimiento de un vehículo");
+		System.out.println("9. Actualizar el estado de un vehículo");
 	}
 
 	public static void mostrarOpcionesTrabajador() {
 
 		System.out.println("0. Hacer Log-Out");
 		System.out.println("1. Registrar información de cliente");
-		System.out.println("2. Registrar un conductor extra para el vehículo");
-		System.out.println("3. Alquilar un vehículo");
+		System.out.println("2. Alquilar un vehículo");
+		System.out.println("3. Registrar un conductor extra para el vehículo");
 		System.out.println("4. Hacer la entrega de un vehículo");
 		System.out.println("5. Hacer recibimiento de un vehículo");
 		System.out.println("6. Actualizar el estado de un vehículo");
@@ -234,10 +273,11 @@ public class Aplicacion {
 				ciudadResidencia, direccionResidencia, codigoPostal, numeroID,
 				paisExpedicion, fechaCaducidadL, imagenLicencia, numeroTarjeta,
 				codigoTarjeta, fechaCaducidadT, tipo);
+		System.out.println("El cliente fue creado correctamente.");
 
 	}
 
-	private static void AdminSede(String login) {
+	private static void adminSede(String login) {
 		try {
 			String sedeT = input("Sede a la que desea asignarle el administrador");
 			String nombreUsuario = input("Nombre del trabajador");
@@ -250,6 +290,26 @@ public class Aplicacion {
 			File imagenLicencia = new File(licenciapng);
 			alquiler.crearAdminSede(sedeT, nombreUsuario, logins, passwords, numeroID, paisExpedicion, fechaCaducidadL,
 					imagenLicencia, login);
+			System.out.println("El administrador de la sede fue creado correctamente.");
+		} catch (Exception e) {
+			System.err.println("Ha ocurrido un error al ingresar datos del administrador: " + e.getMessage());
+		}
+	}
+
+	private static void crearEmpleado(String login) {
+		try {
+			String sedeT = input("Sede a la que desea asignarle el trabajador");
+			String nombreUsuario = input("Nombre del trabajador");
+			String logins = input("Nombre de Usuario (Log-In) del trabajador");
+			String passwords = input("Contraseña para este Log-In");
+			String numeroID = input("Número de documento del ttrabajador");
+			String paisExpedicion = input("País de expedición del documento");
+			String fechaCaducidadL = input("Ingrese la fecha de caducidad de la licencia del trabajador");
+			String licenciapng = input("Ingrese acá una imagen de la licencia del trabajador");
+			File imagenLicencia = new File(licenciapng);
+			alquiler.crearTrabajdor(sedeT, nombreUsuario, logins, passwords, numeroID, paisExpedicion, fechaCaducidadL,
+					imagenLicencia, login);
+			System.out.println("El trabajdor fue creado correctamente.");
 		} catch (Exception e) {
 			System.err.println("Ha ocurrido un error al ingresar datos del administrador: " + e.getMessage());
 		}
@@ -321,6 +381,14 @@ public class Aplicacion {
 		if (num == 1) {
 			alquiler.crearAlquiler(fechFin, fechaInicio, lugarEntrega, lugarInicio, categoria, loginUsuario,
 					tipoSeguro);
+		} else if (num == 2) {
+			alquiler.cerarReserva(fechFin, fechaInicio, lugarEntrega, lugarInicio, categoria, loginUsuario,
+					tipoSeguro);
+			String coductorExtra = input("¿quiere registrar más conductores? (Y/N)");
+			if (coductorExtra.toLowerCase().equals("y")) {
+				anadirCondutor();
+			}
+			System.out.println("La reserva se cargo correctamente.");
 		}
 
 	}
@@ -338,6 +406,7 @@ public class Aplicacion {
 			String paisExpedicion = input("Ingrese el color del vehículo comprado");
 			File documento = new File(paseConduccionImagen);
 			alquiler.addCondutorextra(nombre, fechaCaducidad, nummeroID, paisExpedicion, documento, loginp);
+			System.out.println("El conductor extra se cargo correctamente.");
 		}
 	}
 
@@ -351,11 +420,25 @@ public class Aplicacion {
 
 	}
 
+	private static void mostrarCosasLista(ArrayList<String> placasPocibles) {
+		int numero = 1;
+		for (String nombre : placasPocibles) {
+
+			System.out.println(numero + ": " + nombre + "\n");
+			numero++;
+		}
+
+	}
+
 	private static void entregarCarrro(String loginTra) {
 
 		String loginCli = input("Ingrese el Log-In del usuario");
 		String tipo = input("Ingrese si es \n1: Reserva\n2: Alquiler");
-		String placa = input("Ingrese la placa del Carro");
+		ArrayList<String> placasPocibles = alquiler.placasPosibles(loginCli);
+		mostrarCosasLista(placasPocibles);
+		String placaString = input("Ingrese la placa del Carro");
+		int lugarEntregaNum = Integer.parseInt(placaString) - 1;
+		String placa = (String) placasPocibles.get(lugarEntregaNum);
 		if (tipo.endsWith("2")) {
 			alquiler.finalizarAlquiler(loginTra, loginCli, placa);
 		} else {
