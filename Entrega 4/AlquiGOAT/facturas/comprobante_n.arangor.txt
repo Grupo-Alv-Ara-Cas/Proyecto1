@@ -1,0 +1,17 @@
+***** Factura de Alquiler *****
+                Trabajador: Miguel castillo
+                Sede: AlquiAutos
+                Cliente: Nicolas Arango
+                Carro Alquilado: GLC 350e
+                Categoría del Carro: suv
+                Placa: JMY952
+                Color: gris espacial
+                Tipo de Transmisión: hibrida
+                Fecha de Inicio del Alquiler: 15/09/2023
+                Lugar de Inicio del Alquiler: AlquiAutos
+                Fecha de Finalización del Alquiler: 22/09/2023
+                Lugar de Finalización del Alquiler: GOATRental
+                Seguro Seleccionado: Seguro completo
+                Conductores Asociados: Nicolas Arango, Catalina Alvarez
+                SUBTOTAL: 13200000
+                TOTAL: 14708000

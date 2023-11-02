@@ -228,10 +228,9 @@ public class Aplicacion {
 		System.out.println("1. Hacer reserva de un vehículo");
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 
 		Aplicacion consola = new Aplicacion();
-		Interfaz interfaz = new Interfaz();
 		alquiler = new AlquilerCarros();
 		consola.cargarDatos();
 		consola.iniciarSesion();
