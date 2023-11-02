@@ -231,7 +231,6 @@ public class Aplicacion {
 	public static void main(String[] args) throws IOException {
 
 		Aplicacion consola = new Aplicacion();
-		Interfaz interfaz = new Interfaz();
 		alquiler = new AlquilerCarros();
 		consola.cargarDatos();
 		consola.iniciarSesion();
