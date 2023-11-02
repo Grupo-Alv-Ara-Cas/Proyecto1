@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Interfaz extends JFrame {
+	
+	private Aplicacion aplicacion;
 
     public Interfaz() {
         setBackground(Color.GRAY);
@@ -27,28 +29,34 @@ public class Interfaz extends JFrame {
         questionLabel.setHorizontalAlignment(SwingConstants.CENTER);
         
 
-        JButton yesButton = new JButton("Iniciar Sesión");
+        JButton logButton = new JButton("Iniciar Sesión");
         
-        JButton noButton = new JButton("Registrarse");
+        JButton regisButton = new JButton("Registrarse");
         
 
-        yesButton.addActionListener(new ActionListener() {
+        logButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	logButton.addActionListener(this);
+            	logButton.setActionCommand("Login");
+            	aplicacion.iniciarSesion();
+            	String login = JOptionPane.showInputDialog("Ingrese su usuario: ");
             }
         });
 
-        noButton.addActionListener(new ActionListener() {
+        regisButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	regisButton.addActionListener(this);
+            	regisButton.setActionCommand("Registrarse");
             }
         });
         
 
         loginPanel.add(questionLabel, BorderLayout.NORTH);
         JPanel buttonPanel = new JPanel();
-        buttonPanel.add(yesButton);
-        buttonPanel.add(noButton);
+        buttonPanel.add(logButton);
+        buttonPanel.add(regisButton);
         loginPanel.add(buttonPanel, BorderLayout.CENTER);
 
         BorderLayout layout = new BorderLayout();
